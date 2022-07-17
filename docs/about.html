@@ -87,22 +87,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Taller_ST: About this site</title>
+  <title>Taller ST V-2022: About this site</title>
 
   <meta property="description" itemprop="description" content="Some additional details about the website"/>
 
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Taller_ST: About this site"/>
+  <meta property="og:title" content="Taller ST V-2022: About this site"/>
   <meta property="og:type" content="article"/>
   <meta property="og:description" content="Some additional details about the website"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="Taller_ST"/>
+  <meta property="og:site_name" content="Taller ST V-2022"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Taller_ST: About this site"/>
+  <meta property="twitter:title" content="Taller ST V-2022: About this site"/>
   <meta property="twitter:description" content="Some additional details about the website"/>
 
   <!--/radix_placeholder_meta_tags-->
@@ -2047,8 +2047,124 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <style type="text/css">
+  .distill-site-nav {
+      color: rgba(0,74,151,1);
+      background-color: rgba(0,57,166,0.95);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+  h1, h2,  h3 {
+      color: rgba(0,57,166,0.9);
+  }
+
+  #pregunta {
+        margin-top: 10px;
+      margin-bottom: 10px;
+     background-color: rgba(112,115,114,0.2);
+     /*color: rgba(255,255,255,0.9);
+     background-color: #5c7884;*/
+     padding: 10px 10px 10px 10px;
+     text-align: justify;
+  }
+
+  #inciso {
+     margin-top: 10px;
+    background-color: #f1f3f4;
+     /*color: rgba(255,255,255,0.9);
+     background-color: #87a0ab;*/
+     padding: 10px 10px 10px 10px;
+     text-align: justify;
+     margin-bottom: 10px;
+  }
+
+  #justificar{
+     margin-top: 10px;
+      margin-bottom: 10px;
+     text-align: justify;
+  }
+
+  #colpre {
+    color: #5c7884;
+  }
+
+  #colin {
+    color: #87a0ab;
+  }
+
+  #guinda{
+     color: rgba(0,57,166,0.9);
+  }
+
+  .guinda{
+     color: rgba(0,57,166,0.9);
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: rgba(0,57,166,0.2);
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: rgb(255,255,255);
+  }
+
+
+
+  d-article a:link {
+   color: rgba(0,74,151,0.5) !important;
+  }
+
+  d-article  li a:link {
+   color: rgba(0,74,151,0.5);
+  }
+
+  d-article.d-article-with-toc a:link {
+   color: rgba(0,74,151,0.5) !important;
+  }
+
+  d-article  li p a:link {
+   color: rgba(0,74,151,0.5);
+  }
+
+  d-article   p a:link {
+   color: rgba(0,74,151,0.5);
+  }
+
+  d-article p a:link {
+   color: rgba(0,74,151,0.5);
+  }
+
+   p  a {
+   color: rgba(0,74,151,0.5);
+  }
+
+   td  a {
+   color: rgba(0,74,151,0.5);
+  }
+
+  td {
+    color: rgba(125,127,129,1);
+  }
+
+  thead {
+    color: rgba(125,127,129,1);
+  }
+
+  p {
+    
+    color: rgba(125,127,129,1);
+  }
+
+  li {
+    
+    color: rgba(125,127,129,1);
+  }
+
+  </style>
   <!--/radix_placeholder_site_in_header-->
 
+  <link rel="stylesheet" href="estilo.css" type="text/css"/>
 
 </head>
 
@@ -2065,11 +2181,23 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
-<a href="index.html" class="title">Taller_ST</a>
+<a class="logo">
+<img src="imagenes/logoblanco.png" alt="Logo"/>
+</a>
+<a href="index.html" class="title">Taller ST V-2022</a>
+<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Clases
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="Distribuciones.html">Distribuciones</a>
+</div>
+</div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>

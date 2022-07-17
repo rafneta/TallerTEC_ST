@@ -46,70 +46,77 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
+    background-color: #232629;
+    color: #7a7c7d;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #cfcfc2; background-color: #232629; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ad0000; } /* Alert */
-code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bn { color: #ad0000; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
-code span.ch { color: #20794d; } /* Char */
-code span.cn { color: #8f5902; } /* Constant */
-code span.co { color: #5e5e5e; } /* Comment */
-code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-code span.dt { color: #ad0000; } /* DataType */
-code span.dv { color: #ad0000; } /* DecVal */
-code span.er { color: #ad0000; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #ad0000; } /* Float */
-code span.fu { color: #4758ab; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
-code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
-code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
-code span.ss { color: #20794d; } /* SpecialString */
-code span.st { color: #20794d; } /* String */
-code span.va { color: #111111; } /* Variable */
-code span.vs { color: #20794d; } /* VerbatimString */
-code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+code span { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; text-decoration: underline; } /* Error */
+code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
 </style>
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Taller ST V-2022: Taller sobre series de tiempo</title>
+  <title>Taller ST V-2022: Distribuciones</title>
 
-  <meta property="description" itemprop="description" content="Taller sobre series de tiempo, dictado en verano de 2022 en&#10;el Técnologico de Monterrey Campus Estado de México para  los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas &#10;&#10;Dr. Rafael Martínez Martínez"/>
+  <meta property="description" itemprop="description" content="3.1: Distribuciones de Probablibilidad&#10;&#10;3.1.3: Distrubución normal &#10;&#10;Portafolio de R"/>
 
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-05-04"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-05-04"/>
+  <meta name="article:author" content="Rafael Martínez Martínez"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Taller ST V-2022: Taller sobre series de tiempo"/>
+  <meta property="og:title" content="Taller ST V-2022: Distribuciones"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Taller sobre series de tiempo, dictado en verano de 2022 en&#10;el Técnologico de Monterrey Campus Estado de México para  los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas &#10;&#10;Dr. Rafael Martínez Martínez"/>
+  <meta property="og:description" content="3.1: Distribuciones de Probablibilidad&#10;&#10;3.1.3: Distrubución normal &#10;&#10;Portafolio de R"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Taller ST V-2022"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Taller ST V-2022: Taller sobre series de tiempo"/>
-  <meta property="twitter:description" content="Taller sobre series de tiempo, dictado en verano de 2022 en&#10;el Técnologico de Monterrey Campus Estado de México para  los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas &#10;&#10;Dr. Rafael Martínez Martínez"/>
+  <meta property="twitter:title" content="Taller ST V-2022: Distribuciones"/>
+  <meta property="twitter:description" content="3.1: Distribuciones de Probablibilidad&#10;&#10;3.1.3: Distrubución normal &#10;&#10;Portafolio de R"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site"]}},"value":[{"type":"character","attributes":{},"value":["Taller sobre series de tiempo"]},{"type":"character","attributes":{},"value":["\nTaller sobre series de tiempo, dictado en verano de 2022 en\nel Técnologico de Monterrey Campus Estado de México para  los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas \n\nDr. Rafael Martínez Martínez\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output"]}},"value":[{"type":"character","attributes":{},"value":["Distribuciones"]},{"type":"character","attributes":{},"value":["3.1: Distribuciones de Probablibilidad\n\n3.1.3: Distrubución normal \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://github.com/yihui"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2173,7 +2180,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Taller sobre series de tiempo","description":"Taller sobre series de tiempo, dictado en verano de 2022 en\nel Técnologico de Monterrey Campus Estado de México para  los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas \n\nDr. Rafael Martínez Martínez","authors":[]}
+{"title":"Distribuciones","description":"3.1: Distribuciones de Probablibilidad\n\n3.1.3: Distrubución normal \n\nPortafolio de R","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://github.com/yihui","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-05-04T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2207,145 +2214,381 @@ Clases
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Taller sobre series de tiempo</h1>
+<h1>Distribuciones</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Taller sobre series de tiempo, dictado en verano de 2022 en el
-Técnologico de Monterrey Campus Estado de México para los estudiantes de
-Ingeniería en Ciencia de Datos y Matemáticas</p>
-<p>Dr. Rafael Martínez Martínez</p></p>
+<p><p>3.1: Distribuciones de Probablibilidad</p>
+<p>3.1.3: Distrubución normal</p>
+<p>Portafolio de R</p></p>
 </div>
 
+<div class="d-byline">
+  
+  true
+  
+<br/>May 4, 2022
+</div>
 
 <div class="d-article">
 <div class="d-contents d-contents-float">
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#presentación" id="toc-presentación">Presentación</a></li>
-<li><a href="#requisitos" id="toc-requisitos">Requisitos</a></li>
-<li><a href="#herramientas" id="toc-herramientas">Herramientas</a></li>
-<li><a href="#calendario" id="toc-calendario">Calendario</a></li>
-<li><a href="#propósito-de-la-unidad-de-aprendizaje"
-id="toc-propósito-de-la-unidad-de-aprendizaje">Propósito de la unidad de
-aprendizaje</a></li>
-<li><a href="#competencias-a-desarrollar"
-id="toc-competencias-a-desarrollar">Competencias a desarrollar</a></li>
-<li><a href="#contenido-del-curso"
-id="toc-contenido-del-curso">Contenido del curso</a></li>
-<li><a href="#forma-de-evaluación" id="toc-forma-de-evaluación">Forma de
-evaluación</a></li>
-<li><a href="#referencias" id="toc-referencias">Referencias</a></li>
-<li><a href="#políticas" id="toc-políticas">Políticas</a></li>
+<li><a href="#revisión-previa" id="toc-revisión-previa">Revisión
+previa</a></li>
+<li><a href="#distribuciones-de-probabilidad"
+id="toc-distribuciones-de-probabilidad">Distribuciones de
+probabilidad</a></li>
+<li><a href="#distribución-normal"
+id="toc-distribución-normal">Distribución normal</a>
+<ul>
+<li><a href="#implementación" id="toc-implementación">Implementación</a>
+<ul>
+<li><a href="#ejemplo-1" id="toc-ejemplo-1">Ejemplo 1</a></li>
+<li><a href="#ejemplo-2" id="toc-ejemplo-2">Ejemplo 2</a></li>
+<li><a href="#ejemplo-3" id="toc-ejemplo-3">Ejemplo 3</a></li>
+<li><a href="#ejemplo-4" id="toc-ejemplo-4">Ejemplo 4</a></li>
+<li><a href="#ejemplo-5" id="toc-ejemplo-5">Ejemplo 5</a></li>
+<li><a href="#ejemplo-6" id="toc-ejemplo-6">Ejemplo 6</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#portafolio-de-r" id="toc-portafolio-de-r">Portafolio de
+R</a></li>
 </ul>
 </nav>
 </div>
-<h1 class="guinda" id="presentación">Presentación</h1>
+<h1 id="revisión-previa">Revisión previa</h1>
 <ul>
-<li><p>Dr. Rafael Martínez Martínez</p></li>
-<li><p><a href="mailto:ramartinezr@tec.mx"
-class="email">ramartinezr@tec.mx</a></p></li>
-<li><p>Linkedin: <a
-href="https://www.linkedin.com/in/rafael-mart%C3%ADnez-mart%C3%ADnez-92187776/">enlace</a></p></li>
-<li><p>página: <a href="http://rafneta.github.io/">enlace</a></p></li>
+<li>Se considera una exposición general.</li>
+<li>La exposición se puede adaptar para más o menos detalles
+técnicos</li>
 </ul>
-<h1 class="guinda" id="requisitos">Requisitos</h1>
-<h1 class="guinda" id="herramientas">Herramientas</h1>
-<h1 class="guinda" id="calendario">Calendario</h1>
-<h1 class="guinda" id="propósito-de-la-unidad-de-aprendizaje">Propósito
-de la unidad de aprendizaje</h1>
-<h1 class="guinda" id="competencias-a-desarrollar">Competencias a
-desarrollar</h1>
-<h1 class="guinda" id="contenido-del-curso">Contenido del curso</h1>
-<ol type="1">
-<li><p>Introducción a la programación en R y su aplicación a la
-inferencia estadística</p></li>
-<li><p>Manipulación de datos en R</p></li>
-<li><p>Modelos estadísticos e inferencia estadística en R</p></li>
+<h1 id="distribuciones-de-probabilidad">Distribuciones de
+probabilidad</h1>
+<iframe id="myFrame" src="https://slides.com/ra_fa/upsem005/fullscreen#/1" width="100%" height="650" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+</iframe>
+<p>En el siguiente <a
+href="https://cran.r-project.org/web/views/Distributions.html">documento</a>
+se describen las distribuciones implementadas en R.</p>
+<p><a
+href="https://drive.google.com/drive/folders/1LpE0OYq7HpSPzh1Ly-6scPgkOHIoGCV2?usp=sharing">Notas
+sobre distribuciones</a></p>
+<h1 id="distribución-normal">Distribución normal</h1>
+<p>Se dice que una variable aleatoria (VA) <span
+class="math inline">\(X\)</span>, tiene distribución normal (o se
+distribuye normal) con media <span class="math inline">\(\mu\)</span> y
+desviación estándar <span class="math inline">\(\sigma\)</span>, <span
+class="math inline">\(X\sim \mathcal{N}(\mu,\sigma)\)</span>, si su
+<strong>función de densidad de probabilidad</strong> está determinada
+por</p>
+<p><span class="math display">\[f(x) = \frac{1}{\sqrt{2 \pi} \sigma}
+e^{-\frac{(x - \mu)^2}{2 \sigma^2}}\]</span> Mientras que su función de
+distribución de probabilidad es</p>
+<p><span class="math display">\[F(x)=P(X\leq x)=\int_{-\infty}^x f(t)
+\,dt=\frac{1}{\sqrt{2 \pi} \sigma}\int_{-\infty}^x e^{-\frac{(t -
+\mu)^2}{2 \sigma^2}}\,dt\]</span></p>
+<h2 id="implementación">Implementación</h2>
+<p>La biblioteca <code>stats</code> cuenta con cuatro prefijos que hacen
+referencia a funciones relacionadas con las distribuciones.</p>
+<ul>
+<li><strong>d</strong>: función de densidad o de probabilidad.</li>
+<li><strong>p</strong>: función de distribución</li>
+<li><strong>q</strong>: función para el cálculo de cuantiles.</li>
+<li><strong>r</strong>: función para simular datos con dicha
+distribución</li>
+</ul>
+<p>Para el caso de la distribución normal se tiene:</p>
+<ul>
+<li>dnorm</li>
+<li>pnorm</li>
+<li>qnorm</li>
+<li>rnorm</li>
+</ul>
+<h3 id="ejemplo-1">Ejemplo 1</h3>
+<p>Se ilustra el uso de dichas funciones para una VA <span
+class="math inline">\(X\sim \mathcal{N}(0,1)\)</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.3989423</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1]  0.03631102 -0.79352866  0.97533527 -0.34864384  1.96594606</code></pre>
+</div>
+<p>Se realiza la gráfica de la función de densidad y de distribución</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>,<span class='fl'>5</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
+      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"f(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de densidad N(0,1)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>,<span class='fl'>5</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
+      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"F(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de distribución N(0,1)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
+</div>
+<h3 id="ejemplo-2">Ejemplo 2</h3>
+<p>Ahora para una VA <span class="math inline">\(X\sim
+\mathcal{N}(10,0.5)\)</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.7978846</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.5</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.5</span>, mean <span class='op'>=</span> <span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 10</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span>, mean <span class='op'>=</span> <span class='fl'>5</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 4.538023 4.660162 4.996246 6.064476 4.034189</code></pre>
+</div>
+<p>Se realiza la gráfica de la función de densidad y de distribución</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>10</span>,<span class='fl'>0.5</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>17</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
+      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"f(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de densidad N(10,0.5)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>10</span>,<span class='fl'>0.5</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>17</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
+      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"F(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de distribución N(10,0.5)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
+</div>
+<h3 id="ejemplo-3">Ejemplo 3</h3>
+<p>Dada <span class="math inline">\(X\sim \mathcal{N}(50,10)\)</span>
+encuentra la probabilidad que asuma los calores entre 45 y 62.</p>
+<p>Entonces</p>
+<p><span class="math display">\[P(45&lt;X&lt;62)= P(X\leq 62) - P(X\leq
+45)=F(62)- F(45)\]</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>62</span>, mean <span class='op'>=</span> <span class='fl'>50</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>45</span>,mean <span class='op'>=</span> <span class='fl'>50</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 0.5763928</code></pre>
+</div>
+<p>Creamos una función para esta visualización.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>proba_gra</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>mean</span> <span class='op'>=</span> <span class='fl'>0</span>, <span class='va'>sd</span> <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>{</span>
+  
+  <span class='va'>regionX</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='fl'>0.01</span><span class='op'>)</span> <span class='co'># Intervalo a sombrear  </span>
+  <span class='va'>xP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>regionX</span>,<span class='va'>b</span><span class='op'>)</span> <span class='co'># Base de los polígonos que crean el efecto "sombra"</span>
+  <span class='va'>yP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>regionX</span>,<span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span>,<span class='fl'>0</span><span class='op'>)</span>   <span class='co'># Altura de los polígonos sombreados</span>
+  
+  <span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span>,
+        xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>-</span><span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span>,<span class='va'>mean</span><span class='op'>+</span><span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span><span class='op'>)</span>,
+        yaxs <span class='op'>=</span> <span class='st'>"i"</span>,
+        ylab <span class='op'>=</span> <span class='st'>"f(x)"</span>,
+        ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>mean</span>,<span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>1.2</span><span class='op'>)</span>,
+        col <span class='op'>=</span> <span class='st'>"#004A97"</span>,
+        lwd <span class='op'>=</span> <span class='fl'>3</span>,
+        main <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>'Densidad N('</span>,<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>,<span class='st'>','</span>,
+                     <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span>,<span class='st'>')'</span><span class='op'>)</span>
+        <span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/polygon.html'>polygon</a></span><span class='op'>(</span><span class='va'>xP</span>,<span class='va'>yP</span>,col<span class='op'>=</span><span class='st'>"#CAA977"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra</span><span class='op'>(</span><span class='fl'>45</span>, <span class='fl'>62</span>, mean <span class='op'>=</span> <span class='fl'>50</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<h3 id="ejemplo-4">Ejemplo 4</h3>
+<p>Dada una VA <span class="math inline">\(X\sim \mathcal{N}(40,
+6)\)</span>, encuentra el valor de <span
+class="math inline">\(x\)</span> tal que</p>
+<ol type="a">
+<li>El <span class="math inline">\(45\%\)</span> del área está a la
+izquierda de <span class="math inline">\(x\)</span></li>
+<li>El <span class="math inline">\(14\%\)</span> del área está a la
+derecha de <span class="math inline">\(x\)</span></li>
 </ol>
-<p><a href="./CSIV.pdf">Contenido extenso</a></p>
-<h1 class="guinda" id="forma-de-evaluación">Forma de evaluación</h1>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;"></th>
-<th style="text-align: left;">Actividades a evaluar</th>
-<th style="text-align: right;">Porcentaje</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: left;">Ejercicios de análisis estadísticos con
-programa R</td>
-<td style="text-align: right;">50.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"></td>
-<td style="text-align: left;">Entrega del primer borrador de tesis de
-grado</td>
-<td style="text-align: right;">40.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: left;">Presentación del primer borrador</td>
-<td style="text-align: right;">10.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">100.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;"></td>
-</tr>
-</tbody>
-</table>
-<p>Para la calificación final se tiene el siguiente esquema. Sea <span
-class="math inline">\(x\in\mathbb{R}\)</span>, la calificación
-obtenida</p>
-<table>
-<colgroup>
-<col style="width: 42%" />
-<col style="width: 17%" />
-<col style="width: 39%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Condición</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;">Calificación final</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(x \pmod{10}
-&lt; 5\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\rightarrow\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\left
-\lfloor x/10 \right \rfloor\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(x \pmod{10}
-\geq 5\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\rightarrow\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\left \lceil
-x/10 \right \rceil\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h1 class="guinda" id="referencias">Referencias</h1>
-<h1 class="guinda" id="políticas">Políticas</h1>
-<div class="sourceCode" id="cb1"><pre
+<p>Para el inciso a se observa que la solución coincide directamente con
+la definición de cuantil</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.45</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 39.24603</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>100</span>, <span class='fl'>39.24</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<p>Para el inciso b se toma el complemento del área para utilizar el
+cuantil</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>-</span><span class='fl'>0.14</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 46.48192</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra</span><span class='op'>(</span><span class='fl'>46.48</span>, <span class='fl'>100</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
+</div>
+<h3 id="ejemplo-5">Ejemplo 5</h3>
+<p>Simulamos datos que tengan distribución normal estándar</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>10000</span>, mean<span class='op'>=</span><span class='fl'>0</span>, sd<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>datos</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>, cex <span class='op'>=</span> <span class='fl'>0.3</span>, pch<span class='op'>=</span><span class='fl'>19</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<p>Se pueden pensar que estos datos se obtuvieron de realizar la
+medición de un variable <span class="math inline">\(X\)</span>. Se
+gráfican los 10000 datos en el eje horizontal</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>datos</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10000</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>, cex <span class='op'>=</span> <span class='fl'>0.5</span>, pch<span class='op'>=</span><span class='fl'>19</span>,
+     ylab <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
+</div>
+<p>Generamos el histograma de estos datos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>datos</span>, 
+     main <span class='op'>=</span> <span class='st'>"Histograma"</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>2000</span><span class='op'>)</span>,
+     ylab <span class='op'>=</span> <span class='st'>""</span>, col <span class='op'>=</span> <span class='st'>"#CAA977"</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
+</div>
+<p>Podemos pensar que estos datos tienen un distribución normal (bajo la
+suposición no sabíamos que distribución tenían)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>datos</span>, 
+     main <span class='op'>=</span> <span class='st'>"Función de densidad normal e histograma"</span>,
+     ylab <span class='op'>=</span> <span class='st'>""</span>, col <span class='op'>=</span> <span class='st'>"#CAA977"</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>datos</span><span class='op'>)</span>, sd<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>datos</span><span class='op'>)</span><span class='op'>)</span>,
+      from <span class='op'>=</span> <span class='op'>-</span><span class='fl'>5</span>,
+      to <span class='op'>=</span> <span class='fl'>5</span>,
+      col<span class='op'>=</span><span class='st'>"#004A97"</span>,
+      lwd<span class='op'>=</span><span class='fl'>3</span>,
+      add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
+</div>
+<h3 id="ejemplo-6">Ejemplo 6</h3>
+<p>Crea una función para realizar graficas de densidades normales,
+utiliza la biblioteca de <code>gggplot2</code></p>
+<p>Cargamos la biblioteca</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>proba_gra_gg</span> <span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>base</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>xlim</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>-</span><span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span>, <span class='va'>mean</span> <span class='op'>+</span> <span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span><span class='op'>)</span>
+  
+  <span class='va'>base</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_function.html'>geom_function</a></span><span class='op'>(</span>fun <span class='op'>=</span> <span class='va'>dnorm</span>,
+                       args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='va'>mean</span>, sd <span class='op'>=</span> <span class='va'>sd</span><span class='op'>)</span>,
+                       colour <span class='op'>=</span> <span class='st'>"#004A97"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Función de densidad normal"</span>,
+         subtitle <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Media:"</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>,
+                           <span class='st'>"Desviación estándar:"</span>,
+                           <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"x"</span><span class='op'>)</span>  <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"f(x)"</span><span class='op'>)</span> <span class='op'>+</span>
+    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>,
+          plot.subtitle <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>15</span><span class='op'>)</span>,
+          axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>15</span><span class='op'>)</span>,
+          axis.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
+          legend.position<span class='op'>=</span><span class='st'>"top"</span>,
+          legend.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>8</span>, face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span>,
+          legend.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>6</span>, face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<p>Utilizamo al función para hacer la gráfica de una VA <span
+class="math inline">\(X\sim\mathcal{N}(4,0.4)\)</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra_gg</span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>0.4</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
+</div>
+<h1 id="portafolio-de-r">Portafolio de R</h1>
+<p><strong>Visualización de COVID y series de tiempo</strong></p>
+<p><a href="https://rafneta.github.io/PruebaPaginaR/_site/"
+class="uri">https://rafneta.github.io/PruebaPaginaR/_site/</a></p>
+<p><strong>Estudio sobre movilidad intergeneracional y diferencias
+regionales en México</strong></p>
+<p><a href="https://rafneta.github.io/TesinaCIDEMERMM/index.html"
+class="uri">https://rafneta.github.io/TesinaCIDEMERMM/index.html</a></p>
+<p><strong>Econometría</strong></p>
+<p><a href="https://rafneta.github.io/ECNIITareas/"
+class="uri">https://rafneta.github.io/ECNIITareas/</a></p>
+<p><strong>Evalución de Programas sociales</strong></p>
+<p><a href="https://rafneta.github.io/EPSTareas/"
+class="uri">https://rafneta.github.io/EPSTareas/</a></p>
+<p><strong>Aplicación para modelos ARMA</strong></p>
+<p><a href="https://rafneta.shinyapps.io/ARMA/"
+class="uri">https://rafneta.shinyapps.io/ARMA/</a></p>
+<p><strong>Series de tiempo</strong></p>
+<p><a href="https://rafneta.github.io/STTareas/Tarea2ST.html"
+class="uri">https://rafneta.github.io/STTareas/Tarea2ST.html</a></p>
+<div class="sourceCode" id="cb12"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

@@ -1,0 +1,112 @@
+.distill-site-nav {
+    color: rgba(0,74,151,1);
+    background-color: rgba(0,57,166,0.95);
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+h1, h2,  h3 {
+    color: rgba(0,57,166,0.9);
+}
+
+#pregunta {
+      margin-top: 10px;
+    margin-bottom: 10px;
+   background-color: rgba(112,115,114,0.2);
+   /*color: rgba(255,255,255,0.9);
+   background-color: #5c7884;*/
+   padding: 10px 10px 10px 10px;
+   text-align: justify;
+}
+
+#inciso {
+   margin-top: 10px;
+  background-color: #f1f3f4;
+   /*color: rgba(255,255,255,0.9);
+   background-color: #87a0ab;*/
+   padding: 10px 10px 10px 10px;
+   text-align: justify;
+   margin-bottom: 10px;
+}
+
+#justificar{
+   margin-top: 10px;
+    margin-bottom: 10px;
+   text-align: justify;
+}
+
+#colpre {
+  color: #5c7884;
+}
+
+#colin {
+  color: #87a0ab;
+}
+
+#guinda{
+   color: rgba(0,57,166,0.9);
+}
+
+.guinda{
+   color: rgba(0,57,166,0.9);
+}
+
+tbody tr:nth-child(odd) {
+  background-color: rgba(0,57,166,0.2);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgb(255,255,255);
+}
+
+
+
+d-article a:link {
+ color: rgba(0,74,151,0.5) !important;
+}
+
+d-article  li a:link {
+ color: rgba(0,74,151,0.5);
+}
+
+d-article.d-article-with-toc a:link {
+ color: rgba(0,74,151,0.5) !important;
+}
+
+d-article  li p a:link {
+ color: rgba(0,74,151,0.5);
+}
+
+d-article   p a:link {
+ color: rgba(0,74,151,0.5);
+}
+
+d-article p a:link {
+ color: rgba(0,74,151,0.5);
+}
+
+ p  a {
+ color: rgba(0,74,151,0.5);
+}
+
+ td  a {
+ color: rgba(0,74,151,0.5);
+}
+
+td {
+  color: rgba(125,127,129,1);
+}
+
+thead {
+  color: rgba(125,127,129,1);
+}
+
+p {
+  
+  color: rgba(125,127,129,1);
+}
+
+li {
+  
+  color: rgba(125,127,129,1);
+}

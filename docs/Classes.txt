@@ -1,0 +1,61 @@
+<div class='def'>
+<strong>Definición</strong> <em>[ ]</em>
+<p>
+ </p>
+</div>
+
+
+
+<div class='teo'>
+<strong>Teorema</strong> <em>[]</em>
+<p>
+
+</p>
+</div>
+
+
+
+<div class="eje">
+
+<strong>Ejemplo</strong>
+
+<p>
+</p>
+            
+</div>
+
+
+<div class="act">
+
+<strong>Actividad</strong>
+
+<p>
+</p>
+            
+</div>
+
+
+
+
+<div class='problemas'>
+<strong>Problemas</strong> 
+<ol>
+<li><p> </p> </li>
+</ol>
+</div>
+
+<div class="polaroid">
+   <img src="" alt="Pareja">
+  <div class="despolaroid">
+   <p>Representación geometrica de una pareja ordenada</p>
+  </div>
+ </div>
+ 
+ 
+
+from IPython.core.display import HTML
+css_file = 'css/estilo1.css'
+HTML(open(css_file, "r").read())
+
+
+"output_scroll"

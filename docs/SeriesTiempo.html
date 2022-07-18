@@ -88,11 +88,32 @@ code span.vs { color: #da4453; } /* VerbatimString */
 code span.wa { color: #da4453; } /* Warning */
 </style>
 
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>Taller ST V-2022: Distribuciones</title>
+  <title>Taller ST V-2022: Series de tiempo</title>
 
-  <meta property="description" itemprop="description" content="3.1: Distribuciones de Probablibilidad&#10;&#10;3.1.3: Distrubución normal &#10;&#10;Portafolio de R"/>
+  <meta property="description" itemprop="description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
 
 
   <!--  https://schema.org/Article -->
@@ -101,22 +122,28 @@ code span.wa { color: #da4453; } /* Warning */
   <meta name="article:author" content="Rafael Martínez Martínez"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Taller ST V-2022: Distribuciones"/>
+  <meta property="og:title" content="Taller ST V-2022: Series de tiempo"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="3.1: Distribuciones de Probablibilidad&#10;&#10;3.1.3: Distrubución normal &#10;&#10;Portafolio de R"/>
+  <meta property="og:description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Taller ST V-2022"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Taller ST V-2022: Distribuciones"/>
-  <meta property="twitter:description" content="3.1: Distribuciones de Probablibilidad&#10;&#10;3.1.3: Distrubución normal &#10;&#10;Portafolio de R"/>
+  <meta property="twitter:title" content="Taller ST V-2022: Series de tiempo"/>
+  <meta property="twitter:description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
 
   <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=Forecasting: Principles and practice;citation_publication_date=2018;citation_publisher=OTexts;citation_author=Rob J Hyndman;citation_author=George Athanasopoulos"/>
+  <meta name="citation_reference" content="citation_title=Introducción a la econometría;citation_publication_date=2012;citation_publisher=PEARSON;citation_author=James H. Stock;citation_author=Mark M. Watson"/>
+  <meta name="citation_reference" content="citation_title=Introducción a la econometría;citation_publication_date=2010;citation_publisher=CENGAGE;citation_author=Jeffrey M. Wooldridge"/>
+  <meta name="citation_reference" content="citation_title=Applied time series analysis for fisheries and enviromental data.;citation_publication_date=2020;citation_author=E. E. Holmes;citation_author=Scheuerell M. D;citation_author=E. J. Ward"/>
+  <meta name="citation_reference" content="citation_title=Introducción a los procesos estocásticos;citation_publication_date=2016;citation_publisher=UNAM, Facultad de Ciencias;citation_author=Luis Rincón"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output"]}},"value":[{"type":"character","attributes":{},"value":["Distribuciones"]},{"type":"character","attributes":{},"value":["3.1: Distribuciones de Probablibilidad\n\n3.1.3: Distrubución normal \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://github.com/yihui"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Series de tiempo"]},{"type":"character","attributes":{},"value":["3.1: \n\n3.1.3: \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://github.com/yihui"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"character","attributes":{},"value":["hide"]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2232,7 +2259,7 @@ code span.wa { color: #da4453; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Distribuciones","description":"3.1: Distribuciones de Probablibilidad\n\n3.1.3: Distrubución normal \n\nPortafolio de R","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://github.com/yihui","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-05-04T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
+{"title":"Series de tiempo","description":"3.1: \n\n3.1.3: \n\nPortafolio de R","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://github.com/yihui","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-05-04T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2267,11 +2294,11 @@ Clases
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Distribuciones</h1>
+<h1>Series de tiempo</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>3.1: Distribuciones de Probablibilidad</p>
-<p>3.1.3: Distrubución normal</p>
+<p><p>3.1:</p>
+<p>3.1.3:</p>
 <p>Portafolio de R</p></p>
 </div>
 
@@ -2289,360 +2316,442 @@ Clases
 <ul>
 <li><a href="#revisión-previa" id="toc-revisión-previa">Revisión
 previa</a></li>
-<li><a href="#distribuciones-de-probabilidad"
-id="toc-distribuciones-de-probabilidad">Distribuciones de
-probabilidad</a></li>
-<li><a href="#distribución-normal"
-id="toc-distribución-normal">Distribución normal</a>
-<ul>
-<li><a href="#implementación" id="toc-implementación">Implementación</a>
-<ul>
-<li><a href="#ejemplo-1" id="toc-ejemplo-1">Ejemplo 1</a></li>
-<li><a href="#ejemplo-2" id="toc-ejemplo-2">Ejemplo 2</a></li>
-<li><a href="#ejemplo-3" id="toc-ejemplo-3">Ejemplo 3</a></li>
-<li><a href="#ejemplo-4" id="toc-ejemplo-4">Ejemplo 4</a></li>
-<li><a href="#ejemplo-5" id="toc-ejemplo-5">Ejemplo 5</a></li>
-<li><a href="#ejemplo-6" id="toc-ejemplo-6">Ejemplo 6</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#portafolio-de-r" id="toc-portafolio-de-r">Portafolio de
-R</a></li>
+<li><a href="#serie-de-tiempo-estacionaria"
+id="toc-serie-de-tiempo-estacionaria">Serie de tiempo
+estacionaria</a></li>
+<li><a href="#modelos-armapq" id="toc-modelos-armapq">Modelos ARMA(<span
+class="math inline">\(p\)</span>,<span
+class="math inline">\(q\)</span>)</a></li>
+<li><a href="#serie-de-tiempo-no-estacionaria"
+id="toc-serie-de-tiempo-no-estacionaria">Serie de tiempo no
+estacionaria</a></li>
+<li><a href="#transformaciones-de-series-no-estacionarias"
+id="toc-transformaciones-de-series-no-estacionarias">Transformaciones de
+series no estacionarias</a></li>
+<li><a href="#modelos-arimapdq" id="toc-modelos-arimapdq">Modelos
+ARIMA(<span class="math inline">\(p,d,q\)</span>)</a></li>
+<li><a href="#estimación-del-modelo-de-un-serie-de-tiempo"
+id="toc-estimación-del-modelo-de-un-serie-de-tiempo">Estimación del
+modelo de un serie de tiempo</a></li>
+<li><a href="#predicción-de-una-serie-de-tiempo"
+id="toc-predicción-de-una-serie-de-tiempo">Predicción de una serie de
+tiempo</a></li>
 </ul>
 </nav>
 </div>
 <h1 id="revisión-previa">Revisión previa</h1>
-<ul>
-<li>Se considera una exposición general.</li>
-<li>La exposición se puede adaptar para más o menos detalles
-técnicos</li>
-</ul>
-<h1 id="distribuciones-de-probabilidad">Distribuciones de
-probabilidad</h1>
-<iframe id="myFrame" src="https://slides.com/ra_fa/upsem005/fullscreen#/1" width="100%" height="650" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-</iframe>
-<p>En el siguiente <a
-href="https://cran.r-project.org/web/views/Distributions.html">documento</a>
-se describen las distribuciones implementadas en R.</p>
-<p><a
-href="https://drive.google.com/drive/folders/1LpE0OYq7HpSPzh1Ly-6scPgkOHIoGCV2?usp=sharing">Notas
-sobre distribuciones</a></p>
-<h1 id="distribución-normal">Distribución normal</h1>
-<p>Se dice que una variable aleatoria (VA) <span
-class="math inline">\(X\)</span>, tiene distribución normal (o se
-distribuye normal) con media <span class="math inline">\(\mu\)</span> y
-desviación estándar <span class="math inline">\(\sigma\)</span>, <span
-class="math inline">\(X\sim \mathcal{N}(\mu,\sigma)\)</span>, si su
-<strong>función de densidad de probabilidad</strong> está determinada
-por</p>
-<p><span class="math display">\[f(x) = \frac{1}{\sqrt{2 \pi} \sigma}
-e^{-\frac{(x - \mu)^2}{2 \sigma^2}}\]</span> Mientras que su función de
-distribución de probabilidad es</p>
-<p><span class="math display">\[F(x)=P(X\leq x)=\int_{-\infty}^x f(t)
-\,dt=\frac{1}{\sqrt{2 \pi} \sigma}\int_{-\infty}^x e^{-\frac{(t -
-\mu)^2}{2 \sigma^2}}\,dt\]</span></p>
-<h2 id="implementación">Implementación</h2>
-<p>La biblioteca <code>stats</code> cuenta con cuatro prefijos que hacen
-referencia a funciones relacionadas con las distribuciones.</p>
-<ul>
-<li><strong>d</strong>: función de densidad o de probabilidad.</li>
-<li><strong>p</strong>: función de distribución</li>
-<li><strong>q</strong>: función para el cálculo de cuantiles.</li>
-<li><strong>r</strong>: función para simular datos con dicha
-distribución</li>
-</ul>
-<p>Para el caso de la distribución normal se tiene:</p>
-<ul>
-<li>dnorm</li>
-<li>pnorm</li>
-<li>qnorm</li>
-<li>rnorm</li>
-</ul>
-<h3 id="ejemplo-1">Ejemplo 1</h3>
-<p>Se ilustra el uso de dichas funciones para una VA <span
-class="math inline">\(X\sim \mathcal{N}(0,1)\)</span></p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<div class="def">
+<strong>Definición</strong> <em>[Proceso Estocástico Discreto
+(PED)]</em>
+<p>
+<p>Es una colección de variables aleatorias</p>
+<p><span class="math display">\[\left\{ X_t:t\in T\right\}\]</span>
+donde <span class="math inline">\(T\)</span> es un conjunto numerable,
+<span class="math inline">\(X_t\in S\)</span>, <span
+class="math inline">\(S\)</span> es llamado el espacio de estados.</p>
+</p>
 </div>
-<pre><code>[1] 0.3989423</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<p>Un PED <span class="math inline">\(\{X_t\}\)</span><a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+puede considerarse como una función de dos variables <span
+class="math display">\[X:T\times \Omega\longrightarrow S\]</span></p>
+<p>Para cada <span class="math inline">\(\omega\in\Omega\)</span> fijo,
+la función <span class="math inline">\(t\rightarrow X_t(\Omega)\)</span>
+es llamada una realización del proceso <span class="citation"
+data-cites="rincon">(<a href="#ref-rincon" role="doc-biblioref">Rincón
+2016</a>)</span>.</p>
+<div class="def">
+<strong>Definición</strong> <em>[Serie de tiempo ]</em>
+<p>
+<p>Es una realización de un Proceso Estocástico Discreto</p>
+<p><span class="math display">\[\left\{ X_t:t\in T\right\}\]</span></p>
+donde <span class="math inline">\(T\)</span> es un conjunto ordenado
+cronológicamente cuyos elementos son equidistantes
+</p>
 </div>
-<pre><code>[1] 0.5</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 0</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1]  0.5901258 -1.1930559  0.8878270  0.3902144  0.2082191</code></pre>
-</div>
-<p>Se realiza la gráfica de la función de densidad y de distribución</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>,<span class='fl'>5</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
-      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"f(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de densidad N(0,1)"</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>0</span>,<span class='fl'>1</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>,<span class='fl'>5</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
-      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"F(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de distribución N(0,1)"</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
-</div>
-<h3 id="ejemplo-2">Ejemplo 2</h3>
-<p>Ahora para una VA <span class="math inline">\(X\sim
-\mathcal{N}(10,0.5)\)</span></p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 0.7978846</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, mean <span class='op'>=</span> <span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 0.5</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.5</span>, mean <span class='op'>=</span> <span class='fl'>10</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 10</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span>, mean <span class='op'>=</span> <span class='fl'>5</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 4.453011 5.203469 4.853996 4.999739 5.125381</code></pre>
-</div>
-<p>Se realiza la gráfica de la función de densidad y de distribución</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>10</span>,<span class='fl'>0.5</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>17</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
-      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"f(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de densidad N(10,0.5)"</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='fl'>10</span>,<span class='fl'>0.5</span><span class='op'>)</span>,xlim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>17</span><span class='op'>)</span>,col<span class='op'>=</span><span class='st'>"#004A97"</span>,lwd<span class='op'>=</span><span class='fl'>3</span>,
-      xlab<span class='op'>=</span><span class='st'>"x"</span>,ylab<span class='op'>=</span><span class='st'>"F(x)"</span>,main<span class='op'>=</span><span class='st'>"Función de distribución N(10,0.5)"</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-6-1.png" width="624" /></p>
-</div>
-<h3 id="ejemplo-3">Ejemplo 3</h3>
-<p>Dada <span class="math inline">\(X\sim \mathcal{N}(50,10)\)</span>
-encuentra la probabilidad que asuma los calores entre 45 y 62.</p>
-<p>Entonces</p>
-<p><span class="math display">\[P(45&lt;X&lt;62)= P(X\leq 62) - P(X\leq
-45)=F(62)- F(45)\]</span></p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>62</span>, mean <span class='op'>=</span> <span class='fl'>50</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>pnorm</a></span><span class='op'>(</span><span class='fl'>45</span>,mean <span class='op'>=</span> <span class='fl'>50</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 0.5763928</code></pre>
-</div>
-<p>Creamos una función para esta visualización.</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>proba_gra</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>mean</span> <span class='op'>=</span> <span class='fl'>0</span>, <span class='va'>sd</span> <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>regionX</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='fl'>0.01</span><span class='op'>)</span> <span class='co'># Intervalo a sombrear  </span>
-  <span class='va'>xP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>regionX</span>,<span class='va'>b</span><span class='op'>)</span> <span class='co'># Base de los polígonos que crean el efecto "sombra"</span>
-  <span class='va'>yP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>regionX</span>,<span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span>,<span class='fl'>0</span><span class='op'>)</span>   <span class='co'># Altura de los polígonos sombreados</span>
-  
-  <span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span>,
-        xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>-</span><span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span>,<span class='va'>mean</span><span class='op'>+</span><span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span><span class='op'>)</span>,
-        yaxs <span class='op'>=</span> <span class='st'>"i"</span>,
-        ylab <span class='op'>=</span> <span class='st'>"f(x)"</span>,
-        ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>mean</span>,<span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span><span class='op'>*</span><span class='fl'>1.2</span><span class='op'>)</span>,
-        col <span class='op'>=</span> <span class='st'>"#004A97"</span>,
-        lwd <span class='op'>=</span> <span class='fl'>3</span>,
-        main <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>'Densidad N('</span>,<span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>,<span class='st'>','</span>,
-                     <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span>,<span class='st'>')'</span><span class='op'>)</span>
-        <span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/polygon.html'>polygon</a></span><span class='op'>(</span><span class='va'>xP</span>,<span class='va'>yP</span>,col<span class='op'>=</span><span class='st'>"#CAA977"</span><span class='op'>)</span>
-  <span class='op'>}</span>
-</code></pre>
-</div>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra</span><span class='op'>(</span><span class='fl'>45</span>, <span class='fl'>62</span>, mean <span class='op'>=</span> <span class='fl'>50</span>, sd <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
-</div>
-<h3 id="ejemplo-4">Ejemplo 4</h3>
-<p>Dada una VA <span class="math inline">\(X\sim \mathcal{N}(40,
-6)\)</span>, encuentra el valor de <span
-class="math inline">\(x\)</span> tal que</p>
-<ol type="a">
-<li>El <span class="math inline">\(45\%\)</span> del área está a la
-izquierda de <span class="math inline">\(x\)</span></li>
-<li>El <span class="math inline">\(14\%\)</span> del área está a la
-derecha de <span class="math inline">\(x\)</span></li>
+<h1 id="serie-de-tiempo-estacionaria">Serie de tiempo estacionaria</h1>
+<p>Un PED <span class="math inline">\(\{X_t\}\)</span> es
+<strong>estrictamente estacionario</strong> si y sólo si para
+cualesquiera <span class="math inline">\(t_1 &lt; t_2 &lt; \dots &lt;
+t_n\)</span> <span class="math inline">\(n\geq1\)</span>, la
+distribución de probabilidad conjunta de <span
+class="math inline">\([X_{t_1},\dots,X_{t_n}]\)</span> coincide con la
+de <span class="math inline">\([X_{t_1+h},\dots,X_{t_n+h}]\)</span> para
+<span class="math inline">\(h\in\mathbb{Z}-\{0\}\)</span></p>
+<hr />
+<p>Un PED <span class="math inline">\(\{X_t\}\)</span> es
+<strong>estacionario en media</strong> o <strong>débilmente estacionario
+de primer orden</strong> si y solo si <span
+class="math inline">\(\mathbb{E}(X_t)&lt;\infty\)</span> es
+constante</p>
+<hr />
+<p>Un PED <span class="math inline">\(\{X_t\}\)</span> es
+<strong>estacionario en autocovarianza</strong> o <strong>débilmente
+estacionario de segundo orden</strong> si y solo si:</p>
+<ol type="1">
+<li><span class="math inline">\(\mathbb{E}(X_t)&lt;\infty\)</span> y
+<span class="math inline">\(\mathbb{V}ar(X_t)&lt;\infty\)</span> son
+constantes y finitas, es decir, no hay dependencia de <span
+class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(\mathbb{C}ov(X_t,X_{t-k})\)</span> a lo
+sumo de pende de <span class="math inline">\(k\)</span> pero no depende
+de <span class="math inline">\(t\)</span></li>
 </ol>
-<p>Para el inciso a se observa que la solución coincide directamente con
-la definición de cuantil</p>
-<div class="layout-chunk" data-layout="l-body">
+<hr />
+<p>para trabajar con series de tiempo se pide normalmente que se suponga
+que la serie es <strong>debilmente estacionaria de segundo
+orden</strong>. Por el momento no se realiza esta prueba a los datos de
+CoVID, en secciones posteriores regresamos a esta pregunta. Por el
+momento se supondrá <span class="math inline">\(\{C_t\}\)</span> es
+estacionaria.</p>
+<p>¿Existe una relación entre <span class="math inline">\(C_t\)</span> y
+<span class="math inline">\(C_{t-1},C_{t-2},\dots,C_{t-k},\)</span>?, la
+<em>función de autorrelación</em> representa la duración y la intensidad
+de la memoria de un proceso, podría decirse que es una medida de qué
+tanto afectan los valores pasados a los actuales.</p>
+<hr />
+<p>La <strong>autocovarianza de orden <span
+class="math inline">\(k\)</span></strong>, de un PED <span
+class="math inline">\(\{X_t\}\)</span> <em>estacionario</em> se define
+como</p>
+<p><span
+class="math display">\[\gamma_k=\mathbb{C}ov(X_t,X_{t+k})\]</span></p>
+<hr />
+<p>La <strong>autocorrelación simple de orden k</strong>, de un PED
+<span class="math inline">\(\{X_t\}\)</span> <em>estacionario</em> se
+define como</p>
+<p><span class="math display">\[\rho_k=\frac{\gamma_k}{\gamma_0};\;\;
+k=0,1\dots\]</span></p>
+<hr />
+<p>La función <span class="math inline">\(k\rightarrow\rho_k\)</span> es
+llamada la <em>función de autocorrelación (ACF)</em>, el dominio de la
+función se deduce a partir del supuesto de <em>estacionariedad</em>,
+esta función nos da la relación entre entre <span
+class="math inline">\(X_t\)</span> y <span
+class="math inline">\(X_{t-k}\)</span>.</p>
+<p>En la práctica se tienen que utilizar estimadores, el valor numérico
+para el estimador <span class="math inline">\(\hat\rho_k\)</span> es</p>
+<p><span class="math display">\[r_{k} = \frac{\sum\limits_{t=k+1}^T
+(x_{t}-\bar{x})(x_{t-k}-\bar{x})}
+{\sum\limits_{t=1}^T (x_{t}-\bar{x})^2}\]</span></p>
+<p>donde <span class="math inline">\(x_t\)</span> es el valor observado
+de <span class="math inline">\(X_t\)</span>, <span
+class="math inline">\(T\)</span> denota el número de datos. Cada valor
+se considera individualmente significativo al <span
+class="math inline">\(5%\)</span> cuando <span
+class="math inline">\(r_k&gt;1.96/\sqrt{T}\)</span>. Si se quiere hacer
+una prueba conjunta de significancia de las <span
+class="math inline">\(K\)</span> primeras autocorrelaciones usualmente
+se calcula el <strong>estadístico de Ljuang-Box</strong> que
+aproximadamente sigue una distribución <span
+class="math inline">\(~\chi^2(K)\)</span></p>
+<p><span
+class="math display">\[Q_{LB}=T(T-2)\sum_{k=1}^{K}\frac{r_k^2}{T-k}\]</span></p>
+<p>la hipótesis nula es <span
+class="math inline">\(\rho_1=\ldots\rho_K=0\)</span>.</p>
+<p>Existe una medida del grado de asociación lineal entre dos
+componentes de <span class="math inline">\(\{X_t\}\)</span> que descarta
+que dicha asociación suceda por los componentes intermedios entre ellos,
+precisando:</p>
+<hr />
+<p>La <strong>autocorrelación parcial de orden <span
+class="math inline">\(k\)</span></strong> de un PED <span
+class="math inline">\(\{X_t\}\)</span> <em>estacionario</em> se define
+como el parámetro <span class="math inline">\(\phi_{kk}\)</span> de la
+regresión</p>
+<p><span class="math display" id="eq:pac">\[\begin{equation}
+\tilde{X}_t=\phi_{k1}\tilde{X}_{t-1}+\phi_{k2}\tilde{X}_{t-2}+\dots+\phi_{kk}\tilde{X}_{t-k}+
+U_t
+\tag{1}
+\end{equation}\]</span></p>
+<p>con <span
+class="math inline">\(\tilde{X}_{t-i}=X_{t-i}-\mu_X\)</span>, <span
+class="math inline">\(i = 0,\dots,k\)</span>, <span
+class="math inline">\(U_t\)</span> independiente de <span
+class="math inline">\(Y_{t-i}\)</span> para todo <span
+class="math inline">\(i\geq 1\)</span>, la función <span
+class="math inline">\(k\rightarrow\phi_{kk}\)</span> suele llamarse
+<em>función de autocorrelación parcial (PACF)</em> del proceso.</p>
+<hr />
+<p>Existen por lo menos dos formas de estimar esta cantidad, solo se
+menciona una de ellas que es realizar la regresión que indica la
+ecuación <a href="#eq:pac">(1)</a>, cada estimación puede considerarse
+individualmente significativa al <span
+class="math inline">\(5\%\)</span> cuando <span
+class="math inline">\(\phi_{kk}&gt;1.96/\sqrt{T}\)</span>.</p>
+<p>La ACF se puede calcular para series no estacionarias, cuando la
+serie no es estacionaria la ACF decrece <em>muy lento</em>. Hasta el
+momento se ha supuesto que <span class="math inline">\(\{C_t\}\)</span>
+es estacionaria, ¿qué tanto se puede sostener esta hipótesis al observar
+su correlograma?, todo depende de la interpretación de <em>muy
+lento</em>, se sigue sosteniendo la hipótesis de estacionariedad.</p>
+<h1 id="modelos-armapq">Modelos ARMA(<span
+class="math inline">\(p\)</span>,<span
+class="math inline">\(q\)</span>)</h1>
+<p>Un proceso estocástico <em>estacionario</em> <span
+class="math inline">\(\{X_t\}\)</span> sigue un <strong>modelo
+autorregresivo-media móvil</strong> de orden <span
+class="math inline">\((p,q)\)</span> o <strong>ARMA(<span
+class="math inline">\(p,q\)</span>)</strong>, si y sólo si</p>
+<p><span
+class="math display">\[X_t=\mu+\sum_{i=1}^p\phi_iX_{t-i}-\sum_{j=1}^q\theta_jA_{t-j}+A_t\]</span>
+para <span class="math inline">\(t\in\mathbb{Z}\)</span>, donde <span
+class="math inline">\(\{A_t\}\sim NIID(0,\sigma_A^2)\)</span>, <span
+class="math inline">\(\mu\)</span>, <span
+class="math inline">\(\phi_i\)</span> y <span
+class="math inline">\(\theta_j\)</span> son parametros.</p>
+<hr />
+<p>para la <strong>condición de estacionariedad</strong> se tiene que
+las soluciones de la siguiente ecuación están fuera del círculo
+unitario</p>
+<p><span class="math display">\[1-\sum_{i=1}^p\phi_ix^i=0\]</span> se
+dice que el <strong>modelo es invertible</strong> si las soluciones de
+la siguente ecuación están fuera del círculo unitario</p>
+<p><span class="math display">\[1-\sum_{j=1}^q\theta_jx^j=0\]</span></p>
+<p>Cuando los parámetros <span class="math inline">\(\theta_j\)</span>
+son nulos se dice que el proceso sigue un modelo <strong>AR(<span
+class="math inline">\(p\)</span>)=ARMA(<span
+class="math inline">\(p,0\)</span>)</strong>, si los parámetros <span
+class="math inline">\(\phi_i\)</span> son nulos se dice que el proceso
+sigue un modelo <strong>MA(<span
+class="math inline">\(q\)</span>)=ARMA(<span
+class="math inline">\(0,q\)</span>)</strong></p>
+<p>Los procesos <em>estacionarios</em> <strong>ARMA(<span
+class="math inline">\(p,q\)</span>)</strong> se caracterizan por el
+comportamiento conjunto de su ACF y PACF, en la Figura
+<a href="#fig:tablaacf">1</a> se muestra el comportamiento, la tabla se se tomó del
+siguiente <a
+href="https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf">enlace</a></p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<details>
+<summary>
+hide
+</summary>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>0.45</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"imagenes/tablaacf.png"</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 39.24603</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>100</span>, <span class='fl'>39.24</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
-</div>
-<p>Para el inciso b se toma el complemento del área para utilizar el
-cuantil</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>qnorm</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>-</span><span class='fl'>0.14</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
-</code></pre>
-</div>
-<pre><code>[1] 46.48192</code></pre>
-</div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra</span><span class='op'>(</span><span class='fl'>46.48</span>, <span class='fl'>100</span>, mean <span class='op'>=</span> <span class='fl'>40</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-13-1.png" width="624" /></p>
-</div>
-<h3 id="ejemplo-5">Ejemplo 5</h3>
-<p>Simulamos datos que tengan distribución normal estándar</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>10000</span>, mean<span class='op'>=</span><span class='fl'>0</span>, sd<span class='op'>=</span><span class='fl'>1</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>datos</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>, cex <span class='op'>=</span> <span class='fl'>0.3</span>, pch<span class='op'>=</span><span class='fl'>19</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
-</div>
-<p>Se pueden pensar que estos datos se obtuvieron de realizar la
-medición de un variable <span class="math inline">\(X\)</span>. Se
-gráfican los 10000 datos en el eje horizontal</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>datos</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>10000</span><span class='op'>)</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>, cex <span class='op'>=</span> <span class='fl'>0.5</span>, pch<span class='op'>=</span><span class='fl'>19</span>,
-     ylab <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-15-1.png" width="624" /></p>
-</div>
-<p>Generamos el histograma de estos datos</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>datos</span>, 
-     main <span class='op'>=</span> <span class='st'>"Histograma"</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>2000</span><span class='op'>)</span>,
-     ylab <span class='op'>=</span> <span class='st'>""</span>, col <span class='op'>=</span> <span class='st'>"#CAA977"</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-16-1.png" width="624" /></p>
-</div>
-<p>Podemos pensar que estos datos tienen un distribución normal (bajo la
-suposición no sabíamos que distribución tenían)</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>datos</span>, 
-     main <span class='op'>=</span> <span class='st'>"Función de densidad normal e histograma"</span>,
-     ylab <span class='op'>=</span> <span class='st'>""</span>, col <span class='op'>=</span> <span class='st'>"#CAA977"</span>, xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-
-<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>datos</span><span class='op'>)</span>, sd<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/sd.html'>sd</a></span><span class='op'>(</span><span class='va'>datos</span><span class='op'>)</span><span class='op'>)</span>,
-      from <span class='op'>=</span> <span class='op'>-</span><span class='fl'>5</span>,
-      to <span class='op'>=</span> <span class='fl'>5</span>,
-      col<span class='op'>=</span><span class='st'>"#004A97"</span>,
-      lwd<span class='op'>=</span><span class='fl'>3</span>,
-      add <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-17-1.png" width="624" /></p>
-</div>
-<h3 id="ejemplo-6">Ejemplo 6</h3>
-<p>Crea una función para realizar graficas de densidades normales,
-utiliza la biblioteca de <code>gggplot2</code></p>
-<p>Cargamos la biblioteca</p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-</code></pre>
+</details>
+<div class="figure"><span style="display:block;" id="fig:tablaacf"></span>
+<img src="imagenes/tablaacf.png" alt="Tabla de ACF y PACF" width="601" class=external />
+<p class="caption">
+Figure 1: Tabla de ACF y PACF
+</p>
 </div>
 </div>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>proba_gra_gg</span> <span class='op'>&lt;-</span><span class='kw'>function</span><span class='op'>(</span><span class='va'>mean</span>,<span class='va'>sd</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='va'>base</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/lims.html'>xlim</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>-</span><span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span>, <span class='va'>mean</span> <span class='op'>+</span> <span class='fl'>5</span><span class='op'>*</span><span class='va'>sd</span><span class='op'>)</span>
-  
-  <span class='va'>base</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_function.html'>geom_function</a></span><span class='op'>(</span>fun <span class='op'>=</span> <span class='va'>dnorm</span>,
-                       args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='va'>mean</span>, sd <span class='op'>=</span> <span class='va'>sd</span><span class='op'>)</span>,
-                       colour <span class='op'>=</span> <span class='st'>"#004A97"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_bw</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Función de densidad normal"</span>,
-         subtitle <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Media:"</span>,
-                           <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>mean</span><span class='op'>)</span>,
-                           <span class='st'>"Desviación estándar:"</span>,
-                           <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>sd</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> 
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>xlab</a></span><span class='op'>(</span><span class='st'>"x"</span><span class='op'>)</span>  <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ylab</a></span><span class='op'>(</span><span class='st'>"f(x)"</span><span class='op'>)</span> <span class='op'>+</span>
-    <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span>,
-          plot.subtitle <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>15</span><span class='op'>)</span>,
-          axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>15</span><span class='op'>)</span>,
-          axis.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
-          legend.position<span class='op'>=</span><span class='st'>"top"</span>,
-          legend.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>8</span>, face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span>,
-          legend.text <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>6</span>, face<span class='op'>=</span><span class='st'>"bold"</span><span class='op'>)</span><span class='op'>)</span>
-
-<span class='op'>}</span>
-</code></pre>
-</div>
-</div>
-<p>Utilizamo al función para hacer la gráfica de una VA <span
-class="math inline">\(X\sim\mathcal{N}(4,0.4)\)</span></p>
-<div class="layout-chunk" data-layout="l-body">
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>proba_gra_gg</span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>0.4</span><span class='op'>)</span>
-</code></pre>
-</div>
-<p><img src="Distribuciones_files/figure-html5/unnamed-chunk-20-1.png" width="624" /></p>
-</div>
-<h1 id="portafolio-de-r">Portafolio de R</h1>
-<p><strong>Visualización de COVID y series de tiempo</strong></p>
-<p><a href="https://rafneta.github.io/PruebaPaginaR/_site/"
-class="uri">https://rafneta.github.io/PruebaPaginaR/_site/</a></p>
-<p><strong>Estudio sobre movilidad intergeneracional y diferencias
-regionales en México</strong></p>
-<p><a href="https://rafneta.github.io/TesinaCIDEMERMM/index.html"
-class="uri">https://rafneta.github.io/TesinaCIDEMERMM/index.html</a></p>
-<p><strong>Econometría</strong></p>
-<p><a href="https://rafneta.github.io/ECNIITareas/"
-class="uri">https://rafneta.github.io/ECNIITareas/</a></p>
-<p><strong>Evalución de Programas sociales</strong></p>
-<p><a href="https://rafneta.github.io/EPSTareas/"
-class="uri">https://rafneta.github.io/EPSTareas/</a></p>
-<p><strong>Aplicación para modelos ARMA</strong></p>
-<p><a href="https://rafneta.shinyapps.io/ARMA/"
-class="uri">https://rafneta.shinyapps.io/ARMA/</a></p>
-<p><strong>Series de tiempo</strong></p>
-<p><a href="https://rafneta.github.io/STTareas/Tarea2ST.html"
-class="uri">https://rafneta.github.io/STTareas/Tarea2ST.html</a></p>
-<div class="sourceCode" id="cb12"><pre
+<p>Si se revisan las gráficas de ACF y PACF para <span
+class="math inline">\(\{C_t\}\)</span> entonces probablemente la
+variable <span class="math inline">\(C_t\)</span> se pueda escribir como
+un modelo autorregresivo de orden <span
+class="math inline">\(p\)</span>, <strong>AR(p)</strong>, es decir</p>
+<p><span class="math display">\[C_t=\beta_0+\beta_1
+C_{t-1}+\beta_{t-2}C_{t-2}+\dots+\beta_{t-p}C_{t-p}+U_t\]</span></p>
+<p>suponiendo <span
+class="math inline">\(\mathbb{E}(U_t|C_{t-1},C_{t-2},\dots)=0\)</span>.
+Con base en los resultados obtenidos de autocorrelación se realizan las
+regresiones para 1, 2 y 3 retardos.</p>
+<h1 id="serie-de-tiempo-no-estacionaria">Serie de tiempo no
+estacionaria</h1>
+<p>Si la serie presenta una <strong>raíz unitaria</strong> (y con esto
+es <strong>no estacionaria</strong>), es decir, <span
+class="math inline">\(z=1\)</span> es una solución de la ecuación</p>
+<p><span
+class="math display">\[1-\beta_1z-\beta_2z^2-\dots+\beta_pz^p=0\]</span>
+entonces la serie presenta una tendencia estocástica, lo que implica que
+los coeficientes y los estadísticos <span
+class="math inline">\(t\)</span> de las regresiones previamente
+realizados no tienen <em>buenas características</em> (los coeficientes
+son sesgados y el estadístico no se distribuye de forma normal). Para
+revisar si es el caso, se realiza el contraste de <strong>Dickey-Fuller
+aumentado</strong> <span class="citation" data-cites="stock">(<a
+href="#ref-stock" role="doc-biblioref">Stock and Watson
+2012</a>)</span>, para ello se estima el siguiente modelo <a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p><span class="math display" id="eq:adf">\[\begin{equation}
+\Delta C_t=\beta_0+\delta C_{t-1} + \gamma_1\Delta C_{t-1}+\gamma_2 C
+_{t-2}+\dots+\gamma_p \Delta C_{t-p+1}+u_t
+\tag{2}
+\end{equation}\]</span></p>
+<p>donde <span
+class="math display">\[H_0:\delta=0\;\;\text{vs}\;\;H_1:\delta&lt;0
+\]</span></p>
+<p>bajo la hipótesis nula, <span class="math inline">\(C_t\)</span>
+tiene tendencia estocástica, bajo la hipótesis alternativa, <span
+class="math inline">\(C_t\)</span> es <strong>estacionaria</strong>.
+Para calcular esta regresión se tiene que proponer un orden <span
+class="math inline">\(p\)</span> <a href="#fn3" class="footnote-ref"
+id="fnref3" role="doc-noteref"><sup>3</sup></a>, la instrucción
+<code>urca::ur.df</code> nos proporciona un criterio de selección y nos
+permite configurar la regresión como en la ecuación <a href="#eq:adf">(2)</a></p>
+<h1 id="transformaciones-de-series-no-estacionarias">Transformaciones de
+series no estacionarias</h1>
+<p>Algunos series no estacionarias se pueden transformar para
+convertirlas en series estacionarias. Normalmente se tienen dos
+transformaciones:</p>
+<ol type="1">
+<li>Transformación de Box-Cox para estabilizar la dispersión, es decir,
+obtener estacionariedad en la varianza</li>
+</ol>
+<p><span class="math display">\[w_t=\begin{cases}
+log(x_t)&amp;\lambda=0\\
+&amp;\\
+\frac{x_t^\lambda-1}{\lambda}&amp;\lambda\neq 0
+\end{cases}\]</span></p>
+<ol start="2" type="1">
+<li>Aplicar diferencias es los datos para estabilizar el nivel; es
+decir, obtener estacionariedad en media</li>
+</ol>
+<p>Se recomienda trabajar con las diferencias de <span
+class="math inline">\(C_t\)</span> <span class="citation"
+data-cites="stock">(<a href="#ref-stock" role="doc-biblioref">Stock and
+Watson 2012</a>)</span>-<span class="citation" data-cites="wool">(<a
+href="#ref-wool" role="doc-biblioref">Wooldridge 2010</a>)</span>-<span
+class="citation" data-cites="asa">(<a href="#ref-asa"
+role="doc-biblioref">Holmes, M. D, and Ward 2020</a>)</span>, es decir,
+con <span class="math inline">\(\Delta C_t=C_t-C_{t-1}\)</span> o con
+las segundas diferencias <span class="math inline">\(\Delta^2
+C_t=C_t-2C_{t-1}+C_{t-2}\)</span>, de tal forma que al aplicar la preba
+de Dickey-Fuller a la serie resultante se rechaze la hipétesis nula en
+favor de una serie estacionaria.</p>
+<p>Existen varias formas de abordar este problema, se ha elegido
+utilizar la instrucción <code>forecast::ndiffs</code> que calcula la
+cantidad de diferencias necesarias, una vez que se tiene este número se
+aplica la prueba mencionada para verificar dicha situación.</p>
+<h1 id="modelos-arimapdq">Modelos ARIMA(<span
+class="math inline">\(p,d,q\)</span>)</h1>
+<p>Se definen algunos conceptos para escribir la definición del
+modelo</p>
+<p>El <em>operador de retardo</em> se define como</p>
+<p><span
+class="math display">\[B^dX_t=X_{t-d};\;\;d\in\mathbb{N}\]</span></p>
+<hr />
+<p>El <em>operador de diferencia</em> se define como</p>
+<p><span
+class="math display">\[\Delta^dX_t=(1-B)^dX_t;\;\;d\in\mathbb{N}\]</span></p>
+<hr />
+<p>Un proceso estocástico <span class="math inline">\(\{X_t\}\)</span>
+es <strong>integrado de orden <span
+class="math inline">\(d\)</span></strong>, <span
+class="math inline">\(d\in\mathbb{N}\)</span>, si y sólo si el proceso
+<span class="math inline">\(\{\Delta^d X_t\}\)</span> sigue un modelo
+<strong>ARMA(<span class="math inline">\(p,q\)</span>)</strong>
+estacionario e invertible.</p>
+<hr />
+<p>Un proceso estocástico <span class="math inline">\(\{X_t\}\)</span>
+es integrado de orden <span class="math inline">\(d\)</span> si y sólo
+si <span class="math inline">\(\{X_t\}\)</span> sigue un <strong>modelo
+autorregresivo-integrado-media móvil</strong> de orden <span
+class="math inline">\((p,d,q)\)</span>, o <strong>ARIMA(<span
+class="math inline">\(p,d,q\)</span>)</strong> del tipo</p>
+<p><span
+class="math display">\[\phi(B)\Delta^dX_t=\mu+\theta(B)A_t\]</span></p>
+<p>donde <span class="math inline">\(\{A_t\}\sim
+NIID(0,\sigma_A^2)\)</span>, <span class="math inline">\(\mu\)</span>,
+<span class="math inline">\(\phi_i\)</span> y <span
+class="math inline">\(\theta_j\)</span> son parámetros y</p>
+<p><span
+class="math display">\[1-\sum_{i=1}^p\phi_ix^i=\phi(x)\]</span></p>
+<p><span
+class="math display">\[1-\sum_{j=1}^q\theta_jx^j=\theta(x)\]</span></p>
+<hr />
+<p>Siguiendo las definiciones se puede decir que un proceso <span
+class="math inline">\(\{X_t\}\)</span> que sigue un modelo
+<strong>ARIMA(<span class="math inline">\(p,d,q\)</span>)</strong>
+equivale a que el proceso estacionario <span
+class="math inline">\(\{\Delta^d X_t\}\)</span> siga un modelo
+<strong>ARMA(<span class="math inline">\(p,q\)</span>)</strong></p>
+<h1 id="estimación-del-modelo-de-un-serie-de-tiempo">Estimación del
+modelo de un serie de tiempo</h1>
+<p>Se estima el modelo <strong>ARIMA(<span
+class="math inline">\(p,d,q\)</span>)</strong> para <span
+class="math inline">\(\{C_t\}\)</span> se utilizan las herramientas
+prediseñadas en R, en específico <code>forecast::auto.arima</code>, que
+tiene las siguientes características</p>
+<ul>
+<li>Se estima el modelo con la estructura <span
+class="math inline">\(\phi(B)(\Delta^dX_t-\mu_1)=(1+\sum_{j=1}^q\theta_jB^j)A_t\)</span></li>
+<li>Para elegir al mejor modelo se prefiere utilizar el criterio de
+información de Akaike corregido</li>
+<li>Se utiliza el método MLE (Maximum likelihood estimation) para
+encontrar los parámetros</li>
+</ul>
+<p>Teniendo esto en cuenta, se obtiene el modelo <strong>ARIMA(<span
+class="math inline">\(0,2,1\)</span>)</strong>, que coincide con lo
+obtenido en la ecuación <a href="#eq:arimam">(<strong>??</strong>)</a></p>
+<h1 id="predicción-de-una-serie-de-tiempo">Predicción de una serie de
+tiempo</h1>
+<p>Para las predicciones se toma el modelo <a href="#eq:modecox">(<strong>??</strong>)</a> y se evalua
+en <span class="math inline">\(t+h|T\)</span>, es decir, se estimará
+<span class="math inline">\(\hat C_{t+h|T}\)</span> sujeto a que se
+conoce hasta el dato <span class="math inline">\(T\)</span>-ésimo, para
+cada valor entero de <span class="math inline">\(h\geq1\)</span> se
+obtendrá una predicción, la estimación debe ser en orden, pues si no se
+tiene el dato <span class="math inline">\(C_t\)</span> para un
+determinado tiempo este debe ser sustituido por su estimado previamente
+obtenido. Lo usual es remplazar <span class="math inline">\(A_t\)</span>
+pata <span class="math inline">\(t\geq T+1\)</span> con <span
+class="math inline">\(0\)</span>. El modelo de predicción queda como</p>
+<p><span class="math display" id="eq:modecoxs">\[\begin{align}
+\hat W_{t+h|T}=2W_{t+h-1|T}-W_{t+h-2|T}-0.5860A_{t+h-1|T}+A_{t+h|T}
+\notag \\
+\hat C_{t+h|T}=(\lambda W_{t+h|T}+1)^{1/\lambda}
+\tag{3}
+\end{align}\]</span></p>
+<p>Cada predicción tiene asociada un intervalo de confianza <span
+class="citation" data-cites="forecasting1">(<a href="#ref-forecasting1"
+role="doc-biblioref">Hyndman and Athanasopoulos 2018</a>)</span>, en
+particular el intervalo de confianza para la primer estimación <span
+class="math inline">\(\hat W_{t+1|T}\)</span> es <span
+class="math inline">\(\hat W_{t+1|T}\pm 1.96\hat\sigma_A\)</span>. La
+Figura <a href="#fig:tablapre"><strong>??</strong></a> muestra la predicción y dos intervalos con
+nivel de confianza diferente.</p>
+<div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div id="refs" class="references csl-bib-body hanging-indent"
+role="doc-bibliography">
+<div id="ref-asa" class="csl-entry" role="doc-biblioentry">
+Holmes, E. E., Scheuerell M. D, and E. J. Ward. 2020. <em>Applied Time
+Series Analysis for Fisheries and Enviromental Data.</em> Northwet
+Fisheries Science Center, 2275, Montlake BlvdE., Seatle, WA 98112. <a
+href="https://nwfsc-timeseries.github.io/atsa-labs/">https://nwfsc-timeseries.github.io/atsa-labs/</a>.
+</div>
+<div id="ref-forecasting1" class="csl-entry" role="doc-biblioentry">
+Hyndman, Rob J, and George Athanasopoulos. 2018. <em>Forecasting:
+Principles and Practice</em>. 2nd ed. Melbourn, Australia: OTexts. <a
+href="https://otexts.com/fpp2/">https://otexts.com/fpp2/</a>.
+</div>
+<div id="ref-rincon" class="csl-entry" role="doc-biblioentry">
+Rincón, Luis. 2016. <em>Introducción a Los Procesos Estocásticos</em>.
+1st ed. México: UNAM, Facultad de Ciencias.
+</div>
+<div id="ref-stock" class="csl-entry" role="doc-biblioentry">
+Stock, James H., and Mark M. Watson. 2012. <em>Introducción a La
+Econometría</em>. 3rd ed. Melbourn, Australia: PEARSON.
+</div>
+<div id="ref-wool" class="csl-entry" role="doc-biblioentry">
+Wooldridge, Jeffrey M. 2010. <em>Introducción a La Econometría</em>. 4th
+ed. México: CENGAGE.
+</div>
+</div>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>para no saturar la notación se estará
+utilizando <span class="math inline">\(\{X_t\}\)</span> para referirse
+aun proceso estocástico discreto<a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>segun <span class="citation"
+data-cites="stock">(<a href="#ref-stock" role="doc-biblioref">Stock and
+Watson 2012</a>)</span> hay un subindice de más pero segun esta <a
+href="https://www.youtube.com/watch?v=4TBZnrUDrog">prueba</a> que parece
+correcta hay un subindice de menos<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>normalmente se elige de tal forma que
+los residuales de la regresión sean ruido blanco<a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
@@ -2663,7 +2772,10 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

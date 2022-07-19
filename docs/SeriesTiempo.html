@@ -2089,7 +2089,11 @@ code span.wa { color: #da4453; } /* Warning */
       font-weight: 300;
     }
 
-  h1, h2,  h3 {
+  h1{
+      color: rgba(0,57,166,0.9);
+  }
+
+  h2{
       color: rgba(0,57,166,0.9);
   }
 
@@ -2282,7 +2286,27 @@ Clases
 </button>
 <div class="nav-dropdown-content">
 <a href="SeriesTiempo.html">Series de tiempo</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Estadística
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="DefinicionesEsta.html">Definiciones Básicas</a>
 <a href="Distribuciones.html">Distribuciones</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+R
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="SeriesTiempo.html">Series de tiempo</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2368,6 +2392,24 @@ data-cites="rincon">(<a href="#ref-rincon" role="doc-biblioref">Rincón
 donde <span class="math inline">\(T\)</span> es un conjunto ordenado
 cronológicamente cuyos elementos son equidistantes
 </p>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<details>
+<summary>
+hide
+</summary>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"imagenes/Trayectoria.png"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</details>
+<div class="figure">
+<img src="imagenes/Trayectoria.png" alt="Trayectoria para $t=n={0,1,2,...}$" width="401" class=external />
+<p class="caption">
+(#fig:figTrayectoria, “trayectoria”)Trayectoria para <span
+class="math inline">\(t=n={0,1,2,...}\)</span>
+</p>
+</div>
 </div>
 <h1 id="serie-de-tiempo-estacionaria">Serie de tiempo estacionaria</h1>
 <p>Un PED <span class="math inline">\(\{X_t\}\)</span> es
@@ -2519,7 +2561,7 @@ class="math inline">\(0,q\)</span>)</strong></p>
 <p>Los procesos <em>estacionarios</em> <strong>ARMA(<span
 class="math inline">\(p,q\)</span>)</strong> se caracterizan por el
 comportamiento conjunto de su ACF y PACF, en la Figura
-<a href="#fig:tablaacf">1</a> se muestra el comportamiento, la tabla se se tomó del
+<a href="#fig:tablaacf"><strong>??</strong></a> se muestra el comportamiento, la tabla se se tomó del
 siguiente <a
 href="https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf">enlace</a></p>
 <div class="layout-chunk" data-layout="l-body-outset">
@@ -2532,10 +2574,10 @@ hide
 </code></pre>
 </div>
 </details>
-<div class="figure"><span style="display:block;" id="fig:tablaacf"></span>
+<div class="figure">
 <img src="imagenes/tablaacf.png" alt="Tabla de ACF y PACF" width="601" class=external />
 <p class="caption">
-Figure 1: Tabla de ACF y PACF
+(#fig:figcorrelacion, “tablaacf”)Tabla de ACF y PACF
 </p>
 </div>
 </div>
@@ -2722,7 +2764,8 @@ href="https://otexts.com/fpp2/">https://otexts.com/fpp2/</a>.
 </div>
 <div id="ref-rincon" class="csl-entry" role="doc-biblioentry">
 Rincón, Luis. 2016. <em>Introducción a Los Procesos Estocásticos</em>.
-1st ed. México: UNAM, Facultad de Ciencias.
+1st ed. México: UNAM, Facultad de Ciencias. <a
+href="https://lya.fciencias.unam.mx/lars/Publicaciones/procesos2012.pdf">https://lya.fciencias.unam.mx/lars/Publicaciones/procesos2012.pdf</a>.
 </div>
 <div id="ref-stock" class="csl-entry" role="doc-biblioentry">
 Stock, James H., and Mark M. Watson. 2012. <em>Introducción a La

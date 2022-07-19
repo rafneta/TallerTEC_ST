@@ -46,70 +46,78 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
+    background-color: #232629;
+    color: #7a7c7d;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #cfcfc2; background-color: #232629; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ad0000; } /* Alert */
-code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bn { color: #ad0000; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
-code span.ch { color: #20794d; } /* Char */
-code span.cn { color: #8f5902; } /* Constant */
-code span.co { color: #5e5e5e; } /* Comment */
-code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-code span.dt { color: #ad0000; } /* DataType */
-code span.dv { color: #ad0000; } /* DecVal */
-code span.er { color: #ad0000; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #ad0000; } /* Float */
-code span.fu { color: #4758ab; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
-code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
-code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #5e5e5e; } /* SpecialChar */
-code span.ss { color: #20794d; } /* SpecialString */
-code span.st { color: #20794d; } /* String */
-code span.va { color: #111111; } /* Variable */
-code span.vs { color: #20794d; } /* VerbatimString */
-code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+code span { color: #cfcfc2; } /* Normal */
+code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+code span.an { color: #3f8058; } /* Annotation */
+code span.at { color: #2980b9; } /* Attribute */
+code span.bn { color: #f67400; } /* BaseN */
+code span.bu { color: #7f8c8d; } /* BuiltIn */
+code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #3daee9; } /* Char */
+code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+code span.co { color: #7a7c7d; } /* Comment */
+code span.cv { color: #7f8c8d; } /* CommentVar */
+code span.do { color: #a43340; } /* Documentation */
+code span.dt { color: #2980b9; } /* DataType */
+code span.dv { color: #f67400; } /* DecVal */
+code span.er { color: #da4453; text-decoration: underline; } /* Error */
+code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+code span.fl { color: #f67400; } /* Float */
+code span.fu { color: #8e44ad; } /* Function */
+code span.im { color: #27ae60; } /* Import */
+code span.in { color: #c45b00; } /* Information */
+code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+code span.op { color: #cfcfc2; } /* Operator */
+code span.ot { color: #27ae60; } /* Other */
+code span.pp { color: #27ae60; } /* Preprocessor */
+code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #da4453; } /* SpecialString */
+code span.st { color: #f44f4f; } /* String */
+code span.va { color: #27aeae; } /* Variable */
+code span.vs { color: #da4453; } /* VerbatimString */
+code span.wa { color: #da4453; } /* Warning */
 </style>
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Taller ST V-2022: Taller sobre series de tiempo</title>
+  <title>Taller ST V-2022: Covarianza</title>
 
-  <meta property="description" itemprop="description" content="Taller sobre series de tiempo, dictado en verano de 2022 en&#10;el Tecnológico de Monterrey Campus Estado de México para los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas &#10;&#10;Dr. Rafael Martínez Martínez"/>
+  <meta property="description" itemprop="description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
 
 
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-05-04"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-05-04"/>
+  <meta name="article:author" content="Rafael Martínez Martínez"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Taller ST V-2022: Taller sobre series de tiempo"/>
+  <meta property="og:title" content="Taller ST V-2022: Covarianza"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Taller sobre series de tiempo, dictado en verano de 2022 en&#10;el Tecnológico de Monterrey Campus Estado de México para los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas &#10;&#10;Dr. Rafael Martínez Martínez"/>
+  <meta property="og:description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Taller ST V-2022"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Taller ST V-2022: Taller sobre series de tiempo"/>
-  <meta property="twitter:description" content="Taller sobre series de tiempo, dictado en verano de 2022 en&#10;el Tecnológico de Monterrey Campus Estado de México para los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas &#10;&#10;Dr. Rafael Martínez Martínez"/>
+  <meta property="twitter:title" content="Taller ST V-2022: Covarianza"/>
+  <meta property="twitter:description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
 
   <!--/radix_placeholder_meta_tags-->
+  
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","site"]}},"value":[{"type":"character","attributes":{},"value":["Taller sobre series de tiempo"]},{"type":"character","attributes":{},"value":["\nTaller sobre series de tiempo, dictado en verano de 2022 en\nel Tecnológico de Monterrey Campus Estado de México para los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas \n\nDr. Rafael Martínez Martínez\n"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Covarianza"]},{"type":"character","attributes":{},"value":["3.1: \n\n3.1.3: \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://github.com/yihui"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"character","attributes":{},"value":["hide"]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2229,7 +2237,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Taller sobre series de tiempo","description":"Taller sobre series de tiempo, dictado en verano de 2022 en\nel Tecnológico de Monterrey Campus Estado de México para los estudiantes de Ingeniería en Ciencia de Datos y Matemáticas \n\nDr. Rafael Martínez Martínez","authors":[]}
+{"title":"Covarianza","description":"3.1: \n\n3.1.3: \n\nPortafolio de R","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://github.com/yihui","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-05-04T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2284,144 +2292,140 @@ R
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Taller sobre series de tiempo</h1>
+<h1>Covarianza</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>Taller sobre series de tiempo, dictado en verano de 2022 en el
-Tecnológico de Monterrey Campus Estado de México para los estudiantes de
-Ingeniería en Ciencia de Datos y Matemáticas</p>
-<p>Dr. Rafael Martínez Martínez</p></p>
+<p><p>3.1:</p>
+<p>3.1.3:</p>
+<p>Portafolio de R</p></p>
 </div>
 
+<div class="d-byline">
+  
+  true
+  
+<br/>May 4, 2022
+</div>
 
 <div class="d-article">
 <div class="d-contents d-contents-float">
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
-<li><a href="#presentación" id="toc-presentación">Presentación</a></li>
-<li><a href="#requisitos" id="toc-requisitos">Requisitos</a></li>
-<li><a href="#herramientas" id="toc-herramientas">Herramientas</a></li>
-<li><a href="#calendario" id="toc-calendario">Calendario</a></li>
-<li><a href="#propósito-de-la-unidad-de-aprendizaje"
-id="toc-propósito-de-la-unidad-de-aprendizaje">Propósito de la unidad de
-aprendizaje</a></li>
-<li><a href="#competencias-a-desarrollar"
-id="toc-competencias-a-desarrollar">Competencias a desarrollar</a></li>
-<li><a href="#contenido-del-curso"
-id="toc-contenido-del-curso">Contenido del curso</a></li>
-<li><a href="#forma-de-evaluación" id="toc-forma-de-evaluación">Forma de
-evaluación</a></li>
-<li><a href="#referencias" id="toc-referencias">Referencias</a></li>
-<li><a href="#políticas" id="toc-políticas">Políticas</a></li>
+<li><a href="#esperanza" id="toc-esperanza">Esperanza</a>
+<ul>
+<li><a href="#propiedades" id="toc-propiedades">Propiedades</a></li>
+</ul></li>
+<li><a href="#varianza" id="toc-varianza">Varianza</a>
+<ul>
+<li><a href="#propiedades-1" id="toc-propiedades-1">Propiedades</a></li>
+</ul></li>
+<li><a href="#covarianza" id="toc-covarianza">Covarianza</a>
+<ul>
+<li><a href="#propiedades-2" id="toc-propiedades-2">Propiedades</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
-<h1 class="guinda" id="presentación">Presentación</h1>
-<ul>
-<li><p>Dr. Rafael Martínez Martínez</p></li>
-<li><p><a href="mailto:ramartinezr@tec.mx"
-class="email">ramartinezr@tec.mx</a></p></li>
-<li><p>Linkedin: <a
-href="https://www.linkedin.com/in/rafael-mart%C3%ADnez-mart%C3%ADnez-92187776/">enlace</a></p></li>
-<li><p>página: <a href="http://rafneta.github.io/">enlace</a></p></li>
-</ul>
-<h1 class="guinda" id="requisitos">Requisitos</h1>
-<h1 class="guinda" id="herramientas">Herramientas</h1>
-<h1 class="guinda" id="calendario">Calendario</h1>
-<h1 class="guinda" id="propósito-de-la-unidad-de-aprendizaje">Propósito
-de la unidad de aprendizaje</h1>
-<h1 class="guinda" id="competencias-a-desarrollar">Competencias a
-desarrollar</h1>
-<h1 class="guinda" id="contenido-del-curso">Contenido del curso</h1>
+<h1 id="esperanza">Esperanza</h1>
+<h2 id="propiedades">Propiedades</h2>
+<p>Si <span class="math inline">\(X\)</span>, <span
+class="math inline">\(Y\)</span> son variables aleatorias con esperanza
+finita, y <span class="math inline">\(a,b,c,d\in\mathbb{R}\)</span>
+entonces</p>
 <ol type="1">
-<li><p>Introducción a la programación en R y su aplicación a la
-inferencia estadística</p></li>
-<li><p>Manipulación de datos en R</p></li>
-<li><p>Modelos estadísticos e inferencia estadística en R</p></li>
+<li><span class="math inline">\(\mathrm{E}[c]=c\)</span></li>
+<li><span class="math inline">\(\mathrm{E}[c X]=c
+\mathrm{E}[X]\)</span></li>
+<li>Si <span class="math inline">\(X \geq 0\)</span> entonces <span
+class="math inline">\(\mathrm{E}[X] \geq 0\)</span>.</li>
+<li>Si <span class="math inline">\(X \leq Y\)</span> entonces <span
+class="math inline">\(\mathrm{E}[X] \leq \mathrm{E}[Y]\)</span></li>
+<li>Si <span class="math inline">\(X\)</span> está delimitada por dos
+números reales, <span class="math inline">\(a\)</span> y <span
+class="math inline">\(b\)</span>, esto es <span
+class="math inline">\(a&lt;X&lt;b\)</span> entonces también lo está su
+media, es decir, <span
+class="math inline">\(a&lt;\mathrm{E}[X]&lt;b\)</span>.</li>
+<li>Si <span class="math inline">\(Y=a+b X\)</span>, entonces <span
+class="math inline">\(\mathrm{E}[Y]=\mathrm{E}[a+b X]=a+b
+\mathrm{E}[X]\)</span>.</li>
+<li>En general, <span class="math inline">\(\mathrm{E}[X Y] \neq
+\mathrm{E}[X] \mathrm{E}[Y]\)</span>, la igualdad sólo se cumple cuando
+las variables aleatorias son independientes.</li>
+<li><span class="math inline">\(\mathrm{E}(X+ Y)=\mathrm{E}(X) +
+\mathrm{E}(Y)\)</span></li>
 </ol>
-<p><a href="./CSIV.pdf">Contenido extenso</a></p>
-<h1 class="guinda" id="forma-de-evaluación">Forma de evaluación</h1>
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: right;"></th>
-<th style="text-align: left;">Actividades a evaluar</th>
-<th style="text-align: right;">Porcentaje</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: left;">Ejercicios de análisis estadísticos con
-programa R</td>
-<td style="text-align: right;">50.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"></td>
-<td style="text-align: left;">Entrega del primer borrador de tesis de
-grado</td>
-<td style="text-align: right;">40.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: left;">Presentación del primer borrador</td>
-<td style="text-align: right;">10.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;">100.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: left;"></td>
-<td style="text-align: right;"></td>
-</tr>
-</tbody>
-</table>
-<p>Para la calificación final se tiene el siguiente esquema. Sea <span
-class="math inline">\(x\in\mathbb{R}\)</span>, la calificación
-obtenida</p>
-<table>
-<colgroup>
-<col style="width: 42%" />
-<col style="width: 17%" />
-<col style="width: 39%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Condición</th>
-<th style="text-align: center;"></th>
-<th style="text-align: center;">Calificación final</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(x \pmod{10}
-&lt; 5\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\rightarrow\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\left
-\lfloor x/10 \right \rfloor\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><span class="math inline">\(x \pmod{10}
-\geq 5\)</span></td>
-<td style="text-align: center;"><span
-class="math inline">\(\rightarrow\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(\left \lceil
-x/10 \right \rceil\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
-</tr>
-</tbody>
-</table>
-<h1 class="guinda" id="referencias">Referencias</h1>
-<h1 class="guinda" id="políticas">Políticas</h1>
+<h1 id="varianza">Varianza</h1>
+<p>La varianza de la VA <span class="math inline">\(X\)</span> se define
+como</p>
+<p><span class="math display">\[\operatorname{Var}(X) =
+\operatorname{E}\left(X-\mu_X\right)=\sigma^2_X\]</span></p>
+<h2 id="propiedades-1">Propiedades</h2>
+<p>Si <span class="math inline">\(X\)</span>, <span
+class="math inline">\(Y\)</span> son variables aleatorias con varianza
+finita, y <span class="math inline">\(a\in\mathbb{R}\)</span>
+entonces</p>
+<ol type="1">
+<li><span class="math inline">\(\operatorname{Var}(X) \geq
+0\)</span></li>
+<li><span class="math inline">\(\operatorname{Var}(a)=0\)</span></li>
+<li><span class="math inline">\(\operatorname{Var}(a X)=a^{2}
+\operatorname{Var}(X)\)</span></li>
+<li><span
+class="math inline">\(\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)+2
+\operatorname{Cov}(X, Y)\)</span>, donde <span
+class="math inline">\(\operatorname{Cov}(X, Y)\)</span> denota la
+covarianza de <span class="math inline">\(X\)</span> e <span
+class="math inline">\(Y\)</span></li>
+<li><span
+class="math inline">\(\operatorname{Var}(X+Y)=\operatorname{Var}(X)+\operatorname{Var}(Y)\)</span>
+si <span class="math inline">\(X\)</span> y <span
+class="math inline">\(Y\)</span> son variables aleatorias
+independientes.</li>
+<li><span
+class="math inline">\(\operatorname{Var}(Y)=\mathrm{E}(\operatorname{Var}(Y
+\mid X))+\operatorname{Var}(\mathrm{E}(Y \mid X))\)</span> cálculo de la
+Varianza por Pitágoras, dónde <span class="math inline">\(Y \mid
+X\)</span> es la variable aleatoria condicional <span
+class="math inline">\(Y\)</span> dado <span
+class="math inline">\(X\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Var}(X) =
+\operatorname{E}(X^2)- \mu_X^2\)</span></li>
+</ol>
+<h1 id="covarianza">Covarianza</h1>
+<p>La covarianza de dos variables aleatorias se define como</p>
+<p><span class="math display">\[\operatorname{Cov}(X,Y) =
+\operatorname{E}\left(\left(X-\mu_X\right)\left(Y-\mu_Y\right)\right)\]</span></p>
+<p>siempre que</p>
+<h2 id="propiedades-2">Propiedades</h2>
+<p>Si <span class="math inline">\(X\)</span>, <span
+class="math inline">\(Y\)</span>, <span
+class="math inline">\(W\)</span>, <span class="math inline">\(V\)</span>
+son variables aleatorias, y <span
+class="math inline">\(a,b,c,d\in\mathbb{R}\)</span> entonces</p>
+<ol type="1">
+<li><span class="math inline">\(\operatorname{Cov}(X, a)=0\)</span></li>
+<li><span class="math inline">\(\operatorname{Cov}(X,
+X)=\operatorname{Var}(X)\)</span>, donde <span
+class="math inline">\(\operatorname{Var}(X)\)</span> denota la varianza
+de <span class="math inline">\(X\)</span>.</li>
+<li><span class="math inline">\(\operatorname{Cov}(X,
+Y)=\operatorname{Cov}(Y, X)\)</span> llamada propiedad de simetría.</li>
+<li><span class="math inline">\(\operatorname{Cov}(a X, b Y)=a b
+\operatorname{Cov}(X, Y)\)</span></li>
+<li><span class="math inline">\(\operatorname{Cov}(X+a,
+Y+b)=\operatorname{Cov}(X, Y)\)</span></li>
+<li><span class="math inline">\(\operatorname{Cov}(a X+b Y, c W+d V)=a c
+\operatorname{Cov}(X, W)+a d \operatorname{Cov}(X, V)+b c
+\operatorname{Cov}(Y, W)+b d \operatorname{Cov}(Y, V)\)</span></li>
+<li><span class="math inline">\(\operatorname{Cov}(X, Y)=\mathrm{E}[X
+Y]-\mathrm{E}[X] \mathrm{E}[Y]\)</span>, fórmula que suele emplearse en
+la práctica para calcular la covarianza.</li>
+<li><span class="math inline">\(\operatorname{Cov}(X, Y)=0\)</span> si
+<span class="math inline">\(X\)</span> y <span
+class="math inline">\(Y\)</span> son VA independientes.</li>
+</ol>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
@@ -2444,7 +2448,10 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom"></div>
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+</div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->

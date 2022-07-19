@@ -5,7 +5,11 @@
     font-weight: 300;
   }
 
-h1, h2,  h3 {
+h1{
+    color: rgba(0,57,166,0.9);
+}
+
+h2{
     color: rgba(0,57,166,0.9);
 }
 

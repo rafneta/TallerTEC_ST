@@ -2062,7 +2062,11 @@ code span.wa { color: #da4453; } /* Warning */
       font-weight: 300;
     }
 
-  h1, h2,  h3 {
+  h1{
+      color: rgba(0,57,166,0.9);
+  }
+
+  h2{
       color: rgba(0,57,166,0.9);
   }
 
@@ -2255,7 +2259,27 @@ Clases
 </button>
 <div class="nav-dropdown-content">
 <a href="SeriesTiempo.html">Series de tiempo</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Estadística
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="DefinicionesEsta.html">Definiciones Básicas</a>
 <a href="Distribuciones.html">Distribuciones</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+R
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="SeriesTiempo.html">Series de tiempo</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2380,7 +2404,7 @@ class="math inline">\(X\sim \mathcal{N}(0,1)\)</span></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1]  0.5901258 -1.1930559  0.8878270  0.3902144  0.2082191</code></pre>
+<pre><code>[1] -0.004619866  1.067280176 -1.062327635 -1.696086355 -0.259764810</code></pre>
 </div>
 <p>Se realiza la gráfica de la función de densidad y de distribución</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2422,7 +2446,7 @@ class="math inline">\(X\sim \mathcal{N}(0,1)\)</span></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>5</span>, mean <span class='op'>=</span> <span class='fl'>5</span>, sd <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span>
 </code></pre>
 </div>
-<pre><code>[1] 4.453011 5.203469 4.853996 4.999739 5.125381</code></pre>
+<pre><code>[1] 5.074333 4.892752 6.039603 4.299320 5.698092</code></pre>
 </div>
 <p>Se realiza la gráfica de la función de densidad y de distribución</p>
 <div class="layout-chunk" data-layout="l-body">

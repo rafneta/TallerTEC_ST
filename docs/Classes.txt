@@ -52,6 +52,13 @@
  </div>
  
  
+<div id='pregunta'>
+<p>
+
+
+</p>
+</div>
+
 
 from IPython.core.display import HTML
 css_file = 'css/estilo1.css'

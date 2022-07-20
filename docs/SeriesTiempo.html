@@ -143,7 +143,7 @@ code span.wa { color: #da4453; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Series de tiempo"]},{"type":"character","attributes":{},"value":["3.1: \n\n3.1.3: \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://github.com/yihui"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"character","attributes":{},"value":["hide"]},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Series de tiempo"]},{"type":"character","attributes":{},"value":["3.1: \n\n3.1.3: \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://github.com/yihui"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"NULL"},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2089,7 +2089,11 @@ code span.wa { color: #da4453; } /* Warning */
       font-weight: 300;
     }
 
-  h1, h2,  h3 {
+  h1{
+      color: rgba(0,57,166,0.9);
+  }
+
+  h2{
       color: rgba(0,57,166,0.9);
   }
 
@@ -2247,6 +2251,21 @@ code span.wa { color: #da4453; } /* Warning */
       background:rgba(250, 187, 81,0.2);/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
   }
 
+  code.sourceCode.r{
+    overflow: scroll;
+  }
+
+  code.sourceCode{
+    overflow: scroll;
+  }
+
+  d-article pre{
+    overflow: scroll;
+  }
+
+  div.sourceCodecode{
+    overflow: scroll;
+  }
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2282,7 +2301,40 @@ Clases
 </button>
 <div class="nav-dropdown-content">
 <a href="SeriesTiempo.html">Series de tiempo</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Actividades
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="ActividadST_0.html">Actividad 0</a>
+<a href="ActividadST_01.html">Actividad 0.1</a>
+<a href="ActividadST_02.html">Actividad 0.2</a>
+<a href="ActividadST_1.html">Actividad 1</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Estadística
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="DefinicionesEsta.html">Definiciones Básicas</a>
 <a href="Distribuciones.html">Distribuciones</a>
+</div>
+</div>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+R
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="SeriesTiempo.html">Series de tiempo</a>
 </div>
 </div>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
@@ -2314,6 +2366,8 @@ Clases
 <nav class="l-text toc figcaption" id="TOC">
 <h3>Contents</h3>
 <ul>
+<li><a href="#series-de-tiempo" id="toc-series-de-tiempo">Series de
+tiempo</a></li>
 <li><a href="#revisión-previa" id="toc-revisión-previa">Revisión
 previa</a></li>
 <li><a href="#serie-de-tiempo-estacionaria"
@@ -2338,6 +2392,105 @@ id="toc-predicción-de-una-serie-de-tiempo">Predicción de una serie de
 tiempo</a></li>
 </ul>
 </nav>
+</div>
+<h1 id="series-de-tiempo">Series de tiempo</h1>
+<hr />
+<p>Es suficiente pensar (por le momento) a una serie de tiempo como
+mediciones (contradominio) de una variable conforme transcurre el tiempo
+(dominio)</p>
+<hr />
+<p>En el paquete <em>datasets</em> se encuentra el conjunto de datos
+<strong>AirPassengers</strong>. Investiga de que trata este conjunto</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>AirPassengers</span> 
+</code></pre>
+</div>
+</div>
+<p>Cargamos el conjunto de datos.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>AirPassengers</span><span class='op'>)</span>
+<span class='va'>AP</span> <span class='op'>&lt;-</span> <span class='va'>AirPassengers</span>
+<span class='va'>AP</span>
+</code></pre>
+</div>
+<pre><code>     Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+1949 112 118 132 129 121 135 148 148 136 119 104 118
+1950 115 126 141 135 125 149 170 170 158 133 114 140
+1951 145 150 178 163 172 178 199 199 184 162 146 166
+1952 171 180 193 181 183 218 230 242 209 191 172 194
+1953 196 196 236 235 229 243 264 272 237 211 180 201
+1954 204 188 235 227 234 264 302 293 259 229 203 229
+1955 242 233 267 269 270 315 364 347 312 274 237 278
+1956 284 277 317 313 318 374 413 405 355 306 271 306
+1957 315 301 356 348 355 422 465 467 404 347 305 336
+1958 340 318 362 348 363 435 491 505 404 359 310 337
+1959 360 342 406 396 420 472 548 559 463 407 362 405
+1960 417 391 419 461 472 535 622 606 508 461 390 432</code></pre>
+</div>
+<p>Vemos con que tipo de variable trabajamos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;ts&quot;</code></pre>
+</div>
+<p>Esto siempre es una buena práctica, para saber que podemos o no
+hacer.</p>
+<p>Si consultamos la ayuda de <em>ts</em> podemos tener accesso a la
+siguiente referencia (<a
+href="https://cran.r-project.org/web/views/">CRAN task view</a>) sobre
+<a href="https://cran.r-project.org/web/views/TimeSeries.html">Series de
+tiempo en R</a></p>
+<p>Para ver el contenido del paquete <em>stats</em> (Help &gt;&gt; home
+&gt;&gt; packages)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span>help <span class='op'>=</span> <span class='st'>"stats"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<p>Ahí se puede investigar sobre todas las funciones.</p>
+<p>La gráfica matemática de la variable <strong>AP</strong> sería.</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AP</span>, ylab <span class='op'>=</span> <span class='st'>"Pasajeros (miles)"</span>, type <span class='op'>=</span> <span class='st'>"p"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="SeriesTiempo_files/figure-html5/apgrapuntos-1.png" width="624" class=external /></p>
+</div>
+<p>La gráfica en series de tiempo se acostumbra como</p>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AP</span>, ylab <span class='op'>=</span> <span class='st'>"Pasajeros (miles)"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="SeriesTiempo_files/figure-html5/apgrarectas-1.png" width="624" class=external /></p>
+</div>
+<p>Se pueden identificar algunas componentes en una serie de tiempo</p>
+<ul>
+<li>Tendencia (Trend). Un cambio sistematico que no parce periodico</li>
+<li>Estacionalidad (Season). Un patrón repetido (depende de la unidad,
+podría ser anual)</li>
+<li>Ciclos (cycles). Repeticiones que no corresponden a algo fijo</li>
+<li>Aleatoriedad (stochastic). Cambios aleaorios</li>
+<li>Valores atípicos (Outliers). Mediciones muy alejadas del
+promedio</li>
+<li>Valores erroneos. Datos no disponibles.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="SeriesTiempo_files/figure-html5/agregadsi-1.png" width="624" class=external />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='va'>AP</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/time.html'>cycle</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="SeriesTiempo_files/figure-html5/agregadsi-2.png" width="624" class=external /></p>
 </div>
 <h1 id="revisión-previa">Revisión previa</h1>
 <div class="def">
@@ -2368,6 +2521,15 @@ data-cites="rincon">(<a href="#ref-rincon" role="doc-biblioref">Rincón
 donde <span class="math inline">\(T\)</span> es un conjunto ordenado
 cronológicamente cuyos elementos son equidistantes
 </p>
+</div>
+<div class="layout-chunk" data-layout="l-body-outset">
+<div class="figure"><span style="display:block;" id="fig:figTrayectoria"></span>
+<img src="imagenes/Trayectoria.png" alt="Trayectoria para $t=n={0,1,2,...}$" width="401" class=external />
+<p class="caption">
+Figure 1: Trayectoria para <span
+class="math inline">\(t=n={0,1,2,...}\)</span>
+</p>
+</div>
 </div>
 <h1 id="serie-de-tiempo-estacionaria">Serie de tiempo estacionaria</h1>
 <p>Un PED <span class="math inline">\(\{X_t\}\)</span> es
@@ -2519,23 +2681,14 @@ class="math inline">\(0,q\)</span>)</strong></p>
 <p>Los procesos <em>estacionarios</em> <strong>ARMA(<span
 class="math inline">\(p,q\)</span>)</strong> se caracterizan por el
 comportamiento conjunto de su ACF y PACF, en la Figura
-<a href="#fig:tablaacf">1</a> se muestra el comportamiento, la tabla se se tomó del
+<a href="#fig:tablaacf"><strong>??</strong></a> se muestra el comportamiento, la tabla se se tomó del
 siguiente <a
 href="https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf">enlace</a></p>
 <div class="layout-chunk" data-layout="l-body-outset">
-<details>
-<summary>
-hide
-</summary>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/include_graphics.html'>include_graphics</a></span><span class='op'>(</span><span class='st'>"imagenes/tablaacf.png"</span><span class='op'>)</span>
-</code></pre>
-</div>
-</details>
-<div class="figure"><span style="display:block;" id="fig:tablaacf"></span>
+<div class="figure"><span style="display:block;" id="fig:figcorrelacion"></span>
 <img src="imagenes/tablaacf.png" alt="Tabla de ACF y PACF" width="601" class=external />
 <p class="caption">
-Figure 1: Tabla de ACF y PACF
+Figure 2: Tabla de ACF y PACF
 </p>
 </div>
 </div>
@@ -2705,7 +2858,7 @@ class="math inline">\(\hat W_{t+1|T}\)</span> es <span
 class="math inline">\(\hat W_{t+1|T}\pm 1.96\hat\sigma_A\)</span>. La
 Figura <a href="#fig:tablapre"><strong>??</strong></a> muestra la predicción y dos intervalos con
 nivel de confianza diferente.</p>
-<div class="sourceCode" id="cb1"><pre
+<div class="sourceCode" id="cb3"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="doc-bibliography">
@@ -2722,7 +2875,8 @@ href="https://otexts.com/fpp2/">https://otexts.com/fpp2/</a>.
 </div>
 <div id="ref-rincon" class="csl-entry" role="doc-biblioentry">
 Rincón, Luis. 2016. <em>Introducción a Los Procesos Estocásticos</em>.
-1st ed. México: UNAM, Facultad de Ciencias.
+1st ed. México: UNAM, Facultad de Ciencias. <a
+href="https://lya.fciencias.unam.mx/lars/Publicaciones/procesos2012.pdf">https://lya.fciencias.unam.mx/lars/Publicaciones/procesos2012.pdf</a>.
 </div>
 <div id="ref-stock" class="csl-entry" role="doc-biblioentry">
 Stock, James H., and Mark M. Watson. 2012. <em>Introducción a La

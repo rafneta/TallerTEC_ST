@@ -5,7 +5,11 @@
     font-weight: 300;
   }
 
-h1, h2,  h3 {
+h1{
+    color: rgba(0,57,166,0.9);
+}
+
+h2{
     color: rgba(0,57,166,0.9);
 }
 
@@ -161,4 +165,20 @@ li {
 	line-height: 1.6;
 	font-weight: 300;
     background:rgba(250, 187, 81,0.2);/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
+}
+
+code.sourceCode.r{
+  overflow: scroll;
+}
+
+code.sourceCode{
+  overflow: scroll;
+}
+
+d-article pre{
+  overflow: scroll;
+}
+
+div.sourceCodecode{
+  overflow: scroll;
 }

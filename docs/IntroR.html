@@ -2353,6 +2353,77 @@ otomicas)</a>
 <li><a href="#operaciones-directas-con-datos-simples"
 id="toc-operaciones-directas-con-datos-simples">Operaciones directas con
 datos simples</a></li>
+<li><a href="#algunas-instrucciones-útiles"
+id="toc-algunas-instrucciones-útiles">Algunas instrucciones
+útiles</a></li>
+<li><a href="#scripts" id="toc-scripts">Scripts</a></li>
+</ul></li>
+<li><a href="#datos-compuestos-clases"
+id="toc-datos-compuestos-clases">Datos compuestos (clases)</a>
+<ul>
+<li><a href="#vectores" id="toc-vectores">Vectores</a>
+<ul>
+<li><a href="#ejercicio" id="toc-ejercicio">Ejercicio</a></li>
+</ul></li>
+<li><a href="#listas" id="toc-listas">Listas</a></li>
+<li><a href="#matrices" id="toc-matrices">Matrices</a></li>
+<li><a href="#factors" id="toc-factors">Factors</a></li>
+<li><a href="#data-frames" id="toc-data-frames">Data frames</a></li>
+<li><a href="#datos-no-disponibles" id="toc-datos-no-disponibles">Datos
+no disponibles</a></li>
+</ul></li>
+<li><a href="#gráficas" id="toc-gráficas">Gráficas</a>
+<ul>
+<li><a href="#gráficas-con-lattice"
+id="toc-gráficas-con-lattice">Gráficas con Lattice</a></li>
+<li><a href="#gráficas-con-ggplot2"
+id="toc-gráficas-con-ggplot2">Gráficas con ggplot2</a></li>
+</ul></li>
+<li><a href="#leer-y-escribir-datos" id="toc-leer-y-escribir-datos">Leer
+y escribir datos</a>
+<ul>
+<li><a href="#leer-datos" id="toc-leer-datos">Leer datos</a></li>
+<li><a href="#escribir-datos" id="toc-escribir-datos">Escribir
+datos</a></li>
+</ul></li>
+<li><a href="#programación" id="toc-programación">Programación</a>
+<ul>
+<li><a href="#if-else" id="toc-if-else">if-else</a></li>
+<li><a href="#for" id="toc-for">for</a></li>
+<li><a href="#while" id="toc-while">while</a></li>
+<li><a href="#repeat" id="toc-repeat">repeat</a></li>
+<li><a href="#funciones" id="toc-funciones">Funciones</a></li>
+<li><a href="#paquetes" id="toc-paquetes">Paquetes</a></li>
+<li><a href="#lapply-sapply" id="toc-lapply-sapply">lapply
+sapply</a></li>
+<li><a href="#apply-mapply" id="toc-apply-mapply">apply mapply</a></li>
+<li><a href="#vapply-tapply" id="toc-vapply-tapply">vapply
+tapply</a></li>
+<li><a href="#split" id="toc-split">split</a></li>
+<li><a href="#fechas-y-tiempo" id="toc-fechas-y-tiempo">Fechas y
+tiempo</a></li>
+</ul></li>
+<li><a href="#leer-datos-1" id="toc-leer-datos-1">Leer Datos</a>
+<ul>
+<li><a href="#leer-bases-de-datos-con-mysql"
+id="toc-leer-bases-de-datos-con-mysql">Leer Bases de datos con
+MySQL</a></li>
+<li><a href="#leer-datos-y-escribir-con-hdf5"
+id="toc-leer-datos-y-escribir-con-hdf5">Leer datos y escribir con
+HDF5</a></li>
+<li><a href="#leer-datos-de-páginas-web-el-código-html"
+id="toc-leer-datos-de-páginas-web-el-código-html">Leer datos de páginas
+web (el código HTML)</a></li>
+<li><a
+href="#leer-datos-de-apis-application-programmming-interface-ejemplo-twitter"
+id="toc-leer-datos-de-apis-application-programmming-interface-ejemplo-twitter">Leer
+datos de API’s (Application programmming Interface, ejemplo
+Twitter)</a></li>
+<li><a
+href="#leer-otro-tipo-de-datos-imagenes-musica-archivos-de-otrso-programs-sas-excel"
+id="toc-leer-otro-tipo-de-datos-imagenes-musica-archivos-de-otrso-programs-sas-excel">Leer
+otro tipo de datos (imagenes, musica, archivos de otrso programs: SAS,
+Excel)</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -2471,7 +2542,1654 @@ datos simples</h2>
 </code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb1"><pre
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:figOA"></span>
+<img src="imagenes/OperadoresAritmeticos.png" alt="Operadores aritmeticos" width="38" />
+<p class="caption">
+Figure 1: Operadores aritmeticos
+</p>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:figOR"></span>
+<img src="imagenes/OperRela.png" alt="Operadores relacionales" width="32" />
+<p class="caption">
+Figure 2: Operadores relacionales
+</p>
+</div>
+</div>
+<ul>
+<li>Asignación</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>=</span> <span class='fl'>2</span> <span class='op'>^</span> <span class='fl'>2</span> <span class='op'>-</span> <span class='fl'>3.5</span> <span class='co'># No estándar</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fl'>23</span>;
+<span class='va'>c</span> <span class='op'>&lt;-</span> <span class='va'>b</span> <span class='op'>+</span> <span class='va'>a</span>
+<span class='va'>c</span>
+<span class='va'>c</span> <span class='op'>*</span> <span class='fl'>7</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='va'>a</span> <span class='op'>+</span> <span class='fl'>4.5</span>
+<span class='va'>a</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'>#despliega los nombres de las variables generadas</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>c</span><span class='op'>)</span> <span class='co'>#imprime el valor de</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Funciones con “datos simples”</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>a</span>, mean <span class='op'>=</span> <span class='fl'>3</span>, sd <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10000</span>, mean <span class='op'>=</span> <span class='fl'>3</span>, sd <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10000</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Funciones útiles</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>Trig</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>log</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>Special</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:figFT"></span>
+<img src="imagenes/funtrigonometricas.png" alt="Funciones trigonometricas" width="48" />
+<p class="caption">
+Figure 3: Funciones trigonometricas
+</p>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:figFLE"></span>
+<img src="imagenes/funlogexp.png" alt="Funciones log y expo" width="176" />
+<p class="caption">
+Figure 4: Funciones log y expo
+</p>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span style="display:block;" id="fig:figFE"></span>
+<img src="imagenes/funspeciales.png" alt="Funciones especiales" width="91" />
+<p class="caption">
+Figure 5: Funciones especiales
+</p>
+</div>
+</div>
+<h2 id="algunas-instrucciones-útiles">Algunas instrucciones útiles</h2>
+<ul>
+<li>Borrar consola</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"\014"</span><span class='op'>)</span> 
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Borrar variables</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/rm.html'>rm</a></span><span class='op'>(</span>list<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Constantes</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>pi</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
+<span class='cn'>Inf</span>
+<span class='fl'>1</span> <span class='op'>/</span> <span class='fl'>0</span>
+<span class='cn'>NaN</span>
+</code></pre>
+</div>
+</div>
+<h2 id="scripts">Scripts</h2>
+<ul>
+<li>File-New File-R Script</li>
+<li>source(‘Script1.R’)</li>
+<li>Desde la interfaz RStudio</li>
+</ul>
+<h1 id="datos-compuestos-clases">Datos compuestos (clases)</h1>
+<ul>
+<li>vector</li>
+<li>list</li>
+<li>matrix</li>
+<li>array</li>
+<li>factor</li>
+<li>time-series</li>
+<li>data.frame</li>
+</ul>
+<h2 id="vectores">Vectores</h2>
+<ul>
+<li>c(…) datos del mismo tipo “concatenate”</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='fl'>0i</span>, <span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>4i</span><span class='op'>)</span> <span class='co'># números complejos</span>
+<span class='va'>a</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fl'>9</span> <span class='op'>:</span> <span class='fl'>29</span> <span class='co'># genera una secuencia de numeros desde el 9 al 29</span>
+<span class='va'>a</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/vector.html'>vector</a></span><span class='op'>(</span><span class='st'>"numeric"</span>, length <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> <span class='co'># función vector()</span>
+<span class='va'>a</span>
+<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>, <span class='fl'>5</span>, <span class='fl'>45</span>, <span class='fl'>9.5</span><span class='op'>)</span>
+<span class='va'>a</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"nombre1"</span>, <span class='st'>"nombre2"</span>, <span class='st'>"nombre3"</span>, <span class='st'>"nombre4"</span><span class='op'>)</span> <span class='co'># podemos nombrar los elementos</span>
+<span class='va'>a</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>TRUE</span>, <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>b</span>
+<span class='va'>c</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># vector vacio </span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"hola"</span>, <span class='st'>"mundo"</span>, <span class='st'>"adios"</span>, <span class='st'>"cruel"</span><span class='op'>)</span>
+<span class='va'>b</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Coersión</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1.7</span>, <span class='st'>"hola"</span><span class='op'>)</span> <span class='co'># caracteres</span>
+<span class='va'>b</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>T</span>, <span class='fl'>2.3</span><span class='op'>)</span> <span class='co'># numerico</span>
+<span class='va'>b</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span> <span class='co'># nos indica que clase de dato es</span>
+<span class='fu'><a href='https://rdrr.io/r/base/logical.html'>as.logical</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span> <span class='co'># coersión explicita</span>
+<span class='fu'><a href='https://rdrr.io/r/base/complex.html'>as.complex</a></span><span class='op'>(</span><span class='va'>b</span><span class='op'>)</span>
+<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"hola"</span>, <span class='cn'>TRUE</span>, <span class='cn'>FALSE</span>, <span class='cn'>F</span><span class='op'>)</span> <span class='co'># caracteres</span>
+<span class='va'>b</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Elementos</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"comida"</span>, <span class='st'>"comida"</span>, <span class='st'>"zeta"</span>, <span class='st'>"camion"</span>, <span class='st'>"zeta"</span>, <span class='st'>"comida"</span><span class='op'>)</span>
+<span class='va'>b</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='co'># cuenta desde el elemento 1</span>
+<span class='va'>b</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='va'>b</span><span class='op'>[</span><span class='va'>b</span> <span class='op'>&lt;</span> <span class='st'>"Tito"</span><span class='op'>]</span>
+<span class='va'>u</span> <span class='op'>&lt;-</span> <span class='va'>b</span> <span class='op'>&lt;</span> <span class='st'>"Tito"</span>
+<span class='va'>u</span>
+<span class='va'>b</span><span class='op'>[</span><span class='va'>u</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Operaciones</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span>
+<span class='fl'>2</span> <span class='op'>*</span> <span class='va'>a</span>
+<span class='va'>a</span> <span class='op'>*</span> <span class='va'>a</span>
+<span class='va'>vec2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span>from<span class='op'>=</span><span class='fl'>0</span>, to<span class='op'>=</span><span class='fl'>1</span>, by<span class='op'>=</span><span class='fl'>0.3</span><span class='op'>)</span>
+<span class='va'>vec2</span>
+<span class='va'>a</span> <span class='op'>+</span> <span class='va'>vec2</span> 
+<span class='va'>vec2</span> <span class='op'>&gt;</span> <span class='fl'>0.5</span>
+<span class='va'>vec2</span> <span class='op'>==</span> <span class='fl'>0</span>
+<span class='va'>vec2</span> <span class='op'>*</span> <span class='va'>a</span>
+<span class='va'>vec2</span> <span class='op'>/</span> <span class='va'>a</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Funciones aplicadas a vectores.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span>
+<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='va'>d</span>
+<span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h3 id="ejercicio">Ejercicio</h3>
+<p>Cálcula la siguiente expresión para <span
+class="math inline">\(n\in\{10,100,1000,10000\}\)</span> con <span
+class="math inline">\(x_i\sim\mathcal{U}(0,1)\)</span></p>
+<p><span
+class="math display">\[S_n=\frac{5}{n\sqrt{2\pi}}\sum_{i=1}^ne^{-\frac{(5x_i-2.5)^2}{2}}\]</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>10000</span>
+  <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
+  <span class='va'>Sn</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fl'>5</span> <span class='op'>/</span> <span class='op'>(</span><span class='va'>n</span> <span class='op'>*</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>2</span> <span class='op'>*</span> <span class='va'>pi</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='op'>-</span><span class='op'>(</span><span class='fl'>1</span><span class='op'>/</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>5</span> <span class='op'>*</span> <span class='va'>x</span> <span class='op'>-</span> <span class='fl'>2.5</span><span class='op'>)</span> <span class='op'>^</span> <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>Sn</span>
+  </code></pre>
+</div>
+<pre><code>[1] 1.001065</code></pre>
+</div>
+<h2 id="listas">Listas</h2>
+<ul>
+<li>Elementos de diferentes tipos</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>L</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>uno <span class='op'>=</span> <span class='fl'>1</span>, dos <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>, tres <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>1</span>, length <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>, cuatro <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"hola"</span>, <span class='st'>"adios"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>L</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>L</span><span class='op'>)</span>
+<span class='va'>L</span><span class='op'>$</span><span class='va'>tres</span><span class='op'>+</span><span class='fl'>10</span>
+<span class='va'>L</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='co'># es una sublista de L </span>
+<span class='va'>L</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span> <span class='co'># es un vector númerico, semanticamente igual a $</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>L</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>L</span><span class='op'>[[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>L</span><span class='op'>[</span><span class='st'>"cuatro"</span><span class='op'>]</span>
+<span class='va'>L</span><span class='op'>[[</span><span class='st'>"cuatro"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>L</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>L</span><span class='op'>[[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>L</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span><span class='op'>[[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<h2 id="matrices">Matrices</h2>
+<p>Son vectores con un atributo de dimensión, este atributo es un vector
+de enteros de longitud 2 (nrow, ncol)</p>
+<ul>
+<li>Definición con número de columnas o filas</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span> , <span class='fl'>1</span>, <span class='fl'>4</span>, <span class='fl'>1</span>, <span class='fl'>6</span><span class='op'>)</span>, ncol <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>A</span>
+<span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span>, byrow<span class='op'>=</span> <span class='cn'>TRUE</span>, nrow <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>B</span> 
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>15</span><span class='op'>)</span>, nrow <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='va'>m</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span>nrow <span class='op'>=</span> <span class='fl'>2</span>, ncol <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>m</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dimnames.html'>dimnames</a></span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"fil1"</span>, <span class='st'>"fil2"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"col1"</span>, <span class='st'>"col2"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'>#nombramos a las filas y columnas</span>
+<span class='va'>m</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Definición concatenando vectores o motrices, por filas o
+columnas</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>
+<span class='va'>m1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>cbind</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
+<span class='va'>m1</span>
+<span class='va'>m2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>y</span><span class='op'>)</span>
+<span class='va'>m2</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Elementos</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>A</span>
+<span class='va'>A</span><span class='op'>[</span><span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>]</span>
+<span class='va'>A</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span> <span class='co'># como vector</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>A</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span><span class='op'>)</span>
+<span class='va'>A</span><span class='op'>[</span><span class='fl'>1</span>, , drop<span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span> <span class='co'># como matriz</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>A</span><span class='op'>[</span><span class='fl'>1</span>, , drop<span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>A</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>A</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>]</span>
+<span class='va'>A</span><span class='op'>[[</span><span class='fl'>5</span><span class='op'>]</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Operaciones</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>A</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span>; <span class='va'>B</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>,<span class='fl'>2</span>,<span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>A</span> <span class='op'>/</span> <span class='fl'>5</span>
+<span class='va'>A</span> <span class='op'>*</span> <span class='va'>B</span>
+<span class='va'>A</span> <span class='op'>/</span> <span class='va'>B</span>
+<span class='va'>A</span> <span class='op'><a href='https://rdrr.io/r/base/matmult.html'>%*%</a></span> <span class='va'>B</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Funciones</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>A</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Otras funciones asociadas</p></li>
+<li><p><em>rownames</em></p></li>
+<li><p><em>colnames</em></p></li>
+<li><p><em>rowSums</em></p></li>
+<li><p><em>colSums</em></p></li>
+</ul>
+<h2 id="factors">Factors</h2>
+<p>Son utilizados para representar datos categoricos (nominales: sin
+orden, ordinales: con orden), pueden ser ordenados o no.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"si"</span>, <span class='st'>"si"</span>, <span class='st'>"no"</span>, <span class='st'>"si"</span>, <span class='st'>"no"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='co'># los levels son rodenados alfabeticamente</span>
+<span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"si"</span>, <span class='st'>"si"</span>, <span class='st'>"no"</span>, <span class='st'>"si"</span>, <span class='st'>"no"</span><span class='op'>)</span>, levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"si"</span>, <span class='st'>"no"</span><span class='op'>)</span><span class='op'>)</span> <span class='co'># indicar el orden de los levels, incluso podrian ser cosas distintas</span>
+<span class='va'>x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Create speed_vector</span>
+<span class='va'>speed_vector</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"medium"</span>, <span class='st'>"slow"</span>, <span class='st'>"slow"</span>, <span class='st'>"medium"</span>, <span class='st'>"fast"</span><span class='op'>)</span>
+
+<span class='co'># Convert speed_vector to ordered factor vector</span>
+<span class='va'>factor_speed_vector</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>speed_vector</span>,
+                              ordered <span class='op'>=</span> <span class='cn'>TRUE</span>,
+                              levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"slow"</span>, <span class='st'>"medium"</span>, <span class='st'>"fast"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='co'># Print factor_speed_vector</span>
+<span class='va'>factor_speed_vector</span>
+</code></pre>
+</div>
+<pre><code>[1] medium slow   slow   medium fast  
+Levels: slow &lt; medium &lt; fast</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>factor_speed_vector</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  slow medium   fast 
+     2      2      1 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>factor_speed_vector</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>&gt;</span> <span class='va'>factor_speed_vector</span><span class='op'>[</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] FALSE</code></pre>
+</div>
+<h2 id="data-frames">Data frames</h2>
+<ul>
+<li>Matriz con nombres es las columnas, se pueden pensar tambien como
+listas donde cada elemento tiene la misma longitud, los nombres
+(elementos de la lista) van en las columnas y la cantidad de elementos
+en las filas. A diferecnia de las matrices pueden almancenar diferentes
+tipos de datos. Las instrucciones <strong>read.table()</strong> y
+<strong>read.csv()</strong> regresan data frames. De ser posible se
+puede convertir un data frame a una matriz utilizando
+<strong>data.matrix</strong>. Tiene 3 atributos: <strong>names</strong>,
+<strong>row.names</strong>, <strong>class</strong></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>11</span>, <span class='fl'>12</span>, <span class='fl'>14</span><span class='op'>)</span>, y <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>19</span>, <span class='fl'>20</span>, <span class='fl'>21</span><span class='op'>)</span>, z <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>9</span>, <span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>df</span>
+<span class='fu'><a href='https://rdrr.io/r/base/data.matrix.html'>data.matrix</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>c1 <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, c2 <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>, <span class='st'>"b"</span>, <span class='st'>"c"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Elementos</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>df</span><span class='op'>$</span><span class='va'>z</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>df</span><span class='op'>[</span><span class='st'>"x"</span><span class='op'>]</span>
+<span class='va'>df</span><span class='op'>[[</span><span class='st'>"x"</span><span class='op'>]</span><span class='op'>]</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='op'>]</span>
+<span class='va'>df</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span>
+<span class='va'>df</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, <span class='st'>"y"</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='va'>y</span> <span class='op'>==</span> <span class='fl'>20</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>Funciones</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>df</span><span class='op'>$</span><span class='va'>z</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="datos-no-disponibles">Datos no disponibles</h2>
+<ul>
+<li>NA (datos faltantes) o NaN para operaciones matemáticas indefinidas.
+Un NaN es un NA pero no el converso no es cierto</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>j</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>2</span>, <span class='cn'>NA</span><span class='op'>)</span>
+<span class='va'>j</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>j</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>j</span>
+<span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/is.finite.html'>is.nan</a></span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span>
+<span class='va'>nodisponible</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>j</span><span class='op'>)</span>
+<span class='va'>j</span><span class='op'>[</span><span class='va'>nodisponible</span><span class='op'>]</span>
+<span class='va'>j</span><span class='op'>[</span><span class='op'>!</span><span class='va'>nodisponible</span><span class='op'>]</span>
+</code></pre>
+</div>
+</div>
+<h1 id="gráficas">Gráficas</h1>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>datasets</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/hist.html'>hist</a></span><span class='op'>(</span><span class='va'>airquality</span><span class='op'>$</span><span class='va'>Ozone</span><span class='op'>)</span> 
+
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>datasets</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>datasets</span><span class='op'>)</span>
+<span class='va'>airquality</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/transform.html'>transform</a></span><span class='op'>(</span><span class='va'>airquality</span>, Month <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>Month</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='va'>Ozone</span> <span class='op'>~</span> <span class='va'>Month</span>, <span class='va'>airquality</span>, xlab <span class='op'>=</span> <span class='st'>"Month"</span>, ylab <span class='op'>=</span> <span class='st'>"Ozone (ppb)"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Ozone and Wind in New York City"</span><span class='op'>)</span> <span class='co'>## Add a title</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Ozone and Wind in New York City"</span><span class='op'>)</span> <span class='co'>## Add a title</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span>, main <span class='op'>=</span> <span class='st'>"Ozone and Wind in New York City"</span>,
+                      type <span class='op'>=</span> <span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='va'>Month</span> <span class='op'>==</span> <span class='fl'>5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span>, col <span class='op'>=</span> <span class='st'>"blue"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='va'>Month</span> <span class='op'>!=</span> <span class='fl'>5</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span>, col <span class='op'>=</span> <span class='st'>"red"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/legend.html'>legend</a></span><span class='op'>(</span><span class='st'>"topright"</span>, pch <span class='op'>=</span> <span class='fl'>1</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"blue"</span>, <span class='st'>"red"</span><span class='op'>)</span>, legend <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"May"</span>, <span class='st'>"Other Months"</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span>, main <span class='op'>=</span> <span class='st'>"Ozone and Wind in New York City"</span>,
+                      pch <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>model</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>Ozone</span> <span class='op'>~</span> <span class='va'>Wind</span>, <span class='va'>airquality</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/abline.html'>abline</a></span><span class='op'>(</span><span class='va'>model</span>, lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="IntroR_files/figure-html5/unnamed-chunk-38-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/par.html'>par</a></span><span class='op'>(</span>mfrow <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span>, mar <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>1</span><span class='op'>)</span>, oma <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>0</span>, <span class='fl'>2</span>, <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Wind</span>, <span class='va'>Ozone</span>, main <span class='op'>=</span> <span class='st'>"Ozone and Wind"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Solar.R</span>, <span class='va'>Ozone</span>, main <span class='op'>=</span> <span class='st'>"Ozone and Solar Radiation"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>Temp</span>, <span class='va'>Ozone</span>, main <span class='op'>=</span> <span class='st'>"Ozone and Temperature"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/graphics/mtext.html'>mtext</a></span><span class='op'>(</span><span class='st'>"Ozone and Weather in New York City"</span>, outer <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='op'>}</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="IntroR_files/figure-html5/unnamed-chunk-39-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>par</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/with.html'>with</a></span><span class='op'>(</span><span class='va'>faithful</span>, <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>eruptions</span>, <span class='va'>waiting</span><span class='op'>)</span><span class='op'>)</span> <span class='co'>## Make plot appear on screen device</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/title.html'>title</a></span><span class='op'>(</span>main <span class='op'>=</span> <span class='st'>"Old Faithful Geyser data"</span><span class='op'>)</span> <span class='co'>## Annotate with a title</span>
+</code></pre>
+</div>
+<p><img src="IntroR_files/figure-html5/unnamed-chunk-41-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>"l"</span>, col<span class='op'>=</span><span class='st'>"gold"</span><span class='op'>)</span>
+</code></pre>
+</div>
+<img src="IntroR_files/figure-html5/unnamed-chunk-42-1.png" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>plot</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>Help on topic &#39;plot&#39; was found in the following packages:
+
+  Package               Library
+  graphics              /Library/Frameworks/R.framework/Versions/4.2/Resources/library
+  base                  /Library/Frameworks/R.framework/Resources/library
+
+
+Using the first match ...</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>t</span><span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>t</span>, type<span class='op'>=</span><span class='st'>"l"</span>, ylim<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/range.html'>range</a></span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span>, lwd<span class='op'>=</span><span class='fl'>3</span>, col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0.3</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>t</span>, type<span class='op'>=</span><span class='st'>"s"</span>, lwd<span class='op'>=</span><span class='fl'>2</span>,col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0.3</span>,<span class='fl'>0.4</span>,<span class='fl'>0.3</span>,<span class='fl'>0.9</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/points.html'>points</a></span><span class='op'>(</span><span class='va'>t</span>, pch<span class='op'>=</span><span class='fl'>20</span>, cex<span class='op'>=</span><span class='fl'>4</span>, col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/grDevices/rgb.html'>rgb</a></span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>1</span>,<span class='fl'>0.3</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="IntroR_files/figure-html5/unnamed-chunk-42-2.png" width="624" /></p>
+</div>
+<h2 id="gráficas-con-lattice">Gráficas con Lattice</h2>
+<p>Es un sistema independiente al sistema base, por lo que se tiene que
+cargar la libreria, algunas de sus funciones son</p>
+<ul>
+<li>xyplot</li>
+<li>bwplot</li>
+<li>histogram</li>
+</ul>
+<p>A diferecnia del sistema base, las gráficas se construyen con una
+sola instrucción. Un ejemplo <code>xyplot(y ~ x | f * g, data)</code>
+aqui <em>y</em> depende de <em>x</em> y <em>f</em>, <em>g</em> son
+variables condicionales para relaizar la grafica, estas son opcionales,
+<em>data</em> representa el conjunto de datos donde se gráficaran las
+variables.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>datasets</span><span class='op'>)</span>
+<span class='fu'>xyplot</span><span class='op'>(</span><span class='va'>Ozone</span><span class='op'>~</span><span class='va'>Wind</span>, data <span class='op'>=</span> <span class='va'>airquality</span><span class='op'>)</span>
+<span class='fu'>xyplot</span><span class='op'>(</span><span class='va'>Ozone</span><span class='op'>~</span><span class='va'>Wind</span>, data <span class='op'>=</span> <span class='va'>airquality</span>,pch <span class='op'>=</span> <span class='fl'>8</span>,col <span class='op'>=</span> <span class='st'>"red"</span>, main <span class='op'>=</span> <span class='st'>"Big Apple Data"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="gráficas-con-ggplot2">Gráficas con ggplot2</h2>
+<p>Es una librería que se puede instalar, la documentación se encuentra
+en <a href="http://ggplot2.org">Página de ggplo2</a>. Combina los dos
+sistemas anteriores, base y el lattice, la función</p>
+<ul>
+<li><em>qplot</em></li>
+</ul>
+<p>Similar a plot del sistema base, pero sin indicar tanto detalle
+similar a como funciona lattice, la otra función que es más versatil es
+<em>ggplot</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#necesitamos importar los datos mpg de la libreria ggplot</span>
+<span class='co'>#qplot(displ, hwy, data=mpg, color = drv)</span>
+<span class='co'>#qplot(displ, hwy, data=mpg, color = drv, geom = c("point","smooth"))</span>
+<span class='co'>#qplot(drv, hwy, data = mpg, geom = "boxplot")</span>
+<span class='co'>#qplot(drv, hwy, data = mpg, geom = "boxplot", color = manufacturer)</span>
+<span class='co'>#qplot(displ,hwy, data = mpg, facets = .~drv)</span>
+<span class='co'>#qplot(hwy, data = mpg, facets = drv~.,binwidth=2)</span>
+</code></pre>
+</div>
+</div>
+<p>A “grammar” of graphics means that ggplot2 contains building blocks
+with which you can create your own graphical objects. What are these
+basic components of ggplot2 plots? There are 7 of them.</p>
+<p>Obviously, there’s a DATA FRAME which contains the data you’re trying
+to plot. Then the AESTHETIC MAPPINGS determine how data are mapped to
+color, size, etc.The GEOMS (geometric objects) are what you see in the
+plot (points, lines,shapes) and FACETS are the panels used in
+conditional plots. You’ve used these or seen them used in the first
+ggplot2 (qplot) lesson.</p>
+<p>There are 3 more. STATS are statistical transformations such as
+binning,quantiles, and smoothing which ggplot2 applies to the data.
+SCALES show what coding an aesthetic map uses (for example, male = red,
+female = blue). Finally, the plots are depicted on a COORDINATE SYSTEM.
+When you use qplot these were taken care of for you.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># cargar los mpg de la libreria ggplot2</span>
+<span class='co'>#qplot(displ, hwy, data = mpg, geom=c("point","smooth"), facets = .~drv)</span>
+
+<span class='co'>#g &lt;- ggplot(mpg, aes(displ,hwy) )</span>
+<span class='co'>#g+geom_point()</span>
+<span class='co'>#g+geom_point()+geom_smooth()</span>
+<span class='co'>#g+geom_point()+geom_smooth(method = "lm")</span>
+<span class='co'>#g+geom_point()+geom_smooth(method = "lm")+facet_grid(.~drv)</span>
+<span class='co'>#g+geom_point()+geom_smooth(method = "lm")+facet_grid(.~drv)+ggtitle("Swirl Rules!")</span>
+<span class='co'>#g+geom_point(color="pink", size=4, alpha=1/2)</span>
+<span class='co'>#g+geom_point(size=4, alpha=1/2,aes(color=drv))</span>
+<span class='co'>#g+geom_point(aes(color= drv))+labs(title="Swirl Rules!")+labs(x="Displacement", y="Hwy Mileage")</span>
+<span class='co'>#g+geom_point(aes(color=drv), size=2, alpha=1/2)+geom_smooth(size=4,linetype=3,method="lm",se=FALSE)</span>
+<span class='co'>#g+geom_point(aes(color=drv))+theme_bw(base_family="Times")</span>
+<span class='co'>#plot(myx, myy, type="l", ylim=c(-3,3))</span>
+
+<span class='co'>#aqui no plaica nada diecto son datos que se craron</span>
+<span class='co'>#g &lt;- ggplot(data = testdat, aes(x=myx,y=myy))</span>
+<span class='co'># g+geom_line()</span>
+<span class='co'>#g+geom_line()+ylim(-3,3)#no es lo mejor</span>
+<span class='co'>#g+geom_line()+coord_cartesian(ylim=c(-3,3))</span>
+
+<span class='co'>#######</span>
+<span class='co'>#g &lt;- ggplot(data=mpg, aes(x=displ, y=hwy, color=factor(year)))</span>
+<span class='co'>#g+geom_point()</span>
+<span class='co'>#g+geom_point()+facet_grid(drv~cyl,margins=TRUE)</span>
+<span class='co'>#g+geom_point()+facet_grid(drv~cyl,margins=TRUE)+geom_smooth(method="lm", se=FALSE,size=2, color="black")</span>
+<span class='co'>#g+geom_point()+facet_grid(drv~cyl,margins=TRUE)+geom_smooth(method="lm", se=FALSE,size=2, color="black")+labs(x="Displacement", y="Highway Mileage", title="Swirl Rules!")</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#Se tiene que cargar diamonds from ggplot</span>
+<span class='co'>#qplot(price, data = diamonds)</span>
+<span class='co'>#qplot(price, data = diamonds, binwidth =18497/30, fill=cut)</span>
+<span class='co'>#qplot(price, data = diamonds, geom="density")</span>
+<span class='co'>#qplot(price, data = diamonds, geom="density", color=cut)</span>
+
+<span class='co'>##### Ahora scatterplot</span>
+
+<span class='co'>#qplot(carat, price, data = diamonds)</span>
+<span class='co'>#qplot(carat, price, data = diamonds, shape=cut)</span>
+<span class='co'>#qplot(carat, price, data = diamonds, color=cut)</span>
+<span class='co'>#qplot(carat, price, data = diamonds, color=cut)+geom_smooth(method = "lm")</span>
+<span class='co'>#qplot(carat, price, data = diamonds, color=cut, facets = .~cut)+geom_smooth(method = "lm")</span>
+
+<span class='co'>###### ahora con ggplot</span>
+
+<span class='co'>#g &lt;- ggplot(diamonds, aes(depth, price))</span>
+<span class='co'># g+geom_point(alpha=1/3)</span>
+<span class='co'>#cutpoints &lt;- quantile(diamonds$carat,seq(0,1,length=4),na.rm=TRUE)</span>
+<span class='co'>#diamonds$car2 &lt;- cut(diamonds$carat,cutpoints)</span>
+<span class='co'>#g &lt;- ggplot(diamonds, aes(depth, price))</span>
+<span class='co'>#g+geom_point(alpha=1/3)+facet_grid(cut~car2)</span>
+<span class='co'>#g+geom_point(alpha=1/3)+facet_grid(cut~car2)+geom_smooth(method = "lm", size=3, color="pink")</span>
+<span class='co'>#ggplot(diamonds, aes(carat, price))+geom_boxplot()+facet_grid(.~cut)</span>
+</code></pre>
+</div>
+</div>
+<h1 id="leer-y-escribir-datos">Leer y escribir datos</h1>
+<h2 id="leer-datos">Leer datos</h2>
+<ul>
+<li><strong>read.table</strong>, para leer datos tabulares, con los
+igueintes argumento</li>
+<li><em>file</em>, el nombre del archivo o conección</li>
+<li><em>header</em>, si tiene o no una linea de cabecera</li>
+<li><em>sep</em>, una cadena que indica como estan separadas als
+columnas</li>
+<li><em>colClasses</em>, un vector de caracteres indicando la clase de
+cada columna de datos</li>
+<li><em>nrows</em>, el numero de filas en el conjunto de datos</li>
+<li><em>comment.char</em>, vecto de caracters indicando un
+comentario</li>
+<li><em>skip</em>, el numero de lineas a omitir desde desde el
+principio.</li>
+<li><em>stringsAsFactors</em>, si las caracteres deben de leerse como
+factores.<br />
+</li>
+<li><strong>read.csv</strong>, para leer datos tabulares separados por
+comas</li>
+<li><strong>readLines</strong>, para leer lineas de un archivo de
+texto.</li>
+<li><strong>source</strong>, para leer códigos de R (inverso a
+dump)</li>
+<li><strong>dget</strong>, para leer códigos de R (inverso a dput)</li>
+<li><strong>load</strong>, para leer de un worspace guardado</li>
+<li><strong>unserialize</strong>, Para leer un objeto de R en forma
+binaria.</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'>if</span><span class='op'>(</span><span class='op'>!</span><span class='fu'><a href='https://rdrr.io/r/base/files.html'>file.exists</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='st'>"data"</span><span class='op'>)</span>  
+<span class='op'>}</span>
+<span class='co'># Datos tipo CSV</span>
+<span class='va'>fileUrl</span> <span class='op'>&lt;-</span> <span class='st'>"https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accesType=DOWNLOAD"</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/download.file.html'>download.file</a></span><span class='op'>(</span><span class='va'>fileUrl</span>,destfile<span class='op'>=</span><span class='st'>"./data/cameras.csv"</span>, method<span class='op'>=</span><span class='st'>"curl"</span><span class='op'>)</span>
+
+<span class='co'># Datos tipo EXCEL</span>
+<span class='va'>fileUrl</span> <span class='op'>&lt;-</span> <span class='st'>"https://data.baltimorecity.gov/api/views/dz54-2aru/rows.xlsx?accesType=DOWNLOAD"</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/download.file.html'>download.file</a></span><span class='op'>(</span><span class='va'>fileUrl</span>,destfile<span class='op'>=</span><span class='st'>"./data/cameras.xlsx"</span>, method<span class='op'>=</span><span class='st'>"curl"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>cameraData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='st'>"./data/cameras.csv"</span>, sep<span class='op'>=</span><span class='st'>","</span>, header <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>cameraData</span><span class='op'>)</span>
+<span class='co'>#cameraData &lt;- read.csv("./data/cameras.csv")</span>
+<span class='co'>#head(cameraData)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/colearendt/xlsx'>xlsx</a></span><span class='op'>)</span>
+<span class='co'>#cameraData &lt;- read.xlsx("./data/cameras.xlsx", sheetIndex=1, header = TRUE)</span>
+<span class='co'>#head(cameraData)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="escribir-datos">Escribir datos</h2>
+<ul>
+<li><strong>write.table</strong>
+<ul>
+<li><strong>writeLines</strong></li>
+<li><strong>dump</strong></li>
+<li><strong>dput</strong></li>
+<li><strong>save</strong></li>
+<li><strong>seriealize</strong></li>
+</ul></li>
+</ul>
+<h1 id="programación">Programación</h1>
+<h2 id="if-else">if-else</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>a</span><span class='op'>=</span><span class='fl'>4</span>
+  
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>a</span><span class='op'>==</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"hola mundo"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>a</span><span class='op'>&lt;</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>d</span><span class='op'>=</span><span class='fl'>3</span> 
+  <span class='va'>d</span>
+  <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span>
+  <span class='va'>d</span><span class='op'>=</span><span class='fl'>4</span>
+  <span class='va'>d</span>
+  <span class='op'>}</span>
+  
+  <span class='kw'>if</span> <span class='op'>(</span><span class='va'>a</span><span class='op'>&lt;</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>)</span>
+  <span class='op'>}</span> <span class='kw'>else</span> <span class='kw'>if</span> <span class='op'>(</span><span class='va'>a</span><span class='op'>==</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>a</span><span class='op'>+</span><span class='fl'>3</span><span class='op'>)</span>
+  <span class='op'>}</span> <span class='kw'>else</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"Ño"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  </code></pre>
+</div>
+</div>
+<h2 id="for">for</h2>
+<p>Las instrucciones <em>break</em> y <em>next</em> funcionan igual que
+en otros lenguajes de programcación</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>contador</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>  
+<span class='va'>c</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>1000</span><span class='op'>)</span>
+<span class='kw'>for</span> <span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='va'>c</span><span class='op'>)</span> <span class='op'>{</span>
+  
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>i</span> <span class='op'>&lt;</span> <span class='fl'>0.5</span><span class='op'>)</span>
+  <span class='op'>{</span>
+    <span class='va'>contador</span> <span class='op'>&lt;-</span> <span class='va'>contador</span> <span class='op'>+</span> <span class='fl'>1</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+<span class='va'>contador</span>
+
+<span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span> 
+<span class='op'>{</span> <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span><span class='op'>}</span>
+
+<span class='va'>x</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"a"</span>,<span class='st'>"b"</span>,<span class='st'>"c"</span><span class='op'>)</span>
+<span class='kw'>for</span><span class='op'>(</span><span class='va'>variable</span> <span class='kw'>in</span> <span class='va'>x</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>variable</span><span class='op'>)</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>2</span>, <span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>for</span><span class='op'>(</span><span class='va'>j</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq_len</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='kw'>if</span><span class='op'>(</span><span class='va'>j</span> <span class='op'>==</span> <span class='fl'>2</span><span class='op'>)</span> <span class='kw'>next</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span><span class='va'>i</span>, <span class='va'>j</span><span class='op'>]</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h2 id="while">while</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>contador</span><span class='op'>=</span><span class='fl'>0</span>
+<span class='va'>numero</span><span class='op'>=</span><span class='fl'>1</span>
+<span class='kw'>while</span><span class='op'>(</span><span class='va'>numero</span><span class='op'>&lt;=</span><span class='fl'>30</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>numero</span><span class='op'><a href='https://rdrr.io/r/base/Arithmetic.html'>%%</a></span><span class='fl'>5</span><span class='op'>==</span><span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span>
+    <span class='va'>contador</span><span class='op'>&lt;-</span><span class='va'>contador</span><span class='op'>+</span><span class='fl'>1</span>
+  <span class='op'>}</span>
+  <span class='va'>numero</span><span class='op'>&lt;-</span><span class='va'>numero</span><span class='op'>+</span><span class='fl'>1</span>
+<span class='op'>}</span>
+<span class='va'>contador</span>
+</code></pre>
+</div>
+</div>
+<h2 id="repeat">repeat</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>contador</span><span class='op'>&lt;-</span><span class='fl'>0</span>
+
+<span class='kw'>repeat</span>
+<span class='op'>{</span>
+  
+  <span class='kw'>if</span><span class='op'>(</span><span class='va'>contador</span><span class='op'>==</span><span class='fl'>2</span><span class='op'>)</span>
+  <span class='op'>{</span>
+    <span class='kw'>break</span>
+  <span class='op'>}</span> 
+  <span class='kw'>else</span>
+  <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>contador</span><span class='op'>)</span>
+    <span class='va'>contador</span><span class='op'>&lt;-</span> <span class='va'>contador</span><span class='op'>+</span><span class='fl'>1</span>
+  <span class='op'>}</span>
+  
+<span class='op'>}</span>
+</code></pre>
+</div>
+</div>
+<h2 id="funciones">Funciones</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>desv</span> <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>var</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>x</span><span class='op'>&lt;-</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> 
+<span class='fu'>desv</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> 
+
+<span class='va'>fun1</span> <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>arg1</span>, <span class='va'>arg2</span><span class='op'>=</span><span class='fl'>1</span> <span class='op'>)</span>
+<span class='op'>{</span>
+  <span class='va'>w</span> <span class='op'>=</span> <span class='va'>arg1</span> <span class='op'>^</span> <span class='fl'>2</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>arg2</span> <span class='op'>+</span> <span class='va'>w</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+<span class='fu'>fun1</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'>fun1</span><span class='op'>(</span>arg1 <span class='op'>=</span> <span class='fl'>3</span>, arg2 <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+
+<span class='fu'>fun1</span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>5</span><span class='op'>)</span>
+
+
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>a</span><span class='op'>^</span><span class='fl'>2</span>
+<span class='op'>}</span>
+<span class='fu'>f</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+
+
+
+<span class='co'># ... se ussan para pasar argumentos variables, los argumentos listados despues de ... deben </span>
+<span class='co'># de ser usados con nombre </span>
+
+<span class='va'>f</span> <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
+<span class='op'>{</span>
+  <span class='va'>datos</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
+  <span class='va'>medias</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>datos</span>,<span class='va'>mean</span><span class='op'>)</span>    <span class='co'># lapply aplica una función sobre una lista</span>
+  <span class='va'>varianzas</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>datos</span>,<span class='va'>var</span><span class='op'>)</span>
+  <span class='va'>maximos</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>datos</span>,<span class='va'>max</span><span class='op'>)</span>
+  <span class='va'>minimos</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>datos</span>,<span class='va'>min</span><span class='op'>)</span>
+  
+  <span class='kw'>for</span><span class='op'>(</span><span class='va'>i</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>datos</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"Distribución "</span>,<span class='va'>i</span>,<span class='st'>": \n"</span><span class='op'>)</span>   <span class='co'># La función cat es para visualizar cosas</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"media: "</span>,<span class='va'>medias</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span>,<span class='st'>"varianza: "</span>,<span class='va'>varianzas</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span>,<span class='st'>"maximo: "</span>,<span class='va'>maximos</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span>,<span class='st'>"minimo: "</span>,<span class='va'>minimos</span><span class='op'>[[</span><span class='va'>i</span><span class='op'>]</span><span class='op'>]</span>,<span class='st'>"\n"</span><span class='op'>)</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='st'>"------------------------------------------------\n"</span><span class='op'>)</span>
+  <span class='op'>}</span>
+  
+<span class='op'>}</span>
+
+<span class='fu'>f</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>7</span><span class='op'>)</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='op'>-</span><span class='fl'>5</span>,<span class='fl'>6</span>,<span class='fl'>9</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>x</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span>
+<span class='fu'>f</span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>y</span><span class='op'>)</span>
+
+<span class='va'>make.power</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>pow</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='va'>x</span><span class='op'>^</span><span class='va'>n</span>
+  <span class='op'>}</span>
+  <span class='va'>pow</span>
+<span class='op'>}</span>
+
+<span class='va'>cube</span> <span class='op'>&lt;-</span> <span class='fu'>make.power</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>square</span> <span class='op'>&lt;-</span> <span class='fu'>make.power</span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span>
+<span class='fu'>cube</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'>square</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/ls.html'>ls</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/environment.html'>environment</a></span><span class='op'>(</span><span class='va'>cube</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>zz</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
+<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>zz</span> <span class='op'>&lt;-</span> <span class='fl'>2</span>
+  <span class='va'>zz</span><span class='op'>^</span><span class='fl'>2</span> <span class='op'>+</span> <span class='fu'>g</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='op'>}</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>x</span><span class='op'>*</span><span class='va'>zz</span>
+<span class='op'>}</span>
+<span class='fu'>f</span><span class='op'>(</span><span class='fl'>3</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="paquetes">Paquetes</h2>
+<p><em>install.packages(“ggvis”)</em> <em>library</em>,
+<em>require</em></p>
+<ul>
+<li><em>search()</em> despliega que paquetes están cargado en el
+ambiente</li>
+</ul>
+<h2 id="lapply-sapply">lapply sapply</h2>
+<ul>
+<li><p>lapply toma una lista como entrada, aplica una función a cada
+elemento de la lista, regresa una lista de la misma dimensión que la
+original. la “l” es de lista, <em>lapply(lista,func)</em></p></li>
+<li><p>sapply toma una lista como entrada, aplica una función a cada
+elemento de la lista, regresa una “simplificación” (de ser posible, si
+no es como lappy) de la aplicación de la función (respecto al tipo de
+dato que regresa la función) de la misma dimensión que la
+original.</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mean</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span> <span class='co'># se convierte la lista en un vector</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span> 
+<span class='va'>funcion1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>a</span><span class='op'>*</span><span class='va'>b</span>
+<span class='op'>}</span>
+<span class='va'>resn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>funcion1</span>, b <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+<span class='va'>rens</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span><span class='fl'>2</span><span class='op'>*</span><span class='va'>x</span><span class='op'>}</span><span class='op'>)</span>
+<span class='va'>resn</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>"este es sapply"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mean</span><span class='op'>)</span>
+<span class='va'>x</span><span class='op'>&lt;-</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>runif</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>2</span>, <span class='fl'>2</span><span class='op'>)</span>, b <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>6</span>, <span class='fl'>3</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>elt</span><span class='op'>)</span> <span class='va'>elt</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>]</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="apply-mapply">apply mapply</h2>
+<ul>
+<li>apply es usado para evaluar una función (usialmente anonima) sobre
+los margenes de un arreglo. NO es más rápida que un ciclo pero es una
+sola linea</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>apply</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>200</span><span class='op'>)</span>, <span class='fl'>20</span>, <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>Sumacolumnas</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>2</span>, <span class='va'>sum</span><span class='op'>)</span>
+<span class='va'>Sumafilas</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>1</span>, <span class='va'>sum</span><span class='op'>)</span>
+<span class='va'>Sumacolumnas</span>
+<span class='va'>Sumafilas</span>
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>1</span>, <span class='va'>quantile</span>, probs <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.25</span>, <span class='fl'>0.75</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<ul>
+<li>mapply aplica una función recorriendo diferentes valores dados para
+sus argumentos, sirve para hacer vectorización (en el sentido de generar
+un vector a partir de una instrucción)</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/mapply.html'>mapply</a></span><span class='op'>(</span><span class='va'>rep</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>1</span><span class='op'>)</span>  <span class='co'># list(rep(1, 4), rep(2, 3), rep(3, 2), rep(4, 1))</span>
+</code></pre>
+</div>
+<pre><code>[[1]]
+[1] 1 1 1 1
+
+[[2]]
+[1] 2 2 2
+
+[[3]]
+[1] 3 3
+
+[[4]]
+[1] 4</code></pre>
+</div>
+<h2 id="vapply-tapply">vapply tapply</h2>
+<ul>
+<li><p>vapply permite especificar el formato de salida (por loq ue lleva
+tres argumentos), si el formato de salida especificado no coincide con
+lo que se ha obtenido entonces</p></li>
+<li><p>tapply aplica una función a un determinado subconjunto de los
+datos, diciendo a que indices lo aplicas, por eso lleva tres argumentos
+como mínimo.</p></li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='va'>f</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>f</span>
+<span class='fu'><a href='https://rdrr.io/r/base/tapply.html'>tapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>f</span>, <span class='va'>mean</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/tapply.html'>tapply</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>f</span>, <span class='va'>range</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<h2 id="split">split</h2>
+<ul>
+<li>toma objetos y los separa en grupos determinados por un factor o
+lista uan lista de factores</li>
+</ul>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='va'>f</span><span class='op'>&lt;-</span><span class='fu'><a href='https://rdrr.io/r/base/gl.html'>gl</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>f</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>f</span><span class='op'>)</span>, <span class='va'>mean</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>datasets</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>airquality</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>s</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/split.html'>split</a></span><span class='op'>(</span><span class='va'>airquality</span>, <span class='va'>airquality</span><span class='op'>$</span><span class='va'>Month</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>s</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Ozone"</span>, <span class='st'>"Solar.R"</span>, <span class='st'>"Wind"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>$`5`
+   Ozone  Solar.R     Wind 
+      NA       NA 11.62258 
+
+$`6`
+    Ozone   Solar.R      Wind 
+       NA 190.16667  10.26667 
+
+$`7`
+     Ozone    Solar.R       Wind 
+        NA 216.483871   8.941935 
+
+$`8`
+   Ozone  Solar.R     Wind 
+      NA       NA 8.793548 
+
+$`9`
+   Ozone  Solar.R     Wind 
+      NA 167.4333  10.1800 </code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>s</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Ozone"</span>, <span class='st'>"Solar.R"</span>, <span class='st'>"Wind"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>               5         6          7        8        9
+Ozone         NA        NA         NA       NA       NA
+Solar.R       NA 190.16667 216.483871       NA 167.4333
+Wind    11.62258  10.26667   8.941935 8.793548  10.1800</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>sapply</a></span><span class='op'>(</span><span class='va'>s</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>colMeans</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Ozone"</span>, <span class='st'>"Solar.R"</span>, <span class='st'>"Wind"</span><span class='op'>)</span><span class='op'>]</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>                5         6          7          8         9
+Ozone    23.61538  29.44444  59.115385  59.961538  31.44828
+Solar.R 181.29630 190.16667 216.483871 171.857143 167.43333
+Wind     11.62258  10.26667   8.941935   8.793548  10.18000</code></pre>
+</div>
+<h2 id="fechas-y-tiempo">Fechas y tiempo</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"1970-01-01"</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"1970-01-02"</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXlt</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>p</span><span class='op'>$</span><span class='va'>sec</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.time.html'>Sys.time</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>x</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>unclass</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='co'># x$sec   error</span>
+<span class='va'>p</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXlt</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>p</span><span class='op'>$</span><span class='va'>sec</span>
+
+<span class='va'>datestring</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"January 10, 2012 10:40"</span>, <span class='st'>"December 9, 2011 9:10"</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='va'>datestring</span>, <span class='st'>"%B %d, %Y %H:%M"</span><span class='op'>)</span>
+<span class='va'>x</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2012-01-01"</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/strptime.html'>strptime</a></span><span class='op'>(</span><span class='st'>"9 Jan 2011 11:34:21"</span>, <span class='st'>"%d %b %Y %H:%M:%S"</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXlt</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>x</span><span class='op'>-</span><span class='va'>y</span>
+
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2012-03-01"</span><span class='op'>)</span> 
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2012-02-28"</span><span class='op'>)</span>
+<span class='va'>x</span><span class='op'>-</span><span class='va'>y</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2012-10-25 01:00:00"</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"2012-10-25 06:00:00"</span>, tz <span class='op'>=</span> <span class='st'>"GMT"</span><span class='op'>)</span>
+<span class='va'>y</span><span class='op'>-</span><span class='va'>x</span>
+</code></pre>
+</div>
+</div>
+<h1 id="leer-datos-1">Leer Datos</h1>
+<h2 id="leer-bases-de-datos-con-mysql">Leer Bases de datos con
+MySQL</h2>
+<p>instalar MySQl <a
+href="https://dev.mysql.com/downloads/file/?id=480768">Mac os</a>,
+descargar datos de la universida de califiornia <a
+href="http://genome.ucsc.edu/goldenPath/help/mysql.html">enlace</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"RMySQL"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dbi.r-dbi.org'>DBI</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://downloads.mariadb.org/connector-c/'>RMySQL</a></span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>ucscDb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/RMySQL/man/MySQLDriver-class.html'>MySQL</a></span><span class='op'>(</span><span class='op'>)</span>, user<span class='op'>=</span><span class='st'>"genome"</span>,
+                    host<span class='op'>=</span><span class='st'>"genome-mysql.cse.ucsc.edu"</span><span class='op'>)</span>
+<span class='va'>result</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>ucscDb</span>, <span class='st'>"show databases;"</span><span class='op'>)</span>
+<span class='fu'><a href='https://dbi.r-dbi.org/reference/dbDisconnect.html'>dbDisconnect</a></span><span class='op'>(</span><span class='va'>ucscDb</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>result</span>
+</code></pre>
+</div>
+<pre><code>              Database
+1              acaChl1
+2              ailMel1
+3              allMis1
+4              allSin1
+5              amaVit1
+6              anaPla1
+7              ancCey1
+8              angJap1
+9              anoCar1
+10             anoCar2
+11             anoGam1
+12             anoGam3
+13             apaSpi1
+14             apaVit1
+15             apiMel1
+16             apiMel2
+17             aplCal1
+18             aptFor1
+19             aptMan1
+20             aquChr2
+21             araMac1
+22             ascSuu1
+23             balAcu1
+24             balPav1
+25             bisBis1
+26             bosTau2
+27             bosTau3
+28             bosTau4
+29             bosTau5
+30             bosTau6
+31             bosTau7
+32             bosTau8
+33             bosTau9
+34           bosTauMd3
+35             braFlo1
+36             bruMal2
+37             bucRhi1
+38             burXyl1
+39             caeAng2
+40             caeJap1
+41             caeJap4
+42              caePb1
+43              caePb2
+44              caePb3
+45             caeRem2
+46             caeRem3
+47             caeRem4
+48            caeSp111
+49             caeSp51
+50             calAnn1
+51             calJac1
+52             calJac3
+53             calJac4
+54             calMil1
+55             canFam1
+56             canFam2
+57             canFam3
+58             canFam4
+59             canFam5
+60             canFam6
+61             capCar1
+62             carCri1
+63             cavPor3
+64                 cb1
+65                 cb3
+66                 cb4
+67                ce10
+68                ce11
+69                 ce2
+70                 ce4
+71                 ce6
+72             cerSim1
+73             chaVoc2
+74             cheMyd1
+75             chlSab2
+76             chlUnd1
+77             choHof1
+78             chrPic1
+79             chrPic2
+80                 ci1
+81                 ci2
+82                 ci3
+83             colLiv1
+84             colStr1
+85             corBra1
+86             corCor1
+87             cotJap2
+88             criGri1
+89         criGriChoV1
+90         criGriChoV2
+91             cucCan1
+92             danRer1
+93            danRer10
+94            danRer11
+95             danRer2
+96             danRer3
+97             danRer4
+98             danRer5
+99             danRer6
+100            danRer7
+101            dasNov3
+102            dipOrd1
+103            dirImm1
+104                dm1
+105                dm2
+106                dm3
+107                dm6
+108                dp2
+109                dp3
+110            droAna1
+111            droAna2
+112            droEre1
+113            droGri1
+114            droMoj1
+115            droMoj2
+116            droPer1
+117            droSec1
+118            droSim1
+119            droSim2
+120            droVir1
+121            droVir2
+122            droYak1
+123            droYak2
+124            eboVir3
+125            echTel1
+126            echTel2
+127            egrGar1
+128         enhLutNer1
+129            equCab1
+130            equCab2
+131            equCab3
+132            eriEur1
+133            eriEur2
+134            eurHel1
+135            falChe1
+136            falPer1
+137            felCat3
+138            felCat4
+139            felCat5
+140            felCat8
+141            felCat9
+142            ficAlb2
+143                fr1
+144                fr2
+145                fr3
+146            fulGla1
+147            gadMor1
+148            galGal2
+149            galGal3
+150            galGal4
+151            galGal5
+152            galGal6
+153            galVar1
+154            gasAcu1
+155            gavSte1
+156             gbMeta
+157            geoFor1
+158                 go
+159           go080130
+160           go140213
+161           go150121
+162           go180426
+163            gorGor3
+164            gorGor4
+165            gorGor5
+166            gorGor6
+167            haeCon2
+168            halAlb1
+169            halLeu1
+170            hetBac1
+171            hetGla1
+172            hetGla2
+173               hg16
+174               hg17
+175               hg18
+176               hg19
+177        hg19Patch10
+178        hg19Patch13
+179               hg38
+180        hg38Patch11
+181            hgFixed
+182          hgcentral
+183 information_schema
+184            latCha1
+185            lepDis1
+186            letCam1
+187            loaLoa1
+188            loxAfr3
+189            macEug1
+190            macEug2
+191            macFas5
+192            manPen1
+193            melGal1
+194            melGal5
+195            melHap1
+196            melInc2
+197            melUnd1
+198            merNub1
+199            mesUni1
+200            micMur1
+201            micMur2
+202               mm10
+203               mm39
+204                mm5
+205                mm6
+206                mm7
+207                mm8
+208                mm9
+209            monDom1
+210            monDom4
+211            monDom5
+212            musFur1
+213            myoLuc2
+214            nanPar1
+215            nasLar1
+216            necAme1
+217            neoSch1
+218            nipNip1
+219            nomLeu1
+220            nomLeu2
+221            nomLeu3
+222            ochPri2
+223            ochPri3
+224            oncVol1
+225            opiHoa1
+226            oreNil1
+227            oreNil2
+228            oreNil3
+229            ornAna1
+230            ornAna2
+231            oryCun2
+232            oryLat2
+233            otoGar3
+234            oviAri1
+235            oviAri3
+236            oviAri4
+237            panPan1
+238            panPan2
+239            panPan3
+240            panRed1
+241            panTro1
+242            panTro2
+243            panTro3
+244            panTro4
+245            panTro5
+246            panTro6
+247            papAnu2
+248            papAnu4
+249            papHam1
+250            pelCri1
+251            pelSin1
+252 performance_schema
+253            petMar1
+254            petMar2
+255            petMar3
+256            phaCar1
+257            phaLep1
+258            phoRub1
+259            picPub1
+260            ponAbe2
+261            ponAbe3
+262            priExs1
+263            priPac1
+264            priPac3
+265            proCap1
+266     proteins120806
+267     proteins121210
+268     proteins140122
+269     proteins150225
+270     proteins160229
+271     proteins180404
+272           proteome
+273            pteGut1
+274            pteVam1
+275            pygAde1
+276            pytBiv1
+277            rheMac1
+278           rheMac10
+279            rheMac2
+280            rheMac3
+281            rheMac8
+282            rhiRox1
+283                rn3
+284                rn4
+285                rn5
+286                rn6
+287                rn7
+288            sacCer1
+289            sacCer2
+290            sacCer3
+291            saiBol1
+292            sarHar1
+293            serCan1
+294            sorAra1
+295            sorAra2
+296           sp120323
+297           sp121210
+298           sp140122
+299           sp150225
+300           sp160229
+301           sp180404
+302            speTri2
+303            strCam1
+304            strPur1
+305            strPur2
+306            strRat2
+307           susScr11
+308            susScr2
+309            susScr3
+310                sys
+311            taeGut1
+312            taeGut2
+313            tarSyr1
+314            tarSyr2
+315            tauEry1
+316            tetNig1
+317            tetNig2
+318            thaSir1
+319            tinGut2
+320            triMan1
+321            triSpi1
+322            triSui1
+323            tupBel1
+324            turTru2
+325            tytAlb1
+326            uniProt
+327            vicPac1
+328            vicPac2
+329           visiGene
+330            wuhCor1
+331            xenLae2
+332            xenTro1
+333           xenTro10
+334            xenTro2
+335            xenTro3
+336            xenTro7
+337            xenTro9
+338            zonAlb1</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>hg19</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbConnect.html'>dbConnect</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/RMySQL/man/MySQLDriver-class.html'>MySQL</a></span><span class='op'>(</span><span class='op'>)</span>, user<span class='op'>=</span><span class='st'>"genome"</span>, db<span class='op'>=</span><span class='st'>"hg19"</span>,
+                  host<span class='op'>=</span><span class='st'>"genome-mysql.cse.ucsc.edu"</span><span class='op'>)</span> <span class='co'>#Una base dedatos del genoma humano 19</span>
+<span class='va'>allTables</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListTables.html'>dbListTables</a></span><span class='op'>(</span><span class='va'>hg19</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>allTables</span><span class='op'>)</span><span class='co'># la cantidad total de tablas</span>
+</code></pre>
+</div>
+<pre><code>[1] 12571</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>allTables</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</code></pre>
+</div>
+<pre><code>[1] &quot;HInv&quot;         &quot;HInvGeneMrna&quot; &quot;acembly&quot;      &quot;acemblyClass&quot;
+[5] &quot;acemblyPep&quot;  </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbListFields.html'>dbListFields</a></span><span class='op'>(</span><span class='va'>hg19</span>,<span class='st'>"affyU133Plus2"</span><span class='op'>)</span><span class='co'>#las columnas de esta tabla</span>
+</code></pre>
+</div>
+<pre><code> [1] &quot;bin&quot;         &quot;matches&quot;     &quot;misMatches&quot;  &quot;repMatches&quot; 
+ [5] &quot;nCount&quot;      &quot;qNumInsert&quot;  &quot;qBaseInsert&quot; &quot;tNumInsert&quot; 
+ [9] &quot;tBaseInsert&quot; &quot;strand&quot;      &quot;qName&quot;       &quot;qSize&quot;      
+[13] &quot;qStart&quot;      &quot;qEnd&quot;        &quot;tName&quot;       &quot;tSize&quot;      
+[17] &quot;tStart&quot;      &quot;tEnd&quot;        &quot;blockCount&quot;  &quot;blockSizes&quot; 
+[21] &quot;qStarts&quot;     &quot;tStarts&quot;    </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbGetQuery.html'>dbGetQuery</a></span><span class='op'>(</span><span class='va'>hg19</span>, <span class='st'>"select count(*) from affyU133Plus2"</span><span class='op'>)</span> <span class='co'># es un comando de Querry para saber cuantas filas tiene la tabla</span>
+</code></pre>
+</div>
+<pre><code>  count(*)
+1    58463</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>affyData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbReadTable.html'>dbReadTable</a></span><span class='op'>(</span><span class='va'>hg19</span>, <span class='st'>"affyU133Plus2"</span><span class='op'>)</span><span class='co'># se lee esta tabla y se muetran los primeros datos</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>affyData</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  bin matches misMatches repMatches nCount qNumInsert qBaseInsert
+1 585     530          4          0     23          3          41
+2 585    3355         17          0    109          9          67
+3 585    4156         14          0     83         16          18
+4 585    4667          9          0     68         21          42
+5 585    5180         14          0    167         10          38
+6 585     468          5          0     14          0           0
+  tNumInsert tBaseInsert strand        qName qSize qStart qEnd tName
+1          3         898      -  225995_x_at   637      5  603  chr1
+2          9       11621      -  225035_x_at  3635      0 3548  chr1
+3          2          93      -  226340_x_at  4318      3 4274  chr1
+4          3        5743      - 1557034_s_at  4834     48 4834  chr1
+5          1          29      -    231811_at  5399      0 5399  chr1
+6          0           0      -    236841_at   487      0  487  chr1
+      tSize tStart  tEnd blockCount
+1 249250621  14361 15816          5
+2 249250621  14381 29483         17
+3 249250621  14399 18745         18
+4 249250621  14406 24893         23
+5 249250621  19688 25078         11
+6 249250621  27542 28029          1
+                                                                  blockSizes
+1                                                          93,144,229,70,21,
+2              73,375,71,165,303,360,198,661,201,1,260,250,74,73,98,155,163,
+3                 690,10,32,33,376,4,5,15,5,11,7,41,277,859,141,51,443,1253,
+4 99,352,286,24,49,14,6,5,8,149,14,44,98,12,10,355,837,59,8,1500,133,624,58,
+5                                       131,26,1300,6,4,11,4,7,358,3359,155,
+6                                                                       487,
+                                                                                                 qStarts
+1                                                                                    34,132,278,541,611,
+2                        87,165,540,647,818,1123,1484,1682,2343,2545,2546,2808,3058,3133,3206,3317,3472,
+3                   44,735,746,779,813,1190,1195,1201,1217,1223,1235,1243,1285,1564,2423,2565,2617,3062,
+4 0,99,452,739,764,814,829,836,842,851,1001,1016,1061,1160,1173,1184,1540,2381,2441,2450,3951,4103,4728,
+5                                                     0,132,159,1460,1467,1472,1484,1489,1497,1856,5244,
+6                                                                                                     0,
+                                                                                                                                     tStarts
+1                                                                                                             14361,14454,14599,14968,15795,
+2                                     14381,14454,14969,15075,15240,15543,15903,16104,16853,17054,17232,17492,17914,17988,18267,24736,29320,
+3                               14399,15089,15099,15131,15164,15540,15544,15549,15564,15569,15580,15587,15628,15906,16857,16998,17049,17492,
+4 14406,20227,20579,20865,20889,20938,20952,20958,20963,20971,21120,21134,21178,21276,21288,21298,21653,22492,22551,22559,24059,24211,24835,
+5                                                                         19688,19819,19845,21145,21151,21155,21166,21170,21177,21535,24923,
+6                                                                                                                                     27542,</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>query</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbSendQuery.html'>dbSendQuery</a></span><span class='op'>(</span><span class='va'>hg19</span>, <span class='st'>"select * from affyU133Plus2 where misMatches between 1 and 3"</span><span class='op'>)</span>
+<span class='va'>affyMis</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbFetch.html'>fetch</a></span><span class='op'>(</span><span class='va'>query</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/stats/quantile.html'>quantile</a></span><span class='op'>(</span><span class='va'>affyMis</span><span class='op'>$</span><span class='va'>misMatches</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>  0%  25%  50%  75% 100% 
+   1    1    2    2    3 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>affyMisSmall</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://dbi.r-dbi.org/reference/dbFetch.html'>fetch</a></span><span class='op'>(</span><span class='va'>query</span>, n<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'><a href='https://dbi.r-dbi.org/reference/dbClearResult.html'>dbClearResult</a></span><span class='op'>(</span><span class='va'>query</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>affyMisSmall</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] 10 22</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://dbi.r-dbi.org/reference/dbDisconnect.html'>dbDisconnect</a></span><span class='op'>(</span><span class='va'>hg19</span><span class='op'>)</span>
+</code></pre>
+</div>
+<pre><code>[1] TRUE</code></pre>
+</div>
+<h2 id="leer-datos-y-escribir-con-hdf5">Leer datos y escribir con
+HDF5</h2>
+<h2 id="leer-datos-de-páginas-web-el-código-html">Leer datos de páginas
+web (el código HTML)</h2>
+<h2
+id="leer-datos-de-apis-application-programmming-interface-ejemplo-twitter">Leer
+datos de API’s (Application programmming Interface, ejemplo
+Twitter)</h2>
+<h2
+id="leer-otro-tipo-de-datos-imagenes-musica-archivos-de-otrso-programs-sas-excel">Leer
+otro tipo de datos (imagenes, musica, archivos de otrso programs: SAS,
+Excel)</h2>
+<div class="sourceCode" id="cb22"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2480,6 +4198,15 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

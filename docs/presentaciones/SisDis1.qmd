@@ -7,7 +7,6 @@ format:
   revealjs: 
     transition: fade
     slide-number: true
-editor: visual
 execute:
   freeze: auto
 ---
@@ -18,42 +17,40 @@ execute:
 
 ## 
 
-![](./sisdis1/sisdis12.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis12.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis13.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis13.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis14.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis14.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis15.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis15.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis16.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis16.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis17.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis17.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis18.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis18.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis19.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis19.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis110.jpg){fig-align="center" width="90%"}
+![](./sisdis1/sisdis110.JPG){fig-align="center" width="90%"}
 
 ## 
 
-![](./sisdis1/sisdis111.jpg){fig-align="center" width="90%"}
-
-
+![](./sisdis1/sisdis111.JPG){fig-align="center" width="90%"}

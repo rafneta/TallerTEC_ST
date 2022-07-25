@@ -1,28 +1,50 @@
 ---
-title: "Funciones en tiempo discreto"
-subtitle: "Taller de series de tiempo verano 20022"
+title: "Transformada Z"
+subtitle: "Taller de series de tiempo, verano 2022"
 footer:  "[Taller de series de tiempo](https://rafneta.github.io/TallerTEC_ST/)"
 logo: "./../imagenes/logoazul.png"
 format: 
   revealjs: 
     transition: fade
     slide-number: true
-editor: visual
 execute:
   freeze: auto
 ---
 
 ## 
 
-![](./sisdis1/DefOperDis1.JPG){fig-align="center" width="90%"}
+![](./sisdis3/sisdis31.png){fig-align="center" width="90%"}
 
 ## 
 
-## Code
+![](./sisdis3/sisdis32.png){fig-align="center" width="90%"}
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## 
 
-```{r}
+![](./sisdis3/sisdis33.png){fig-align="center" width="90%"}
 
-```
+## 
+
+![](./sisdis3/sisdis34.png){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis3/sisdis35.png){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis3/sisdis36.png){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis3/sisdis37.png){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis3/sisdis38.png){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis3/sisdis39.png){fig-align="center" width="90%"}
+
 

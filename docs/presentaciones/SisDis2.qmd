@@ -1,6 +1,6 @@
 ---
 title: "Ecuaciones en diferencias lineales"
-subtitle: "Taller de series de tiempo verano 2022"
+subtitle: "Taller de series de tiempo, verano 2022"
 footer:  "[Taller de series de tiempo](https://rafneta.github.io/TallerTEC_ST/)"
 logo: "./../imagenes/logoazul.png"
 format: 

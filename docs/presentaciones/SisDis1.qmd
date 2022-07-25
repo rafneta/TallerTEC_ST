@@ -1,6 +1,6 @@
 ---
 title: "Funciones en tiempo discreto"
-subtitle: "Taller de series de tiempo verano 20022"
+subtitle: "Taller de series de tiempo verano 2022"
 footer:  "[Taller de series de tiempo](https://rafneta.github.io/TallerTEC_ST/)"
 logo: "./../imagenes/logoazul.png"
 format: 
@@ -14,15 +14,46 @@ execute:
 
 ## 
 
-![](./sisdis1/DefOperDis1.JPG){fig-align="center" width="90%"}
+![](./sisdis1/sisdis11.jpg){fig-align="center" width="90%"}
 
 ## 
 
-## Code
+![](./sisdis1/sisdis12.jpg){fig-align="center" width="90%"}
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+## 
 
-```{r}
+![](./sisdis1/sisdis13.jpg){fig-align="center" width="90%"}
 
-```
+## 
+
+![](./sisdis1/sisdis14.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis15.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis16.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis17.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis18.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis19.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis110.jpg){fig-align="center" width="90%"}
+
+## 
+
+![](./sisdis1/sisdis111.jpg){fig-align="center" width="90%"}
+
 

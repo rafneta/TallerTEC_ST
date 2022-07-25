@@ -1,28 +1,28 @@
 ---
-title: "Funciones en tiempo discreto"
-subtitle: "Taller de series de tiempo verano 20022"
+title: "Ecuaciones en diferencias lineales"
+subtitle: "Taller de series de tiempo verano 2022"
 footer:  "[Taller de series de tiempo](https://rafneta.github.io/TallerTEC_ST/)"
 logo: "./../imagenes/logoazul.png"
 format: 
   revealjs: 
     transition: fade
     slide-number: true
-editor: visual
 execute:
   freeze: auto
 ---
 
 ## 
 
-![](./sisdis1/DefOperDis1.JPG){fig-align="center" width="90%"}
+![](./sisdis2/sisdis21.jpg){fig-align="center" width="90%"}
 
 ## 
 
-## Code
+![](./sisdis2/sisdis22.jpg){fig-align="center" width="90%"}
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+##
 
-```{r}
+![](./sisdis2/sisdis23.jpg){fig-align="center" width="90%"}
 
-```
+##
 
+![](./sisdis2/sisdis24.jpg){fig-align="center" width="90%"}

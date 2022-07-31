@@ -2183,7 +2183,7 @@ code span.wa { color: #da4453; } /* Warning */
       border-width:4px;
       /*-webkit-border-radius:15px;*/
       border-radius: 1em;
-      border-color:rgba(102,194,163,0.9);/**  #366272;#CD853F;/**rgba(112, 156, 169, 0.66);*/
+      border-color:rgba(0,57,166,0.95);/**  #366272;#CD853F;/**rgba(112, 156, 169, 0.66);*/
       /*background: #366272;rgba(54, 98, 114, 0.9);/*#366272;*/
   	/*border-top-left-radius:10%;*/
   	color:black;
@@ -2200,7 +2200,7 @@ code span.wa { color: #da4453; } /* Warning */
       font-size: 1.0em;
   	line-height: 1.6;
   	font-weight: 300;
-      background:rgba(102,194,163,0.2);/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
+      background:rgba(0,57,166,0.1);/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
   }
 
 
@@ -2209,7 +2209,7 @@ code span.wa { color: #da4453; } /* Warning */
       border-width:4px;
       /*-webkit-border-radius:15px;*/
   	border-radius: 1em;
-      border-color:rgb(250, 187, 81,0.9);/**  #366272;#CD853F;/**rgba(112, 156, 169, 0.66);*/
+      border-color:rgba(0,57,166,0.95);/**  #366272;#CD853F;/**rgba(112, 156, 169, 0.66);*/
       /*background: #366272;rgba(54, 98, 114, 0.9);/*#366272;*/
   	/*border-top-left-radius:10%;*/
   	color:black;
@@ -2226,14 +2226,38 @@ code span.wa { color: #da4453; } /* Warning */
       font-size: 1.0em;
   	line-height: 1.6;
   	font-weight: 300;
-      background:rgba(250, 187, 81,0.2);/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
+      background:rgba(0,57,166,0.1);;/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
   }
 
-  code.sourceCode.r{
+  .act {	
+      border-style:solid;
+      border-width:4px;
+      /*-webkit-border-radius:15px;*/
+  	border-radius: 1em;
+      border-color:rgba(0,57,166,0.95);/**  #366272;#CD853F;/**rgba(112, 156, 169, 0.66);*/
+      /*background: #366272;rgba(54, 98, 114, 0.9);/*#366272;*/
+  	/*border-top-left-radius:10%;*/
+  	color:black;
+  	font-size: 1em;
+  	/*box-shadow: 10px 10px 10px #2178a3;*/
+  	/*overflow:scroll;*/
+  	padding: 2% 4% 2% 4%;
+  	box-sizing: border-box;
+      margin-left:auto;
+      margin-right:auto;
+      margin-bottom:2%;
+      margin-top:2%; 
+      font-size: 1.0em;
+  	line-height: 1.6;
+  	font-weight: 300;
+      background:rgba(0,57,166,0.1);/*1(0.40000000596046448, 0.7607843279838562, 0.64705884456634521)*/
+  }
+
+  d-article code.sourceCode.r{
     overflow: scroll;
   }
 
-  code.sourceCode{
+  d-article code.sourceCode{
     overflow: scroll;
   }
 
@@ -2241,7 +2265,7 @@ code span.wa { color: #da4453; } /* Warning */
     overflow: scroll;
   }
 
-  div.sourceCodecode{
+  d-article div.sourceCodecode{
     overflow: scroll;
   }
   </style>
@@ -2280,8 +2304,8 @@ Clases
 <div class="nav-dropdown-content">
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
-<a href="SisDis.html">Sistemas discretos</a>
-<a href="SeriesTiempo.html">Series de tiempo</a>
+<a href="PSeriesTiempo.html">Series timepo práctica</a>
+<a href="TSeriesTiempo.html">Series de tiempo teoría</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2322,7 +2346,7 @@ Apéndices
 <span class="nav-dropdown-header">Formularios</span>
 <a href="imagenes/base-r.pdf">R básico</a>
 <a href="imagenes/rmarkdown.pdf">rmarkdown</a>
-<a href="imagens/rstudio-ide.pdf">RStudio</a>
+<a href="imagenes/rstudio-ide.pdf">RStudio</a>
 <hr/>
 <span class="nav-dropdown-header">Libros</span>
 <a href="https://rstudio-education.github.io/hopr/">Hands-On Programing with R</a>
@@ -2362,68 +2386,6 @@ integrante entrega el mismo trabajo.</p></p>
 </div>
 
 <div class="d-article">
-<div class="d-contents d-contents-float">
-<nav class="l-text toc figcaption" id="TOC">
-<h3>Contents</h3>
-<ul>
-<li><a href="#problema-1." id="toc-problema-1.">Problema 1.</a></li>
-<li><a href="#enfoque-de-ciencia-de-datos-vs-enfoque-econométrico"
-id="toc-enfoque-de-ciencia-de-datos-vs-enfoque-econométrico">3.1 Enfoque
-de ciencia de datos vs enfoque econométrico</a></li>
-<li><a href="#problema-2" id="toc-problema-2">Problema 2</a>
-<ul>
-<li><a href="#instrucciones"
-id="toc-instrucciones">Instrucciones</a></li>
-</ul></li>
-</ul>
-</nav>
-</div>
-<h1 id="problema-1.">Problema 1.</h1>
-<p>En la biblioteca del tec puedes tener acceso al formato electrónico
-del siguiente libro:</p>
-<p>STOCK, J. H.; WATSON, M. W. Introduction to econometrics. Fourth
-edition. [s. l.]: Pearson Education Limited, 2020. ISBN
-9780134448046</p>
-<p>Realiza la lectura del capítulo 1, y contesta las siguientes
-preguntas</p>
-<div id="pregunta">
-<p>
-<ol type="1">
-<li><p>De acuerdo a las cuatro preguntas que se plantean llega a un
-concenso para elegir una de ellas. Explica en que consiste la
-pregunta</p></li>
-<li><p>¿A que se hace referencia cuando se habla del <em>efecto
-causal</em>?</p></li>
-<li><p>¿Qué diferencia existe entre los datos experimentales y los datos
-observacionales?</p></li>
-<li><p>Explica los siguientes tipos de datos</p></li>
-</ol>
-<ul>
-<li>Datos de sección cruzada (Cross-Sectional Data)</li>
-<li>Datos de serie de tiempo (Time Series Data)</li>
-<li>Datos de panel (Panel Data)</li>
-</ul>
-<ol start="5" type="1">
-<li>En Python, ¿a que hace referencia el nombre del módulo
-<em>Pandas</em>?</li>
-</ol>
-</p>
-</div>
-<h1 id="enfoque-de-ciencia-de-datos-vs-enfoque-econométrico">3.1 Enfoque
-de ciencia de datos vs enfoque econométrico</h1>
-<h1 id="problema-2">Problema 2</h1>
-<p>En el libro <a
-href="https://www.inegi.org.mx/contenido/productos/prod_serv/contenidos/espanol/bvinegi/productos/estudios/indican_indi/indica_v25iv12.pdf">Lo
-que indican los indicadores</a></p>
-<h2 id="instrucciones">Instrucciones</h2>
-<ol type="1">
-<li><p>Genera una cuenta en la plataforma del curso (en caso de ser
-necesario)</p></li>
-<li><p>Inscribete al curso indicado</p></li>
-<li><p>Entrega un enlace al certificado (puedes obtenerlo del QR que
-tiene tu certificado). Verifica que el enlace sea vsisible por
-externos.</p></li>
-</ol>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

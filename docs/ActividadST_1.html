@@ -1038,10 +1038,6 @@ code span.wa { color: #da4453; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1871,6 +1867,12 @@ code span.wa { color: #da4453; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1885,6 +1887,31 @@ code span.wa { color: #da4453; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1984,6 +2011,8 @@ code span.wa { color: #da4453; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2006,7 +2035,7 @@ code span.wa { color: #da4453; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2320,7 +2349,7 @@ Actividades
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
 <a href="ActividadST_1.html">Actividad 1</a>
-<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_2.html">Actividad 2</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2393,11 +2422,9 @@ integrante entrega el mismo trabajo.</p></p>
 <li><a href="#problema-1" id="toc-problema-1">Problema 1</a></li>
 <li><a href="#problema-2" id="toc-problema-2">Problema 2</a></li>
 <li><a href="#problema-3" id="toc-problema-3">Problema 3</a></li>
-<li><a href="#problema-4" id="toc-problema-4">Problema 4</a>
-<ul>
+<li><a href="#problema-4" id="toc-problema-4">Problema 4</a></li>
 <li><a href="#instrucciones-de-entrega"
 id="toc-instrucciones-de-entrega">Instrucciones de entrega</a></li>
-</ul></li>
 </ul>
 </nav>
 </div>
@@ -2493,7 +2520,7 @@ no es suficiente)</p></li>
 indicadores económicos. Contesta las siguientes preguntas</p>
 <div id="pregunta">
 <p>
-<ol type="1">
+<ol start="4" type="1">
 <li><p>Se tiene una primer medición <span class="math inline">\(P_1 =
 10\)</span> y tiempo después se obtiene una segunda medición de la misma
 variable <span class="math inline">\(P_2 = 15\)</span>. ¿Cuál es el
@@ -2518,7 +2545,7 @@ Con las operaciones correspondientes.</p></li>
 <li><p>¿Cual es la interpretación de tasa de crecimiento? (puede servir
 la pregunta 1)</p></li>
 <li><p>Escribe las expresiones para calcular (puedes incluir
-anotaciones, si lo consodras necesario)</p></li>
+anotaciones, si lo consideras necesario)</p></li>
 </ol>
 <ul>
 <li>Tasa de 12 meses</li>
@@ -2554,18 +2581,18 @@ puedes incluir definiciones técnicas y detalles sobre el concepto.</li>
 </ol>
 </p>
 </div>
-<h2 id="instrucciones-de-entrega">Instrucciones de entrega</h2>
+<h1 id="instrucciones-de-entrega">Instrucciones de entrega</h1>
 <ol type="1">
 <li><p>Genera un archivo <em>Rmd</em> con la solución de cada problema.
 El documento debe indicar (en la parte superior) los integrantes de
 equipo.</p></li>
-<li><p>Los problemas se presentan en orden, Pregunta (capia el texto)
+<li><p>Los problemas se presentan en orden, Pregunta (copia el texto)
 seguida de la respuesta.</p></li>
 <li><p>Se genera un archivo Pdf con la solución (puedes generar el html
 y posteriormente el pdf, o directamente el pdf)</p></li>
 <li><p>Entrega el archivo pdf en la plataforma correspondiente (todos
-los integrantes cargan el mismo archivo). Verifica que la entrega sea
-visible</p></li>
+los integrantes del equipo cargan el mismo archivo). Verifica que la
+entrega sea visible</p></li>
 </ol>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>

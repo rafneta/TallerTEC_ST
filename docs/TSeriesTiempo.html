@@ -1035,10 +1035,6 @@ code span.wa { color: #da4453; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1868,6 +1864,12 @@ code span.wa { color: #da4453; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1882,6 +1884,31 @@ code span.wa { color: #da4453; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1981,6 +2008,8 @@ code span.wa { color: #da4453; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2003,7 +2032,7 @@ code span.wa { color: #da4453; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2330,7 +2359,7 @@ Actividades
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
 <a href="ActividadST_1.html">Actividad 1</a>
-<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_2.html">Actividad 2</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2433,233 +2462,220 @@ id="toc-sistemas-en-diferencias">Sistemas en diferencias</a></li>
 <p>Cargamos bibliotecas.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://plotly-r.com'>plotly</a></span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://plotly-r.com'>plotly</a></span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h2 id="gráficas-de-funciones-en-tiempo-discreto">Gráficas de funciones
 en tiempo discreto</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span>
-
-<span class='va'>fun1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>^</span><span class='va'>n</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span>
-
-<span class='va'>tabulacion</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>n</span>, y <span class='op'>=</span> <span class='va'>f</span><span class='op'>)</span>
-<span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>tabulacion</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span></span>
+<span></span>
+<span><span class='va'>fun1</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>^</span><span class='va'>n</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>tabulacion</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>n</span>, y <span class='op'>=</span> <span class='va'>f</span><span class='op'>)</span></span>
+<span><span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>tabulacion</span><span class='op'>)</span></span></code></pre>
 </div>
-<div id="htmlwidget-448ca1c0c7c3175c3a89" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-448ca1c0c7c3175c3a89">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],[-2,-1,0,1,2,3,4],[4,2,1,0.5,0.25,0.125,0.0625]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>x<\/th>\n      <th>y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-88d6737118ae29c95599" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-88d6737118ae29c95599">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7"],[-2,-1,0,1,2,3,4],[4,2,1,0.5,0.25,0.125,0.0625]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>x<\/th>\n      <th>y<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"p"</span>,col <span class='op'>=</span> <span class='st'>"#004A97"</span>,
-     main <span class='op'>=</span> <span class='st'>"Gráfica en matemáticas"</span>,
-     xlab <span class='op'>=</span> <span class='st'>"n"</span>,
-     ylab <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"p"</span>,col <span class='op'>=</span> <span class='st'>"#004A97"</span>,</span>
+<span>     main <span class='op'>=</span> <span class='st'>"Gráfica en matemáticas"</span>,</span>
+<span>     xlab <span class='op'>=</span> <span class='st'>"n"</span>,</span>
+<span>     ylab <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="TSeriesTiempo_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"p"</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>,
-     main <span class='op'>=</span> <span class='st'>"Gráfica en ingeniería"</span>,
-     xlab <span class='op'>=</span> <span class='st'>"n"</span>,
-     ylab <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"h"</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"p"</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>,</span>
+<span>     main <span class='op'>=</span> <span class='st'>"Gráfica en ingeniería"</span>,</span>
+<span>     xlab <span class='op'>=</span> <span class='st'>"n"</span>,</span>
+<span>     ylab <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/lines.html'>lines</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"h"</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="TSeriesTiempo_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>,
-     main <span class='op'>=</span> <span class='st'>"Gráfica en series de tiempo"</span>,
-     xlab <span class='op'>=</span> <span class='st'>"n"</span>,
-     ylab <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>n</span>,<span class='va'>f</span>, type <span class='op'>=</span> <span class='st'>"l"</span>, col <span class='op'>=</span> <span class='st'>"#004A97"</span>,</span>
+<span>     main <span class='op'>=</span> <span class='st'>"Gráfica en series de tiempo"</span>,</span>
+<span>     xlab <span class='op'>=</span> <span class='st'>"n"</span>,</span>
+<span>     ylab <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="TSeriesTiempo_files/figure-html5/unnamed-chunk-3-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>tabulacion</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y<span class='op'>=</span><span class='va'>y</span><span class='op'>)</span>, colour<span class='op'>=</span><span class='st'>"#004A97"</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función en Series de tiempo"</span>,
-       subtitle <span class='op'>=</span> <span class='st'>"con ggplot2"</span>,
-       y <span class='op'>=</span> <span class='st'>"f(n)"</span>,
-       x <span class='op'>=</span> <span class='st'>"n "</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>tabulacion</span>,<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>y<span class='op'>=</span><span class='va'>y</span><span class='op'>)</span>, colour<span class='op'>=</span><span class='st'>"#004A97"</span><span class='op'>)</span> <span class='op'>+</span> </span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función en Series de tiempo"</span>,</span>
+<span>       subtitle <span class='op'>=</span> <span class='st'>"con ggplot2"</span>,</span>
+<span>       y <span class='op'>=</span> <span class='st'>"f(n)"</span>,</span>
+<span>       x <span class='op'>=</span> <span class='st'>"n "</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="TSeriesTiempo_files/figure-html5/plot_ggplot-1.png" width="624" /></p>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tabulacion</span>, 
-        x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>, 
-        y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, 
-        type <span class='op'>=</span> <span class='st'>'scatter'</span>, 
-        mode <span class='op'>=</span> <span class='st'>'lines'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función en series de tiempo"</span>,
-         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span>,
-         yaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span>data <span class='op'>=</span> <span class='va'>tabulacion</span>, </span>
+<span>        x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>, </span>
+<span>        y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, </span>
+<span>        type <span class='op'>=</span> <span class='st'>'scatter'</span>, </span>
+<span>        mode <span class='op'>=</span> <span class='st'>'lines'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'>layout</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función en series de tiempo"</span>,</span>
+<span>         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span>,</span>
+<span>         yaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"f(n)"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
-<div id="htmlwidget-6223e0d1bfb23c38f245" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6223e0d1bfb23c38f245">{"x":{"visdat":{"cb805e14e8e1":["function () ","plotlyVisDat"]},"cur_data":"cb805e14e8e1","attrs":{"cb805e14e8e1":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica de la función en series de tiempo","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"f(n)"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2,-1,0,1,2,3,4],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-5ff71ad68dc03fa8efb3" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5ff71ad68dc03fa8efb3">{"x":{"visdat":{"8d825a4e4d73":["function () ","plotlyVisDat"]},"cur_data":"8d825a4e4d73","attrs":{"8d825a4e4d73":{"x":{},"y":{},"mode":"lines","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica de la función en series de tiempo","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"f(n)"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2,-1,0,1,2,3,4],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="traslación-horizontal">Traslación horizontal</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span>
-<span class='va'>n1</span> <span class='op'>&lt;-</span> <span class='va'>n</span><span class='op'>+</span><span class='fl'>1</span>
-<span class='va'>nm1</span> <span class='op'>&lt;-</span> <span class='va'>n</span><span class='op'>-</span><span class='fl'>1</span> 
-
-<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> 
-
-
-<span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>n</span>, x1 <span class='op'>=</span> <span class='va'>n1</span>, xm1 <span class='op'>=</span> <span class='va'>nm1</span>, 
-                    y <span class='op'>=</span> <span class='va'>f</span>, y1 <span class='op'>=</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n1</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>, ym1 <span class='op'>=</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>nm1</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>)</span>
-
-<span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span><span class='va'>datos</span>, 
-               x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>,
-               y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, 
-               name <span class='op'>=</span> <span class='st'>"f_t"</span>,
-              <span class='co'>#name = TeX("f_t"), </span>
-               type <span class='op'>=</span> <span class='st'>'scatter'</span>,
-               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x1</span>, 
-            y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y1</span>,
-            name <span class='op'>=</span> <span class='st'>"f_{t-1}"</span>,
-            <span class='co'>#name = TeX("f_{t-1}"), </span>
-            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, 
-            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='op'>~</span><span class='va'>xm1</span>, 
-            y <span class='op'>=</span> <span class='op'>~</span><span class='va'>ym1</span>, 
-            name <span class='op'>=</span> <span class='st'>"f_{t+1}"</span>,
-            <span class='co'>#name = TeX("f_{t+1}"), </span>
-            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, 
-            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='co'>#config(mathjax = 'cdn') %&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función y tralaciones horizontales"</span>,
-         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>fig</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span></span>
+<span><span class='va'>n1</span> <span class='op'>&lt;-</span> <span class='va'>n</span><span class='op'>+</span><span class='fl'>1</span></span>
+<span><span class='va'>nm1</span> <span class='op'>&lt;-</span> <span class='va'>n</span><span class='op'>-</span><span class='fl'>1</span> </span>
+<span></span>
+<span><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> </span>
+<span></span>
+<span></span>
+<span><span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>n</span>, x1 <span class='op'>=</span> <span class='va'>n1</span>, xm1 <span class='op'>=</span> <span class='va'>nm1</span>, </span>
+<span>                    y <span class='op'>=</span> <span class='va'>f</span>, y1 <span class='op'>=</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n1</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>, ym1 <span class='op'>=</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>nm1</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span> <span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span><span class='va'>datos</span>, </span>
+<span>               x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>,</span>
+<span>               y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, </span>
+<span>               name <span class='op'>=</span> <span class='st'>"f_t"</span>,</span>
+<span>              <span class='co'>#name = TeX("f_t"), </span></span>
+<span>               type <span class='op'>=</span> <span class='st'>'scatter'</span>,</span>
+<span>               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x1</span>, </span>
+<span>            y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y1</span>,</span>
+<span>            name <span class='op'>=</span> <span class='st'>"f_{t-1}"</span>,</span>
+<span>            <span class='co'>#name = TeX("f_{t-1}"), </span></span>
+<span>            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, </span>
+<span>            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='op'>~</span><span class='va'>xm1</span>, </span>
+<span>            y <span class='op'>=</span> <span class='op'>~</span><span class='va'>ym1</span>, </span>
+<span>            name <span class='op'>=</span> <span class='st'>"f_{t+1}"</span>,</span>
+<span>            <span class='co'>#name = TeX("f_{t+1}"), </span></span>
+<span>            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, </span>
+<span>            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='co'>#config(mathjax = 'cdn') %&gt;%</span></span>
+<span>  <span class='fu'>layout</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función y tralaciones horizontales"</span>,</span>
+<span>         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>fig</span></span></code></pre>
 </div>
-<div id="htmlwidget-f7846ba6ba57549f843a" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-f7846ba6ba57549f843a">{"x":{"visdat":{"cb8074852682":["function () ","plotlyVisDat"]},"cur_data":"cb8074852682","attrs":{"cb8074852682":{"x":{},"y":{},"mode":"lines+markers","name":"f_t","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"cb8074852682.1":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t-1}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"cb8074852682.2":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t+1}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica de la función y tralaciones horizontales","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"y"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2,-1,0,1,2,3,4],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_t","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-1,0,1,2,3,4,5],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_{t-1}","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-3,-2,-1,0,1,2,3],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_{t+1}","type":"scatter","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a3b449c46a9449692e5c" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a3b449c46a9449692e5c">{"x":{"visdat":{"8d82339866cf":["function () ","plotlyVisDat"]},"cur_data":"8d82339866cf","attrs":{"8d82339866cf":{"x":{},"y":{},"mode":"lines+markers","name":"f_t","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"8d82339866cf.1":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t-1}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"8d82339866cf.2":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t+1}","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica de la función y tralaciones horizontales","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"y"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2,-1,0,1,2,3,4],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_t","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-1,0,1,2,3,4,5],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_{t-1}","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-3,-2,-1,0,1,2,3],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_{t+1}","type":"scatter","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="traslación-vertical">Traslación vertical</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span>
-<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> 
-
-
-<span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>n</span>,  y <span class='op'>=</span> <span class='va'>f</span>, y1 <span class='op'>=</span> <span class='va'>f</span><span class='op'>+</span><span class='fl'>1</span>, ym1 <span class='op'>=</span> <span class='va'>f</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>
-
-<span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span><span class='va'>datos</span>, 
-               x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>,
-               y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, 
-               name <span class='op'>=</span> <span class='st'>"f_t"</span>, 
-               type <span class='op'>=</span> <span class='st'>'scatter'</span>,
-               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y1</span>, 
-            name <span class='op'>=</span> <span class='st'>"f_{t}+1"</span>, 
-            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, 
-            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='op'>~</span><span class='va'>ym1</span>, 
-            name <span class='op'>=</span> <span class='st'>"f_{t}-1"</span>, 
-            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, 
-            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función y traslaciones verticales"</span>,
-         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>fig</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span></span>
+<span><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'>fun1</span><span class='op'>(</span><span class='va'>n</span><span class='op'>)</span> </span>
+<span></span>
+<span></span>
+<span><span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>n</span>,  y <span class='op'>=</span> <span class='va'>f</span>, y1 <span class='op'>=</span> <span class='va'>f</span><span class='op'>+</span><span class='fl'>1</span>, ym1 <span class='op'>=</span> <span class='va'>f</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span><span class='va'>datos</span>, </span>
+<span>               x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>,</span>
+<span>               y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, </span>
+<span>               name <span class='op'>=</span> <span class='st'>"f_t"</span>, </span>
+<span>               type <span class='op'>=</span> <span class='st'>'scatter'</span>,</span>
+<span>               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y1</span>, </span>
+<span>            name <span class='op'>=</span> <span class='st'>"f_{t}+1"</span>, </span>
+<span>            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, </span>
+<span>            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='op'>~</span><span class='va'>ym1</span>, </span>
+<span>            name <span class='op'>=</span> <span class='st'>"f_{t}-1"</span>, </span>
+<span>            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, </span>
+<span>            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'>layout</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica de la función y traslaciones verticales"</span>,</span>
+<span>         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>fig</span></span></code></pre>
 </div>
-<div id="htmlwidget-5905a765e8040c899ef8" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5905a765e8040c899ef8">{"x":{"visdat":{"cb803c125d76":["function () ","plotlyVisDat"]},"cur_data":"cb803c125d76","attrs":{"cb803c125d76":{"x":{},"y":{},"mode":"lines+markers","name":"f_t","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"cb803c125d76.1":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t}+1","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"cb803c125d76.2":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t}-1","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica de la función y traslaciones verticales","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"y"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2,-1,0,1,2,3,4],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_t","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-2,-1,0,1,2,3,4],"y":[5,3,2,1.5,1.25,1.125,1.0625],"mode":"lines+markers","name":"f_{t}+1","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-2,-1,0,1,2,3,4],"y":[3,1,0,-0.5,-0.75,-0.875,-0.9375],"mode":"lines+markers","name":"f_{t}-1","type":"scatter","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-be76761ab97c8f411bb0" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-be76761ab97c8f411bb0">{"x":{"visdat":{"8d821971647":["function () ","plotlyVisDat"]},"cur_data":"8d821971647","attrs":{"8d821971647":{"x":{},"y":{},"mode":"lines+markers","name":"f_t","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"8d821971647.1":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t}+1","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true},"8d821971647.2":{"x":{},"y":{},"mode":"lines+markers","name":"f_{t}-1","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica de la función y traslaciones verticales","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"y"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-2,-1,0,1,2,3,4],"y":[4,2,1,0.5,0.25,0.125,0.0625],"mode":"lines+markers","name":"f_t","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-2,-1,0,1,2,3,4],"y":[5,3,2,1.5,1.25,1.125,1.0625],"mode":"lines+markers","name":"f_{t}+1","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-2,-1,0,1,2,3,4],"y":[3,1,0,-0.5,-0.75,-0.875,-0.9375],"mode":"lines+markers","name":"f_{t}-1","type":"scatter","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"line":{"color":"rgba(44,160,44,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="funciones-trigonométricas-en-tiempo-discreto">Funciones
 trigonométricas en tiempo discreto</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>10</span><span class='op'>:</span><span class='fl'>10</span>
-<span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>*</span><span class='va'>n</span><span class='op'>)</span>
-<span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='op'>(</span><span class='fl'>5</span><span class='op'>/</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>pi</span> <span class='op'>*</span> <span class='va'>n</span><span class='op'>)</span>
-
-
-<span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>n</span>,  y <span class='op'>=</span> <span class='va'>f</span>, y1 <span class='op'>=</span> <span class='va'>f1</span><span class='op'>)</span>
-
-<span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span><span class='va'>datos</span>, 
-               x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>,
-               y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, 
-               name <span class='op'>=</span> <span class='st'>"función no periodica"</span>, 
-               type <span class='op'>=</span> <span class='st'>'scatter'</span>,
-               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y1</span>, 
-            name <span class='op'>=</span> <span class='st'>"función periodica"</span>, 
-            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, 
-            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica"</span>,
-         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>fig</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='op'>-</span><span class='fl'>10</span><span class='op'>:</span><span class='fl'>10</span></span>
+<span><span class='va'>f</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>*</span><span class='va'>n</span><span class='op'>)</span></span>
+<span><span class='va'>f1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Trig.html'>cos</a></span><span class='op'>(</span><span class='op'>(</span><span class='fl'>5</span><span class='op'>/</span><span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>pi</span> <span class='op'>*</span> <span class='va'>n</span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='va'>datos</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>n</span>,  y <span class='op'>=</span> <span class='va'>f</span>, y1 <span class='op'>=</span> <span class='va'>f1</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span><span class='va'>datos</span>, </span>
+<span>               x <span class='op'>=</span> <span class='op'>~</span><span class='va'>x</span>,</span>
+<span>               y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y</span>, </span>
+<span>               name <span class='op'>=</span> <span class='st'>"función no periodica"</span>, </span>
+<span>               type <span class='op'>=</span> <span class='st'>'scatter'</span>,</span>
+<span>               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/add_trace.html'>add_trace</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='op'>~</span><span class='va'>y1</span>, </span>
+<span>            name <span class='op'>=</span> <span class='st'>"función periodica"</span>, </span>
+<span>            mode <span class='op'>=</span> <span class='st'>"lines+markers"</span>, </span>
+<span>            type <span class='op'>=</span> <span class='st'>"scatter"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span>  <span class='fu'>layout</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Gráfica"</span>,</span>
+<span>         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"n"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>fig</span></span></code></pre>
 </div>
-<div id="htmlwidget-56769d4bcc71a476d8d9" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-56769d4bcc71a476d8d9">{"x":{"visdat":{"cb803f018e22":["function () ","plotlyVisDat"]},"cur_data":"cb803f018e22","attrs":{"cb803f018e22":{"x":{},"y":{},"mode":"lines+markers","name":"función no periodica","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"cb803f018e22.1":{"x":{},"y":{},"mode":"lines+markers","name":"función periodica","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"y"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10],"y":[0.408082061813392,0.66031670824408,-0.957659480323385,0.136737218207834,0.843853958732492,-0.839071529076452,-0.145500033808614,0.960170286650366,-0.653643620863612,-0.416146836547142,1,-0.416146836547142,-0.653643620863612,0.960170286650366,-0.145500033808614,-0.839071529076452,0.843853958732492,0.136737218207834,-0.957659480323385,0.66031670824408,0.408082061813392],"mode":"lines+markers","name":"función no periodica","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10],"y":[-0.500000000000002,-1,-0.499999999999999,0.5,1,0.499999999999999,-0.5,-1,-0.5,0.5,1,0.5,-0.5,-1,-0.5,0.499999999999999,1,0.5,-0.499999999999999,-1,-0.500000000000002],"mode":"lines+markers","name":"función periodica","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fdca425ee17d38689eca" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fdca425ee17d38689eca">{"x":{"visdat":{"8d8249d79af4":["function () ","plotlyVisDat"]},"cur_data":"8d8249d79af4","attrs":{"8d8249d79af4":{"x":{},"y":{},"mode":"lines+markers","name":"función no periodica","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"8d8249d79af4.1":{"x":{},"y":{},"mode":"lines+markers","name":"función periodica","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfica","xaxis":{"domain":[0,1],"automargin":true,"title":"n"},"yaxis":{"domain":[0,1],"automargin":true,"title":"y"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10],"y":[0.408082061813392,0.66031670824408,-0.957659480323385,0.136737218207834,0.843853958732492,-0.839071529076452,-0.145500033808614,0.960170286650366,-0.653643620863612,-0.416146836547142,1,-0.416146836547142,-0.653643620863612,0.960170286650366,-0.145500033808614,-0.839071529076452,0.843853958732492,0.136737218207834,-0.957659480323385,0.66031670824408,0.408082061813392],"mode":"lines+markers","name":"función no periodica","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":[-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10],"y":[-0.500000000000002,-1,-0.499999999999999,0.5,1,0.499999999999999,-0.5,-1,-0.5,0.5,1,0.5,-0.5,-1,-0.5,0.499999999999999,1,0.5,-0.499999999999999,-1,-0.500000000000002],"mode":"lines+markers","name":"función periodica","type":"scatter","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="heaviside-y-delta-de-kronecker">Heaviside y delta de
 Kronecker</h2>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>heaviside</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span> <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span><span class='op'>)</span><span class='op'>{</span>
-    <span class='kw'>if</span><span class='op'>(</span><span class='va'>x</span><span class='op'>&gt;=</span><span class='va'>a</span><span class='op'>)</span><span class='op'>{</span>
-      <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-      <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span>
-        <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
-      <span class='op'>}</span>
-  <span class='op'>}</span>
-  
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>aux</span>,a<span class='op'>=</span><span class='va'>a</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-  
-<span class='op'>}</span>
-
-<span class='va'>kronecker</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span> <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span><span class='op'>)</span><span class='op'>{</span>
-    <span class='kw'>if</span><span class='op'>(</span><span class='va'>x</span><span class='op'>==</span><span class='va'>a</span><span class='op'>)</span><span class='op'>{</span>
-      <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>
-      <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span>
-        <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>
-      <span class='op'>}</span>
-  <span class='op'>}</span>
-  
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>aux</span>,a<span class='op'>=</span><span class='va'>a</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-  
-  <span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>heaviside</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span> <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  </span>
+<span>  <span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>    <span class='kw'>if</span><span class='op'>(</span><span class='va'>x</span><span class='op'>&gt;=</span><span class='va'>a</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>      <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span>      <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span></span>
+<span>        <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span></span>
+<span>      <span class='op'>}</span></span>
+<span>  <span class='op'>}</span></span>
+<span>  </span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>aux</span>,a<span class='op'>=</span><span class='va'>a</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  </span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='va'>krone</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span> <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  </span>
+<span>  <span class='va'>aux</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>a</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>    <span class='kw'>if</span><span class='op'>(</span><span class='va'>x</span><span class='op'>==</span><span class='va'>a</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>      <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span></span>
+<span>      <span class='op'>}</span><span class='kw'>else</span><span class='op'>{</span></span>
+<span>        <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span></span>
+<span>      <span class='op'>}</span></span>
+<span>  <span class='op'>}</span></span>
+<span>  </span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/lapply.html'>lapply</a></span><span class='op'>(</span><span class='va'>x</span>,<span class='va'>aux</span>,a<span class='op'>=</span><span class='va'>a</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>heaviside</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>heaviside</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>8</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] 0 0 1 1 1 1 1 1 1 1 1</code></pre>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/kronecker.html'>kronecker</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>9</span>,<span class='fl'>7</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'>krone</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>9</span>,<span class='fl'>7</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code> [1] 0 0 0 0 0 0 0 0 0 1 0 0</code></pre>
 </div>
@@ -2675,15 +2691,14 @@ encontrar los valores de <span class="math inline">\(y_0\)</span> y
 <span class="math inline">\(y_{1}\)</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>y</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>37</span><span class='op'>/</span><span class='fl'>36</span>, <span class='fl'>11</span><span class='op'>/</span><span class='fl'>6</span><span class='op'>)</span>
-
-<span class='va'>y_0</span> <span class='op'>=</span>  <span class='fl'>5</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='fl'>6</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='co'># t = 0</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>y</span>,<span class='va'>y_0</span><span class='op'>)</span>
-
-<span class='va'>y_1</span><span class='op'>=</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>**</span> <span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>  <span class='op'>+</span> <span class='fl'>5</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>-</span> <span class='fl'>6</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='co'># t = 1</span>
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>y</span>,<span class='va'>y_1</span><span class='op'>)</span>
-<span class='va'>y</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>y</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>37</span><span class='op'>/</span><span class='fl'>36</span>, <span class='fl'>11</span><span class='op'>/</span><span class='fl'>6</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>y_0</span> <span class='op'>=</span>  <span class='fl'>5</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='fl'>6</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='co'># t = 0</span></span>
+<span><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>y</span>,<span class='va'>y_0</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>y_1</span><span class='op'>=</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>**</span> <span class='op'>(</span><span class='fl'>0</span><span class='op'>)</span>  <span class='op'>+</span> <span class='fl'>5</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>-</span> <span class='fl'>6</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='co'># t = 1</span></span>
+<span><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>y</span>,<span class='va'>y_1</span><span class='op'>)</span></span>
+<span><span class='va'>y</span></span></code></pre>
 </div>
 <pre><code>[1] 1.027778 1.833333 3.000000 7.000000</code></pre>
 </div>
@@ -2699,15 +2714,14 @@ sería?</p>
 class="math inline">\(t\in\{0,1,..,5\}\)</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>yt</span> <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span><span class='op'>{</span>
-  
-  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fl'>18</span> <span class='op'>/</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>3</span> <span class='op'>^</span> <span class='va'>t</span> <span class='op'>-</span> <span class='op'>(</span><span class='fl'>7</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>2</span> <span class='op'>^</span> <span class='va'>t</span> <span class='op'>+</span> <span class='op'>(</span><span class='fl'>26</span> <span class='op'>/</span> <span class='fl'>15</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.5</span> <span class='op'>^</span> <span class='va'>t</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='va'>t</span> <span class='op'>&lt;-</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>5</span>
-<span class='fu'>yt</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>yt</span> <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  </span>
+<span>  <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='op'>(</span><span class='fl'>18</span> <span class='op'>/</span> <span class='fl'>5</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>3</span> <span class='op'>^</span> <span class='va'>t</span> <span class='op'>-</span> <span class='op'>(</span><span class='fl'>7</span> <span class='op'>/</span> <span class='fl'>3</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>2</span> <span class='op'>^</span> <span class='va'>t</span> <span class='op'>+</span> <span class='op'>(</span><span class='fl'>26</span> <span class='op'>/</span> <span class='fl'>15</span><span class='op'>)</span> <span class='op'>*</span> <span class='fl'>0.5</span> <span class='op'>^</span> <span class='va'>t</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='va'>t</span> <span class='op'>&lt;-</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>5</span></span>
+<span><span class='fu'>yt</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1]   3.0000   7.0000  23.5000  78.7500 254.3750 800.1875</code></pre>
 </div>
@@ -2718,59 +2732,56 @@ en el formato de adelanto y la siguiente estructura</p>
 class="math display">\[a_2y[t+2]+a_{1}y[t+1]+a_0y[t]=b_2x[t+2]+b_{1}x[t+1]+b_0x[t]\]</span></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>simulacion</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>y0</span>, <span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>{</span>
-    <span class='co'>#a = [a0,a1,a2]</span>
-    <span class='co'>#b = [b0,b1,b2]</span>
-    <span class='co'>#y0 = [y_0, y_1]</span>
-    <span class='co'>#x = función </span>
-    <span class='co'>#n = punto final de simulacion, comienza en 0</span>
-    
-    <span class='va'>y</span> <span class='op'>=</span> <span class='va'>y0</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>
-    <span class='va'>y</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>=</span> <span class='va'>y0</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>
-    <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes_position.html'>x</a></span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='va'>n</span><span class='op'>)</span>
-
-    <span class='kw'>for</span><span class='op'>(</span><span class='va'>t</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='op'>(</span><span class='va'>n</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span>
-        <span class='va'>y</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>]</span> <span class='op'>=</span> <span class='op'>(</span><span class='va'>b</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>]</span> <span class='op'>+</span> 
-        <span class='op'>(</span><span class='va'>b</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>]</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>b</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>/</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>)</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>[</span><span class='va'>t</span><span class='op'>]</span> <span class='op'>-</span>
-        <span class='op'>(</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>]</span> <span class='op'>-</span> <span class='op'>(</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='va'>t</span><span class='op'>]</span>
-        <span class='op'>}</span>
-    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
-<span class='op'>}</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>simulacion</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>a</span>, <span class='va'>b</span>, <span class='va'>y0</span>, <span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>    <span class='co'>#a = [a0,a1,a2]</span></span>
+<span>    <span class='co'>#b = [b0,b1,b2]</span></span>
+<span>    <span class='co'>#y0 = [y_0, y_1]</span></span>
+<span>    <span class='co'>#x = función </span></span>
+<span>    <span class='co'>#n = punto final de simulacion, comienza en 0</span></span>
+<span>    </span>
+<span>    <span class='va'>y</span> <span class='op'>=</span> <span class='va'>y0</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span></span>
+<span>    <span class='va'>y</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>=</span> <span class='va'>y0</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span></span>
+<span>    <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>x</span><span class='op'>(</span><span class='fl'>0</span><span class='op'>:</span><span class='va'>n</span><span class='op'>)</span></span>
+<span></span>
+<span>    <span class='kw'>for</span><span class='op'>(</span><span class='va'>t</span> <span class='kw'>in</span> <span class='fl'>1</span><span class='op'>:</span><span class='op'>(</span><span class='va'>n</span> <span class='op'>-</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>        <span class='va'>y</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>]</span> <span class='op'>=</span> <span class='op'>(</span><span class='va'>b</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>2</span><span class='op'>]</span> <span class='op'>+</span> </span>
+<span>        <span class='op'>(</span><span class='va'>b</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>]</span> <span class='op'>+</span> <span class='op'>(</span><span class='va'>b</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>/</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>)</span> <span class='op'>*</span> <span class='va'>x</span><span class='op'>[</span><span class='va'>t</span><span class='op'>]</span> <span class='op'>-</span></span>
+<span>        <span class='op'>(</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='va'>t</span> <span class='op'>+</span> <span class='fl'>1</span><span class='op'>]</span> <span class='op'>-</span> <span class='op'>(</span><span class='va'>a</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>/</span> <span class='va'>a</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>*</span> <span class='va'>y</span><span class='op'>[</span><span class='va'>t</span><span class='op'>]</span></span>
+<span>        <span class='op'>}</span></span>
+<span>    <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
 </div>
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span><span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>^</span> <span class='va'>t</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-<span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span> , <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>3</span>, <span class='fl'>0</span><span class='op'>)</span>
-<span class='va'>y0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>7</span><span class='op'>)</span>
-<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>5</span>
-
-<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>simulacion</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>y0</span>, <span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span>
-
-<span class='va'>y</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>t</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>  <span class='kw'><a href='https://rdrr.io/r/base/function.html'>return</a></span><span class='op'>(</span><span class='op'>(</span><span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>^</span> <span class='va'>t</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span>
+<span></span>
+<span><span class='va'>a</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span> , <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>1</span><span class='op'>)</span></span>
+<span><span class='va'>b</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>5</span>, <span class='fl'>3</span>, <span class='fl'>0</span><span class='op'>)</span></span>
+<span><span class='va'>y0</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>7</span><span class='op'>)</span></span>
+<span><span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>5</span></span>
+<span></span>
+<span><span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>simulacion</span><span class='op'>(</span><span class='va'>a</span>,<span class='va'>b</span>,<span class='va'>y0</span>, <span class='va'>x</span>, <span class='va'>n</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>y</span></span></code></pre>
 </div>
 <pre><code>[1]   3.0000   7.0000  23.5000  78.7500 254.3750 800.1875</code></pre>
 </div>
 <p>Realizamos la gráfica de la solución</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>5</span>,
-               y <span class='op'>=</span> <span class='va'>y</span>, 
-               type <span class='op'>=</span> <span class='st'>'scatter'</span>,
-               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
-  <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/layout.html'>layout</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Solución para hasta t=5"</span>,
-         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"t"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>fig</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fig</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/plotly/man/plot_ly.html'>plot_ly</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>5</span>,</span>
+<span>               y <span class='op'>=</span> <span class='va'>y</span>, </span>
+<span>               type <span class='op'>=</span> <span class='st'>'scatter'</span>,</span>
+<span>               mode <span class='op'>=</span> <span class='st'>'lines+markers'</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> </span>
+<span>  <span class='fu'>layout</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Solución para hasta t=5"</span>,</span>
+<span>         xaxis <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>title <span class='op'>=</span><span class='st'>"t"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>fig</span></span></code></pre>
 </div>
-<div id="htmlwidget-37cbb1fdd9af94444095" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-37cbb1fdd9af94444095">{"x":{"visdat":{"cb804793309c":["function () ","plotlyVisDat"]},"cur_data":"cb804793309c","attrs":{"cb804793309c":{"x":[0,1,2,3,4,5],"y":[3,7,23.5,78.75,254.375,800.1875],"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Solución para hasta t=5","xaxis":{"domain":[0,1],"automargin":true,"title":"t"},"yaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,1,2,3,4,5],"y":[3,7,23.5,78.75,254.375,800.1875],"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4df74529a7f91a53a1fa" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4df74529a7f91a53a1fa">{"x":{"visdat":{"8d8228a5808c":["function () ","plotlyVisDat"]},"cur_data":"8d8228a5808c","attrs":{"8d8228a5808c":{"x":[0,1,2,3,4,5],"y":[3,7,23.5,78.75,254.375,800.1875],"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Solución para hasta t=5","xaxis":{"domain":[0,1],"automargin":true,"title":"t"},"yaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,1,2,3,4,5],"y":[3,7,23.5,78.75,254.375,800.1875],"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="tranformada-mathscrz">Tranformada <span
 class="math inline">\(\mathscr{Z}\)</span></h2>

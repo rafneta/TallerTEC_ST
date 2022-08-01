@@ -1038,10 +1038,6 @@ code span.wa { color: #da4453; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1871,6 +1867,12 @@ code span.wa { color: #da4453; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1885,6 +1887,31 @@ code span.wa { color: #da4453; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1984,6 +2011,8 @@ code span.wa { color: #da4453; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2006,7 +2035,7 @@ code span.wa { color: #da4453; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2320,7 +2349,7 @@ Actividades
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
 <a href="ActividadST_1.html">Actividad 1</a>
-<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_2.html">Actividad 2</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2452,11 +2481,10 @@ de RStudio</a></li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># obtiene la carpeta en la cual se esta trabajando</span>
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"~/Dropbox/UNAM/Econometria"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"C:/Sharon/Documents/RProjects"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'>#despliega los archivos del directorio</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>getwd</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># obtiene la carpeta en la cual se esta trabajando</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"~/Dropbox/UNAM/Econometria"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/getwd.html'>setwd</a></span><span class='op'>(</span><span class='st'>"C:/Sharon/Documents/RProjects"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'>#despliega los archivos del directorio</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -2466,13 +2494,12 @@ Directory</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/help.start.html'>help.start</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>matrix</span><span class='op'>)</span> <span class='co'># aplica también para funciones</span>
-<span class='op'>?</span><span class='va'>matrix</span> <span class='co'># aplica también para funciones </span>
-<span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span><span class='op'>(</span><span class='st'>"matrix"</span><span class='op'>)</span> 
-<span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span><span class='op'>(</span><span class='st'>"matrix"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/args.html'>args</a></span><span class='op'>(</span><span class='va'>rnorm</span><span class='op'>)</span> <span class='co'># conocer los argumentos de una función</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/help.start.html'>help.start</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>matrix</span><span class='op'>)</span> <span class='co'># aplica también para funciones</span></span>
+<span><span class='op'>?</span><span class='va'>matrix</span> <span class='co'># aplica también para funciones </span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/apropos.html'>apropos</a></span><span class='op'>(</span><span class='st'>"matrix"</span><span class='op'>)</span> </span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span><span class='op'>(</span><span class='st'>"matrix"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/args.html'>args</a></span><span class='op'>(</span><span class='va'>rnorm</span><span class='op'>)</span> <span class='co'># conocer los argumentos de una función</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -2484,8 +2511,7 @@ Directory</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># Ignorado por el programa, por linea</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Ignorado por el programa, por linea</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -2493,8 +2519,7 @@ Directory</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -2502,10 +2527,9 @@ Directory</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/update.packages.html'>update.packages</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># Actualizar todos los paquetes</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"mcsm"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/update.packages.html'>update.packages</a></span><span class='op'>(</span><span class='st'>"mcsm"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/update.packages.html'>update.packages</a></span><span class='op'>(</span><span class='op'>)</span> <span class='co'># Actualizar todos los paquetes</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span><span class='op'>(</span><span class='st'>"mcsm"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/update.packages.html'>update.packages</a></span><span class='op'>(</span><span class='st'>"mcsm"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <ul>
@@ -2513,10 +2537,9 @@ Directory</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.stats.ox.ac.uk/pub/MASS4/'>MASS</a></span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>coda</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>mcsm</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.stats.ox.ac.uk/pub/MASS4/'>MASS</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>coda</span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>mcsm</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <h1 id="uso-de-r-en-colab">Uso de R en colab</h1>

@@ -113,25 +113,25 @@ code span.wa { color: #da4453; } /* Warning */
   <!--radix_placeholder_meta_tags-->
   <title>Taller ST V-2022: Práctica: series de tiempo</title>
 
-  <meta property="description" itemprop="description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
+  <meta property="description" itemprop="description" content="Implementación en R"/>
 
 
   <!--  https://schema.org/Article -->
-  <meta property="article:published" itemprop="datePublished" content="2022-05-04"/>
-  <meta property="article:created" itemprop="dateCreated" content="2022-05-04"/>
+  <meta property="article:published" itemprop="datePublished" content="2022-08-01"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-08-01"/>
   <meta name="article:author" content="Rafael Martínez Martínez"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
   <meta property="og:title" content="Taller ST V-2022: Práctica: series de tiempo"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
+  <meta property="og:description" content="Implementación en R"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Taller ST V-2022"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
   <meta property="twitter:title" content="Taller ST V-2022: Práctica: series de tiempo"/>
-  <meta property="twitter:description" content="3.1: &#10;&#10;3.1.3: &#10;&#10;Portafolio de R"/>
+  <meta property="twitter:description" content="Implementación en R"/>
 
   <!--/radix_placeholder_meta_tags-->
   
@@ -143,7 +143,7 @@ code span.wa { color: #da4453; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Práctica: series de tiempo"]},{"type":"character","attributes":{},"value":["3.1: \n\n3.1.3: \n\nPortafolio de R\n"]},{"type":"character","attributes":{},"value":["May 4, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://rafneta.github.io/"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"NULL"},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Práctica: series de tiempo"]},{"type":"character","attributes":{},"value":["Implementación en R  \n"]},{"type":"character","attributes":{},"value":["August 1, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://rafneta.github.io/"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"NULL"},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1064,10 +1064,6 @@ code span.wa { color: #da4453; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1897,6 +1893,12 @@ code span.wa { color: #da4453; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1911,6 +1913,31 @@ code span.wa { color: #da4453; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -2010,6 +2037,8 @@ code span.wa { color: #da4453; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2032,7 +2061,7 @@ code span.wa { color: #da4453; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2306,7 +2335,7 @@ code span.wa { color: #da4453; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Práctica: series de tiempo","description":"3.1: \n\n3.1.3: \n\nPortafolio de R","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://rafneta.github.io/","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-05-04T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
+{"title":"Práctica: series de tiempo","description":"Implementación en R","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://rafneta.github.io/","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-08-01T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2346,7 +2375,7 @@ Actividades
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
 <a href="ActividadST_1.html">Actividad 1</a>
-<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_2.html">Actividad 2</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2398,16 +2427,14 @@ Apéndices
 <h1>Práctica: series de tiempo</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>3.1:</p>
-<p>3.1.3:</p>
-<p>Portafolio de R</p></p>
+<p><p>Implementación en R</p></p>
 </div>
 
 <div class="d-byline">
   
   true
   
-<br/>May 4, 2022
+<br/>August 1, 2022
 </div>
 
 <div class="d-article">
@@ -2416,10 +2443,10 @@ Apéndices
 <h3>Contents</h3>
 <ul>
 <li><a href="#series-de-tiempo-práctica"
-id="toc-series-de-tiempo-práctica">Series de tiempo, práctica</a>
-<ul>
-<li><a href="#section" id="toc-section"></a></li>
-</ul></li>
+id="toc-series-de-tiempo-práctica">Series de tiempo, práctica</a></li>
+<li><a href="#gráficas-de-series-de-tiempo"
+id="toc-gráficas-de-series-de-tiempo">Gráficas de series de
+tiempo</a></li>
 <li><a href="#revisión-previa" id="toc-revisión-previa">Revisión
 previa</a></li>
 <li><a href="#serie-de-tiempo-estacionaria"
@@ -2479,7 +2506,7 @@ href="https://rstudio.github.io/distill/">distill</a></p>
 href="./ActividadST_0.Rmd">archivo <em>Rmd</em> de la Actividad 0</a>,
 para ver un ejemplo de uso.</p>
 <div class="act">
-<p><strong>Actividad 1</strong></p>
+<p><strong>Actividad 1, Problemas 1 y 2</strong></p>
 </div>
 <h1 id="series-de-tiempo-práctica">Series de tiempo, práctica</h1>
 <p>Es suficiente pensar (por el momento) a una serie de tiempo como
@@ -2489,17 +2516,15 @@ mediciones (contradominio) de una variable conforme transcurre el tiempo
 <strong>AirPassengers</strong>. Investiga de que trata este conjunto</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='op'>?</span><span class='va'>AirPassengers</span> 
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='op'>?</span><span class='va'>AirPassengers</span> </span></code></pre>
 </div>
 </div>
 <p>Cargamos el conjunto de datos.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>AirPassengers</span><span class='op'>)</span>
-<span class='va'>AP</span> <span class='op'>&lt;-</span> <span class='va'>AirPassengers</span>
-<span class='va'>AP</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>AirPassengers</span><span class='op'>)</span></span>
+<span><span class='va'>AP</span> <span class='op'>&lt;-</span> <span class='va'>AirPassengers</span></span>
+<span><span class='va'>AP</span></span></code></pre>
 </div>
 <pre><code>     Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
 1949 112 118 132 129 121 135 148 148 136 119 104 118
@@ -2518,8 +2543,7 @@ mediciones (contradominio) de una variable conforme transcurre el tiempo
 <p>Vemos con que tipo de variable trabajamos</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] &quot;ts&quot;</code></pre>
 </div>
@@ -2535,26 +2559,26 @@ tiempo en R</a></p>
 funciones es <em>ts</em>.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span>help <span class='op'>=</span> <span class='st'>"stats"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span>help <span class='op'>=</span> <span class='st'>"stats"</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>Ahí se puede investigar sobre todas las funciones.</p>
 <p>La gráfica matemática de la variable <strong>AP</strong> sería.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AP</span>, ylab <span class='op'>=</span> <span class='st'>"Pasajeros (miles)"</span>, type <span class='op'>=</span> <span class='st'>"p"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AP</span>, ylab <span class='op'>=</span> <span class='st'>"Pasajeros (miles)"</span>, type <span class='op'>=</span> <span class='st'>"p"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="PSeriesTiempo_files/figure-html5/plotAP-1.png" width="624" /></p>
 </div>
 <p>La gráfica en series de tiempo se acostumbra como</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AP</span>, ylab <span class='op'>=</span> <span class='st'>"Pasajeros (miles)"</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>AP</span>, ylab <span class='op'>=</span> <span class='st'>"Pasajeros (miles)"</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="PSeriesTiempo_files/figure-html5/plotAPserie-1.png" width="624" /></p>
+</div>
+<div class="act">
+<p><strong>Actividad 1, Problema 3 y 4</strong></p>
 </div>
 <p>Se pueden identificar algunas componentes en una serie de tiempo</p>
 <ul>
@@ -2571,20 +2595,408 @@ etc.</li>
 </ul>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <img src="PSeriesTiempo_files/figure-html5/plotagregadsi-1.png" width="624" />
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='va'>AP</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/time.html'>cycle</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/boxplot.html'>boxplot</a></span><span class='op'>(</span><span class='va'>AP</span> <span class='op'>~</span> <span class='fu'><a href='https://rdrr.io/r/stats/time.html'>cycle</a></span><span class='op'>(</span><span class='va'>AP</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
 </div>
 <p><img src="PSeriesTiempo_files/figure-html5/plotagregadsi-2.png" width="624" /></p>
 </div>
 <div class="act">
 <p><strong>Actividad 2</strong></p>
 </div>
-<h2 id="section"></h2>
+<h1 id="gráficas-de-series-de-tiempo">Gráficas de series de tiempo</h1>
+<div class="act">
+<p><strong>Teoría: Funciones en tiempo discreto</strong></p>
+</div>
+<div class="act">
+<p><strong>Actividad 3</strong></p>
+</div>
+<p>Es importante distinguir la implemetación computacional (por ejemplo
+los elementos <em>ts</em>) respecto de la abstracción matemática
+(funciones en tiempo discreto).</p>
+<p>En R por lo menos se tienen ocho maneras de representar series de
+tiempo, dos de las formas más utilizadas son las implementadas en los
+paquetes: <em>xts</em> y <em>zoo</em>, con las siguientes instrucciones
+se pueden consultar sus <a
+href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='st'>"zoo"</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/vignette.html'>vignette</a></span><span class='op'>(</span><span class='st'>"xts"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Casi todo lo que se puede hacer con <em>zoo</em> se puede hacer con
+<em>xts</em>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://zoo.R-Forge.R-project.org/'>zoo</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>precios</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>132.45</span>, <span class='fl'>130.85</span>, <span class='fl'>130.00</span>, <span class='fl'>129.55</span>, <span class='fl'>130.85</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># los primeros 5 mediciones de enero</span></span>
+<span><span class='va'>fechas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/yearmon.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>  <span class='st'>"2010-01-04"</span>, <span class='st'>"2010-01-05"</span>, <span class='st'>"2010-01-06"</span>,</span>
+<span>  <span class='st'>"2010-01-07"</span>, <span class='st'>"2010-01-08"</span></span>
+<span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>stp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/zoo.html'>zoo</a></span><span class='op'>(</span><span class='va'>precios</span>, <span class='va'>fechas</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>stp</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>2010-01-04 2010-01-05 2010-01-06 2010-01-07 2010-01-08 
+    132.45     130.85     130.00     129.55     130.85 </code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>stp</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/plotzoo-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/zoo/man/coredata.html'>coredata</a></span><span class='op'>(</span><span class='va'>stp</span><span class='op'>)</span> <span class='co'># valores </span></span></code></pre>
+</div>
+<pre><code>[1] 132.45 130.85 130.00 129.55 130.85</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/zoo/man/index.html'>index</a></span><span class='op'>(</span><span class='va'>stp</span><span class='op'>)</span> <span class='co'># fechas</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;2010-01-04&quot; &quot;2010-01-05&quot; &quot;2010-01-06&quot; &quot;2010-01-07&quot; &quot;2010-01-08&quot;</code></pre>
+</div>
+<p>¿Cuál es la descripción del paquete <em>quantmod</em>?</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://www.quantmod.com'>quantmod</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Se consultan los precios de las acciones de Apple del 2015 al
+2020</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/quantmod/man/getSymbols.html'>getSymbols</a></span><span class='op'>(</span><span class='st'>"AAPL"</span>, src <span class='op'>=</span> <span class='st'>"yahoo"</span>, from <span class='op'>=</span> <span class='st'>'2015-01-01'</span>,</span>
+<span>           to <span class='op'>=</span> <span class='st'>"2020-12-31"</span>,warnings <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>           auto.assign <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;AAPL&quot;</code></pre>
+</div>
+<p>los primeros elementos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span><span class='op'>(</span><span class='va'>AAPL</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;xts&quot; &quot;zoo&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>AAPL</span><span class='op'>)</span> </span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2015-01-02   27.8475   27.8600  26.8375    27.3325   212818400
+2015-01-05   27.0725   27.1625  26.3525    26.5625   257142000
+2015-01-06   26.6350   26.8575  26.1575    26.5650   263188400
+2015-01-07   26.8000   27.0500  26.6750    26.9375   160423600
+2015-01-08   27.3075   28.0375  27.1750    27.9725   237458000
+2015-01-09   28.1675   28.3125  27.5525    28.0025   214798000
+           AAPL.Adjusted
+2015-01-02      24.67826
+2015-01-05      23.98303
+2015-01-06      23.98528
+2015-01-07      24.32161
+2015-01-08      25.25610
+2015-01-09      25.28319</code></pre>
+</div>
+los últimos elementos
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>apple</span> <span class='op'>&lt;-</span> <span class='va'>AAPL</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>)</span> </span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2020-12-22    131.61    134.41   129.65     131.88   168904800
+2020-12-23    132.16    132.43   130.78     130.96    88223700
+2020-12-24    131.32    133.46   131.10     131.97    54930100
+2020-12-28    133.99    137.34   133.51     136.69   124486200
+2020-12-29    138.05    138.79   134.34     134.87   121047300
+2020-12-30    135.58    135.99   133.40     133.72    96452100
+           AAPL.Adjusted
+2020-12-22      130.7131
+2020-12-23      129.8013
+2020-12-24      130.8024
+2020-12-28      135.4806
+2020-12-29      133.6767
+2020-12-30      132.5368</code></pre>
+</div>
+<p>Las primeras dos semanas (revisa el calendario de 2015)</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/xts/man/first.html'>first</a></span><span class='op'>(</span><span class='va'>apple</span>, <span class='st'>"2 weeks"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2015-01-02   27.8475   27.8600  26.8375    27.3325   212818400
+2015-01-05   27.0725   27.1625  26.3525    26.5625   257142000
+2015-01-06   26.6350   26.8575  26.1575    26.5650   263188400
+2015-01-07   26.8000   27.0500  26.6750    26.9375   160423600
+2015-01-08   27.3075   28.0375  27.1750    27.9725   237458000
+2015-01-09   28.1675   28.3125  27.5525    28.0025   214798000
+           AAPL.Adjusted
+2015-01-02      24.67826
+2015-01-05      23.98303
+2015-01-06      23.98528
+2015-01-07      24.32161
+2015-01-08      25.25610
+2015-01-09      25.28319</code></pre>
+</div>
+<p>el último mes</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/xts/man/first.html'>last</a></span><span class='op'>(</span><span class='va'>apple</span>, <span class='st'>"month"</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2020-12-01    121.01    123.47   120.01     122.72   127728200
+2020-12-02    122.02    123.37   120.89     123.08    89004200
+2020-12-03    123.52    123.78   122.21     122.94    78967600
+2020-12-04    122.60    122.86   121.52     122.25    78260400
+2020-12-07    122.31    124.57   122.25     123.75    86712000
+2020-12-08    124.37    124.98   123.09     124.38    82225500
+2020-12-09    124.53    125.95   121.00     121.78   115089200
+2020-12-10    120.50    123.87   120.15     123.24    81312200
+2020-12-11    122.43    122.76   120.55     122.41    86939800
+2020-12-14    122.60    123.35   121.54     121.78    79184500
+2020-12-15    124.34    127.90   124.13     127.88   157243700
+2020-12-16    127.41    128.37   126.56     127.81    98208600
+2020-12-17    128.90    129.58   128.04     128.70    94359800
+2020-12-18    128.96    129.10   126.12     126.66   192541500
+2020-12-21    125.02    128.31   123.45     128.23   121251600
+2020-12-22    131.61    134.41   129.65     131.88   168904800
+2020-12-23    132.16    132.43   130.78     130.96    88223700
+2020-12-24    131.32    133.46   131.10     131.97    54930100
+2020-12-28    133.99    137.34   133.51     136.69   124486200
+2020-12-29    138.05    138.79   134.34     134.87   121047300
+2020-12-30    135.58    135.99   133.40     133.72    96452100
+           AAPL.Adjusted
+2020-12-01      121.6342
+2020-12-02      121.9910
+2020-12-03      121.8522
+2020-12-04      121.1683
+2020-12-07      122.6551
+2020-12-08      123.2795
+2020-12-09      120.7025
+2020-12-10      122.1496
+2020-12-11      121.3269
+2020-12-14      120.7025
+2020-12-15      126.7485
+2020-12-16      126.6791
+2020-12-17      127.5613
+2020-12-18      125.5393
+2020-12-21      127.0954
+2020-12-22      130.7131
+2020-12-23      129.8013
+2020-12-24      130.8024
+2020-12-28      135.4806
+2020-12-29      133.6767
+2020-12-30      132.5368</code></pre>
+</div>
+<p>Obtener elementos específicos</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># Segundo elemento</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2015-01-05   27.0725   27.1625  26.3525    26.5625   257142000
+           AAPL.Adjusted
+2015-01-05      23.98303</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;&quot;</code></pre>
+<pre><code>[1] &quot;&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># Del segundo al cuarto</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2015-01-05   27.0725   27.1625  26.3525    26.5625   257142000
+2015-01-06   26.6350   26.8575  26.1575    26.5650   263188400
+2015-01-07   26.8000   27.0500  26.6750    26.9375   160423600
+           AAPL.Adjusted
+2015-01-05      23.98303
+2015-01-06      23.98528
+2015-01-07      24.32161</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;&quot;</code></pre>
+<pre><code>[1] &quot;&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fechas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/zoo/man/yearmon.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2015-01-04"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/yearmon.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2015-01-30"</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span><span class='va'>apple</span><span class='op'>[</span><span class='va'>fechas</span><span class='op'>]</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2015-01-06   26.6350   26.8575  26.1575    26.5650   263188400
+2015-01-08   27.3075   28.0375  27.1750    27.9725   237458000
+2015-01-12   28.1500   28.1575  27.2000    27.3125   198603200
+2015-01-14   27.2600   27.6225  27.1250    27.4500   195826400
+2015-01-16   26.7575   26.8950  26.3000    26.4975   314053200
+2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600
+2015-01-22   27.5650   28.1175  27.4300    28.1000   215185600
+2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000
+2015-01-28   29.4075   29.5300  28.8275    28.8275   585908400
+2015-01-30   29.6000   30.0000  29.2125    29.2900   334982000
+           AAPL.Adjusted
+2015-01-06      23.98528
+2015-01-08      25.25610
+2015-01-12      24.66019
+2015-01-14      24.78433
+2015-01-16      23.92434
+2015-01-20      24.54056
+2015-01-22      25.37122
+2015-01-26      25.52922
+2015-01-28      26.02807
+2015-01-30      26.44567</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span><span class='st'>'201501'</span><span class='op'>]</span><span class='op'>)</span>  <span class='co'># enero 2015</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2015-01-02   27.8475   27.8600  26.8375    27.3325   212818400
+2015-01-05   27.0725   27.1625  26.3525    26.5625   257142000
+2015-01-06   26.6350   26.8575  26.1575    26.5650   263188400
+2015-01-07   26.8000   27.0500  26.6750    26.9375   160423600
+2015-01-08   27.3075   28.0375  27.1750    27.9725   237458000
+2015-01-09   28.1675   28.3125  27.5525    28.0025   214798000
+2015-01-12   28.1500   28.1575  27.2000    27.3125   198603200
+2015-01-13   27.8575   28.2000  27.2275    27.5550   268367600
+2015-01-14   27.2600   27.6225  27.1250    27.4500   195826400
+2015-01-15   27.5000   27.5150  26.6650    26.7050   240056000
+2015-01-16   26.7575   26.8950  26.3000    26.4975   314053200
+2015-01-20   26.9600   27.2425  26.6250    27.1800   199599600
+2015-01-21   27.2375   27.7650  27.0675    27.3875   194303600
+2015-01-22   27.5650   28.1175  27.4300    28.1000   215185600
+2015-01-23   28.0750   28.4375  27.8825    28.2450   185859200
+2015-01-26   28.4350   28.5900  28.2000    28.2750   222460000
+2015-01-27   28.1050   28.1200  27.2575    27.2850   382274800
+2015-01-28   29.4075   29.5300  28.8275    28.8275   585908400
+2015-01-29   29.0800   29.7975  28.8900    29.7250   337745600
+2015-01-30   29.6000   30.0000  29.2125    29.2900   334982000
+           AAPL.Adjusted
+2015-01-02      24.67826
+2015-01-05      23.98303
+2015-01-06      23.98528
+2015-01-07      24.32161
+2015-01-08      25.25610
+2015-01-09      25.28319
+2015-01-12      24.66019
+2015-01-13      24.87914
+2015-01-14      24.78433
+2015-01-15      24.11168
+2015-01-16      23.92434
+2015-01-20      24.54056
+2015-01-21      24.72790
+2015-01-22      25.37122
+2015-01-23      25.50214
+2015-01-26      25.52922
+2015-01-27      24.63537
+2015-01-28      26.02807
+2015-01-29      26.83842
+2015-01-30      26.44567</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;&quot;</code></pre>
+<pre><code>[1] &quot;&quot;</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span><span class='st'>'20160201/20160213'</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
+2016-02-01   24.1175   24.1775  23.8500    24.1075   163774000
+2016-02-02   23.8550   24.0100  23.5700    23.6200   149428800
+2016-02-03   23.7500   24.2100  23.5200    24.0875   183857200
+2016-02-04   23.9650   24.3325  23.7975    24.1500   185886800
+2016-02-05   24.1300   24.2300  23.4225    23.5050   185672400
+2016-02-08   23.2825   23.9250  23.2600    23.7525   216085600
+2016-02-09   23.5725   23.9850  23.4825    23.7475   177324800
+2016-02-10   23.9800   24.0875  23.5250    23.5675   169374400
+2016-02-11   23.4475   23.6800  23.1475    23.4250   200298800
+2016-02-12   23.5475   23.6250  23.2525    23.4975   161405600
+           AAPL.Adjusted
+2016-02-01      22.13729
+2016-02-02      21.68964
+2016-02-03      22.11892
+2016-02-04      22.29665
+2016-02-05      21.70115
+2016-02-08      21.92966
+2016-02-09      21.92504
+2016-02-10      21.75886
+2016-02-11      21.62730
+2016-02-12      21.69423</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
+</div>
+<pre><code>[1] &quot;&quot;</code></pre>
+<pre><code>[1] &quot;&quot;</code></pre>
+</div>
+<p>Graficamos las columnas excepto volume</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>apple</span><span class='op'>$</span><span class='va'>AAPL.Volume</span> <span class='op'>&lt;-</span> <span class='cn'>NULL</span> <span class='co'># borramos la columna</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-8-1.png" width="624" /></p>
+</div>
+<p>Gráficamos el maximo, el mínimo</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-9-1.png" width="624" /></p>
+</div>
+<p>Gráficamos la apertura y el cierre</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AAPL.Open"</span>,<span class='st'>"AAPL.Close"</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-10-1.png" width="624" /></p>
+</div>
+<p>Se puede graficar el logarirmo de la serie, y graficar</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-11-1.png" width="624" /></p>
+</div>
+<p>Gráficamos la diferencia</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span> <span class='va'>apple</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>apple</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-12-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>apple</span><span class='op'>$</span><span class='va'>dif</span> <span class='op'>&lt;-</span>  <span class='va'>apple</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span> <span class='op'>-</span> <span class='va'>apple</span><span class='op'>[</span>,<span class='fl'>3</span><span class='op'>]</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Adjusted
+2015-01-02   27.8475   27.8600  26.8375    27.3325      24.67826
+2015-01-05   27.0725   27.1625  26.3525    26.5625      23.98303
+2015-01-06   26.6350   26.8575  26.1575    26.5650      23.98528
+2015-01-07   26.8000   27.0500  26.6750    26.9375      24.32161
+2015-01-08   27.3075   28.0375  27.1750    27.9725      25.25610
+2015-01-09   28.1675   28.3125  27.5525    28.0025      25.28319
+                dif
+2015-01-02 1.022501
+2015-01-05 0.809999
+2015-01-06 0.700001
+2015-01-07 0.375000
+2015-01-08 0.862501
+2015-01-09 0.760000</code></pre>
+</div>
+<p>Un formualrio de xts se puede consultar en el siguiente <a
+href="http://datacamp-community-prod.s3.amazonaws.com/72771032-0653-4d87-a798-4a83879e9">enlace</a></p>
 <h1 id="revisión-previa">Revisión previa</h1>
 <div class="def">
 <strong>Definición</strong> <em>[Proceso Estocástico Discreto
@@ -2949,7 +3361,7 @@ class="math inline">\(\hat W_{t+1|T}\)</span> es <span
 class="math inline">\(\hat W_{t+1|T}\pm 1.96\hat\sigma_A\)</span>. La
 Figura <a href="#fig:tablapre"><strong>??</strong></a> muestra la predicción y dos intervalos con
 nivel de confianza diferente.</p>
-<div class="sourceCode" id="cb6"><pre
+<div class="sourceCode" id="cb29"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <div id="refs" class="references csl-bib-body hanging-indent"
 role="doc-bibliography">

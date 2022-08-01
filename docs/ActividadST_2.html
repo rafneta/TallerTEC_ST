@@ -90,9 +90,9 @@ code span.wa { color: #da4453; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>Taller ST V-2022: Actividad 5</title>
+  <title>Taller ST V-2022: Actividad 2</title>
 
-  <meta property="description" itemprop="description" content="Objetivo: Visualizar y entender ejemplos de series de tiempo &#10;&#10;Tipo de trabajo: Individual o equipo (máximo 3 personas). Cada integrante entrega el mismo trabajo."/>
+  <meta property="description" itemprop="description" content="Objetivo: Visualizar y entender ejemplos de series de tiempo &#10;&#10;Tipo de trabajo: Individual o equipo (máximo 5 personas). Cada integrante entrega el mismo trabajo."/>
 
 
   <!--  https://schema.org/Article -->
@@ -101,23 +101,23 @@ code span.wa { color: #da4453; } /* Warning */
   <meta name="article:author" content="Rafael Martínez Martínez"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="Taller ST V-2022: Actividad 5"/>
+  <meta property="og:title" content="Taller ST V-2022: Actividad 2"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content="Objetivo: Visualizar y entender ejemplos de series de tiempo &#10;&#10;Tipo de trabajo: Individual o equipo (máximo 3 personas). Cada integrante entrega el mismo trabajo."/>
+  <meta property="og:description" content="Objetivo: Visualizar y entender ejemplos de series de tiempo &#10;&#10;Tipo de trabajo: Individual o equipo (máximo 5 personas). Cada integrante entrega el mismo trabajo."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="Taller ST V-2022"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="Taller ST V-2022: Actividad 5"/>
-  <meta property="twitter:description" content="Objetivo: Visualizar y entender ejemplos de series de tiempo &#10;&#10;Tipo de trabajo: Individual o equipo (máximo 3 personas). Cada integrante entrega el mismo trabajo."/>
+  <meta property="twitter:title" content="Taller ST V-2022: Actividad 2"/>
+  <meta property="twitter:description" content="Objetivo: Visualizar y entender ejemplos de series de tiempo &#10;&#10;Tipo de trabajo: Individual o equipo (máximo 5 personas). Cada integrante entrega el mismo trabajo."/>
 
   <!--/radix_placeholder_meta_tags-->
   
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Actividad 5"]},{"type":"character","attributes":{},"value":["Objetivo: Visualizar y entender ejemplos de series de tiempo \n\nTipo de trabajo: Individual o equipo (máximo 3 personas). Cada integrante entrega el mismo trabajo.  \n"]},{"type":"character","attributes":{},"value":["August 1, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://rafneta.github.io/"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"NULL"},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","author","output","bibliography"]}},"value":[{"type":"character","attributes":{},"value":["Actividad 2"]},{"type":"character","attributes":{},"value":["Objetivo: Visualizar y entender ejemplos de series de tiempo \n\nTipo de trabajo: Individual o equipo (máximo 5 personas). Cada integrante entrega el mismo trabajo.  \n"]},{"type":"character","attributes":{},"value":["August 1, 2022"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation","affiliation_url"]}},"value":[{"type":"character","attributes":{},"value":["Rafael"]},{"type":"character","attributes":{},"value":["Martínez Martínez"]},{"type":"character","attributes":{},"value":["https://rafneta.github.io/"]},{"type":"character","attributes":{},"value":["UPIITA-IPN"]},{"type":"character","attributes":{},"value":["https://www.upiita.ipn.mx/"]}]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["code_folding","toc","toc_float","highlight","highlight_downlit"]}},"value":[{"type":"NULL"},{"type":"logical","attributes":{},"value":[true]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["breezedark"]},{"type":"logical","attributes":{},"value":[true]}]}]},{"type":"character","attributes":{},"value":["bibliografia.bib"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -1038,10 +1038,6 @@ code span.wa { color: #da4453; } /* Warning */
     margin-top: 1.5em;
   }
 
-  .figure img {
-    width: 100%;
-  }
-
   .figure .caption {
     color: rgba(0, 0, 0, 0.6);
     font-size: 12px;
@@ -1871,6 +1867,12 @@ code span.wa { color: #da4453; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
         var refs = $(this).attr('data-cites').split(" ");
         var refHtml = refs.map(function(ref) {
           return "<p>" + $('#ref-' + ref).html() + "</p>";
@@ -1885,6 +1887,31 @@ code span.wa { color: #da4453; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1984,6 +2011,8 @@ code span.wa { color: #da4453; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -2006,7 +2035,7 @@ code span.wa { color: #da4453; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -2280,7 +2309,7 @@ code span.wa { color: #da4453; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Actividad 5","description":"Objetivo: Visualizar y entender ejemplos de series de tiempo \n\nTipo de trabajo: Individual o equipo (máximo 3 personas). Cada integrante entrega el mismo trabajo.","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://rafneta.github.io/","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-08-01T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
+{"title":"Actividad 2","description":"Objetivo: Visualizar y entender ejemplos de series de tiempo \n\nTipo de trabajo: Individual o equipo (máximo 5 personas). Cada integrante entrega el mismo trabajo.","authors":[{"author":"Rafael Martínez Martínez","authorURL":"https://rafneta.github.io/","affiliation":"UPIITA-IPN","affiliationURL":"https://www.upiita.ipn.mx/","orcidID":""}],"publishedDate":"2022-08-01T00:00:00.000-05:00","citationText":"Martínez Martínez, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2320,7 +2349,7 @@ Actividades
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
 <a href="ActividadST_1.html">Actividad 1</a>
-<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_2.html">Actividad 2</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2369,11 +2398,11 @@ Apéndices
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Actividad 5</h1>
+<h1>Actividad 2</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
 <p><p>Objetivo: Visualizar y entender ejemplos de series de tiempo</p>
-<p>Tipo de trabajo: Individual o equipo (máximo 3 personas). Cada
+<p>Tipo de trabajo: Individual o equipo (máximo 5 personas). Cada
 integrante entrega el mismo trabajo.</p></p>
 </div>
 
@@ -2395,6 +2424,8 @@ Desempleo en Maine</a></li>
 <li><a href="#problema-2-tasa-de-desempleo-en-eua"
 id="toc-problema-2-tasa-de-desempleo-en-eua">Problema 2: Tasa de
 desempleo en EUA</a></li>
+<li><a href="#instrucciones-de-entrega"
+id="toc-instrucciones-de-entrega">Instrucciones de entrega</a></li>
 </ul>
 </nav>
 </div>
@@ -2418,14 +2449,13 @@ parámetro <em>header</em> debe establecerse en TRUE para que R trate la
 primera fila como el nombre de la variable en lugar de como datos.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>direccion1</span> <span class='op'>&lt;-</span> <span class='st'>"https://raw.githubusercontent.com/dallascard/"</span>
-<span class='va'>direccion2</span> <span class='op'>&lt;-</span> <span class='st'>"Introductory_Time_Series_with_R_datasets/master/Maine.dat"</span>
-<span class='va'>direccion</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>direccion1</span>, <span class='va'>direccion2</span><span class='op'>)</span>
-
-<span class='va'>Maine.month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>direccion</span>, header <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='kw'><a href='https://rdrr.io/r/base/attach.html'>attach</a></span><span class='op'>(</span><span class='va'>Maine.month</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>direccion1</span> <span class='op'>&lt;-</span> <span class='st'>"https://raw.githubusercontent.com/dallascard/"</span></span>
+<span><span class='va'>direccion2</span> <span class='op'>&lt;-</span> <span class='st'>"Introductory_Time_Series_with_R_datasets/master/Maine.dat"</span></span>
+<span><span class='va'>direccion</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>direccion1</span>, <span class='va'>direccion2</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>Maine.month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>direccion</span>, header <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/attach.html'>attach</a></span><span class='op'>(</span><span class='va'>Maine.month</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div id="pregunta">
@@ -2446,16 +2476,14 @@ la descripción del problema y al revisar la ayuda de la función
 <em>ts</em></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Maine.month.ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/ts.html'>ts</a></span><span class='op'>(</span><span class='va'>unemploy</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>, <span class='fl'>1</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Maine.month.ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/ts.html'>ts</a></span><span class='op'>(</span><span class='va'>unemploy</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>, <span class='fl'>1</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <p>El promedio anual es otro ejemplo de dato agreagdo que puede
 interesar graficar</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Maine.annual.ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>12</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Maine.annual.ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>12</span></span></code></pre>
 </div>
 </div>
 <div id="pregunta">
@@ -2475,12 +2503,11 @@ class="math inline">\(18\%\)</span> menor en agosto. Esto se puede ver
 mediante las siguientes operaciones</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>Maine.Feb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/window.html'>window</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>,<span class='fl'>2</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>Maine.Aug</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/window.html'>window</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>,<span class='fl'>8</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>Feb.ratio</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.Feb</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span>
-<span class='va'>Aug.ratio</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.Aug</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>Feb.ratio</span>,<span class='va'>Aug.ratio</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Maine.Feb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/window.html'>window</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>,<span class='fl'>2</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span><span class='va'>Maine.Aug</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/window.html'>window</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>,<span class='fl'>8</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></span>
+<span><span class='va'>Feb.ratio</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.Feb</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span></span>
+<span><span class='va'>Aug.ratio</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.Aug</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>Feb.ratio</span>,<span class='va'>Aug.ratio</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>[1] 1.2225290 0.8163732</code></pre>
 </div>
@@ -2492,10 +2519,9 @@ desempleo en EUA</h1>
 a octubre de 2006</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>direccion2</span> <span class='op'>&lt;-</span> <span class='st'>"Introductory_Time_Series_with_R_datasets/master/USunemp.dat"</span>
-<span class='va'>direccion</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>direccion1</span>, <span class='va'>direccion2</span><span class='op'>)</span>
-<span class='va'>US.month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>direccion</span>, header <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span>
-</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>direccion2</span> <span class='op'>&lt;-</span> <span class='st'>"Introductory_Time_Series_with_R_datasets/master/USunemp.dat"</span></span>
+<span><span class='va'>direccion</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>direccion1</span>, <span class='va'>direccion2</span><span class='op'>)</span></span>
+<span><span class='va'>US.month</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>direccion</span>, header <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
 <div id="pregunta">
@@ -2506,6 +2532,19 @@ de EUA</li>
 </ol>
 </p>
 </div>
+<h1 id="instrucciones-de-entrega">Instrucciones de entrega</h1>
+<ol type="1">
+<li><p>Genera un archivo <em>Rmd</em> con la solución de cada problema.
+El documento debe indicar (en la parte superior) los integrantes de
+equipo.</p></li>
+<li><p>Los problemas se presentan en orden, Pregunta (copia el texto)
+seguida de la respuesta.</p></li>
+<li><p>Se genera un archivo Pdf con la solución (puedes generar el html
+y posteriormente el pdf, o directamente el pdf)</p></li>
+<li><p>Entrega el archivo pdf en la plataforma correspondiente (todos
+los integrantes del equipo cargan el mismo archivo). Verifica que la
+entrega sea visible</p></li>
+</ol>
 <div class="sourceCode" id="cb2"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->

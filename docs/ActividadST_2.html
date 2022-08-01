@@ -2350,6 +2350,7 @@ Actividades
 <span class="nav-dropdown-header">Series de tiempo</span>
 <a href="ActividadST_1.html">Actividad 1</a>
 <a href="ActividadST_2.html">Actividad 2</a>
+<a href="ActividadST_3.html">Actividad 3</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2472,15 +2473,15 @@ número es correcto?</p></li>
 </p>
 </div>
 <p>Es necesario convertir los datos a tipo serie de tiempo. De acuerdo a
-la descripción del problema y al revisar la ayuda de la función
+la descripción del problema y al revisar la documentación de la función
 <em>ts</em></p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Maine.month.ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/ts.html'>ts</a></span><span class='op'>(</span><span class='va'>unemploy</span>, start <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1996</span>, <span class='fl'>1</span><span class='op'>)</span>, freq <span class='op'>=</span> <span class='fl'>12</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<p>El promedio anual es otro ejemplo de dato agreagdo que puede
-interesar graficar</p>
+<p>El promedio anual es otro ejemplo de dato agregado que puede ser de
+interés graficar</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>Maine.annual.ts</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>Maine.month.ts</span><span class='op'>)</span><span class='op'>/</span><span class='fl'>12</span></span></code></pre>
@@ -2511,7 +2512,7 @@ mediante las siguientes operaciones</p>
 </div>
 <pre><code>[1] 1.2225290 0.8163732</code></pre>
 </div>
-<p>Una explicación es del fenómeno anterior es que Maine atrae turistas
+<p>Una explicación del fenómeno anterior es que Maine atrae turistas
 durante el verano y eso genera empleos.</p>
 <h1 id="problema-2-tasa-de-desempleo-en-eua">Problema 2: Tasa de
 desempleo en EUA</h1>

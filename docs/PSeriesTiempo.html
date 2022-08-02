@@ -2333,8 +2333,8 @@ Clases
 <div class="nav-dropdown-content">
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
-<a href="PSeriesTiempo.html">Series timepo práctica</a>
-<a href="TSeriesTiempo.html">Series de tiempo teoría</a>
+<a href="PSeriesTiempo.html">Práctica: Series de tiempo</a>
+<a href="TSeriesTiempo.html">Teoría: Series de tiempo</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2352,6 +2352,8 @@ Actividades
 <a href="ActividadST_2.html">Actividad 2</a>
 <a href="ActividadST_3.html">Actividad 3</a>
 <a href="ActividadST_4.html">Actividad 4</a>
+<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_5.html">Actividad 6</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2423,6 +2425,18 @@ id="toc-series-de-tiempo-práctica">Series de tiempo, práctica</a></li>
 <li><a href="#manipulación-y-gráficas-de-series-de-tiempo"
 id="toc-manipulación-y-gráficas-de-series-de-tiempo">Manipulación y
 gráficas de series de tiempo</a></li>
+<li><a href="#operaciones-en-st" id="toc-operaciones-en-st">Operaciones
+en ST</a>
+<ul>
+<li><a href="#operación-lag" id="toc-operación-lag">Operación
+lag</a></li>
+<li><a href="#operación-diff" id="toc-operación-diff">Operación
+diff</a></li>
+<li><a href="#aplicación-de-funciones"
+id="toc-aplicación-de-funciones">Aplicación de funciones</a></li>
+<li><a href="#operacion-por-fechas"
+id="toc-operacion-por-fechas">Operacion por fechas</a></li>
+</ul></li>
 </ul>
 </nav>
 </div>
@@ -2463,7 +2477,7 @@ href="https://drive.google.com/file/d/1Na8jVAib3TSTIzbUrOvttTqxzwYnsIiU/view?usp
 <p><strong>Actividad 1, Problemas 1 y 2</strong></p>
 </div>
 <h1 id="series-de-tiempo-práctica">Series de tiempo, práctica</h1>
-<p>Es suficiente pensar (por el momento) a una serie de tiempo como
+<p>Es suficiente pensar (por el momento) a una serie de tiempo (ST) como
 mediciones (contradominio) de una variable conforme transcurre el tiempo
 (dominio)</p>
 <p>En el paquete <em>datasets</em> se encuentra el conjunto de datos
@@ -2657,10 +2671,10 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-08   27.3075   28.0375  27.1750    27.9725   237458000
 2015-01-09   28.1675   28.3125  27.5525    28.0025   214798000
            AAPL.Adjusted
-2015-01-02      24.67826
+2015-01-02      24.67825
 2015-01-05      23.98303
-2015-01-06      23.98528
-2015-01-07      24.32161
+2015-01-06      23.98529
+2015-01-07      24.32160
 2015-01-08      25.25610
 2015-01-09      25.28319</code></pre>
 </div>
@@ -2680,7 +2694,7 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
            AAPL.Adjusted
 2020-12-22      130.7131
 2020-12-23      129.8013
-2020-12-24      130.8023
+2020-12-24      130.8024
 2020-12-28      135.4806
 2020-12-29      133.6767
 2020-12-30      132.5368</code></pre>
@@ -2698,10 +2712,10 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-08   27.3075   28.0375  27.1750    27.9725   237458000
 2015-01-09   28.1675   28.3125  27.5525    28.0025   214798000
            AAPL.Adjusted
-2015-01-02      24.67826
+2015-01-02      24.67825
 2015-01-05      23.98303
-2015-01-06      23.98528
-2015-01-07      24.32161
+2015-01-06      23.98529
+2015-01-07      24.32160
 2015-01-08      25.25610
 2015-01-09      25.28319</code></pre>
 </div>
@@ -2750,7 +2764,7 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2020-12-21      127.0954
 2020-12-22      130.7131
 2020-12-23      129.8013
-2020-12-24      130.8023
+2020-12-24      130.8024
 2020-12-28      135.4806
 2020-12-29      133.6767
 2020-12-30      132.5368</code></pre>
@@ -2765,11 +2779,6 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
            AAPL.Adjusted
 2015-01-05      23.98303</code></pre>
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;&quot;</code></pre>
-<pre><code>[1] &quot;&quot;</code></pre>
-<div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span><span class='op'>)</span> <span class='co'># Del segundo al cuarto</span></span></code></pre>
 </div>
 <pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Volume
@@ -2778,13 +2787,8 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-07   26.8000   27.0500  26.6750    26.9375   160423600
            AAPL.Adjusted
 2015-01-05      23.98303
-2015-01-06      23.98528
-2015-01-07      24.32161</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;&quot;</code></pre>
-<pre><code>[1] &quot;&quot;</code></pre>
+2015-01-06      23.98529
+2015-01-07      24.32160</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>fechas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/zoo/man/yearmon.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2015-01-04"</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/yearmon.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2015-01-30"</span><span class='op'>)</span>, by <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
 <span><span class='va'>apple</span><span class='op'>[</span><span class='va'>fechas</span><span class='op'>]</span></span></code></pre>
@@ -2801,11 +2805,11 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-28   29.4075   29.5300  28.8275    28.8275   585908400
 2015-01-30   29.6000   30.0000  29.2125    29.2900   334982000
            AAPL.Adjusted
-2015-01-06      23.98528
+2015-01-06      23.98529
 2015-01-08      25.25610
 2015-01-12      24.66019
-2015-01-14      24.78434
-2015-01-16      23.92434
+2015-01-14      24.78433
+2015-01-16      23.92433
 2015-01-20      24.54056
 2015-01-22      25.37122
 2015-01-26      25.52922
@@ -2838,19 +2842,19 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-29   29.0800   29.7975  28.8900    29.7250   337745600
 2015-01-30   29.6000   30.0000  29.2125    29.2900   334982000
            AAPL.Adjusted
-2015-01-02      24.67826
+2015-01-02      24.67825
 2015-01-05      23.98303
-2015-01-06      23.98528
-2015-01-07      24.32161
+2015-01-06      23.98529
+2015-01-07      24.32160
 2015-01-08      25.25610
 2015-01-09      25.28319
 2015-01-12      24.66019
-2015-01-13      24.87914
-2015-01-14      24.78434
+2015-01-13      24.87915
+2015-01-14      24.78433
 2015-01-15      24.11169
-2015-01-16      23.92434
+2015-01-16      23.92433
 2015-01-20      24.54056
-2015-01-21      24.72790
+2015-01-21      24.72791
 2015-01-22      25.37122
 2015-01-23      25.50214
 2015-01-26      25.52922
@@ -2858,11 +2862,6 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-28      26.02807
 2015-01-29      26.83842
 2015-01-30      26.44566</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;&quot;</code></pre>
-<pre><code>[1] &quot;&quot;</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>[</span><span class='st'>'20160201/20160213'</span><span class='op'>]</span><span class='op'>)</span></span></code></pre>
 </div>
@@ -2878,21 +2877,16 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2016-02-11   23.4475   23.6800  23.1475    23.4250   200298800
 2016-02-12   23.5475   23.6250  23.2525    23.4975   161405600
            AAPL.Adjusted
-2016-02-01      22.13729
+2016-02-01      22.13730
 2016-02-02      21.68963
 2016-02-03      22.11893
 2016-02-04      22.29665
 2016-02-05      21.70115
 2016-02-08      21.92966
-2016-02-09      21.92504
+2016-02-09      21.92505
 2016-02-10      21.75885
 2016-02-11      21.62729
 2016-02-12      21.69423</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span>;<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='st'>""</span><span class='op'>)</span> <span class='co'># separador visual</span></span></code></pre>
-</div>
-<pre><code>[1] &quot;&quot;</code></pre>
-<pre><code>[1] &quot;&quot;</code></pre>
 </div>
 <p>Graficamos las columnas excepto volume</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2936,10 +2930,10 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 <span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>)</span></span></code></pre>
 </div>
 <pre><code>           AAPL.Open AAPL.High AAPL.Low AAPL.Close AAPL.Adjusted
-2015-01-02   27.8475   27.8600  26.8375    27.3325      24.67826
+2015-01-02   27.8475   27.8600  26.8375    27.3325      24.67825
 2015-01-05   27.0725   27.1625  26.3525    26.5625      23.98303
-2015-01-06   26.6350   26.8575  26.1575    26.5650      23.98528
-2015-01-07   26.8000   27.0500  26.6750    26.9375      24.32161
+2015-01-06   26.6350   26.8575  26.1575    26.5650      23.98529
+2015-01-07   26.8000   27.0500  26.6750    26.9375      24.32160
 2015-01-08   27.3075   28.0375  27.1750    27.9725      25.25610
 2015-01-09   28.1675   28.3125  27.5525    28.0025      25.28319
                 dif
@@ -2950,12 +2944,192 @@ href="https://r-pkgs.org/vignettes.html">viñetas</a></p>
 2015-01-08 0.862501
 2015-01-09 0.760000</code></pre>
 </div>
-<p>Un formualrio de xts se puede consultar en el siguiente <a
+<p>Se puede graficar solo una serie</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>$</span><span class='va'>AAPL.Adjusted</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-14-1.png" width="624" /></p>
+</div>
+<p>Un formualario de xts se puede consultar en el siguiente <a
 href="http://datacamp-community-prod.s3.amazonaws.com/72771032-0653-4d87-a798-4a83879e9">enlace</a></p>
 <div class="act">
 <p><strong>Actividad 4</strong></p>
 </div>
-<div class="sourceCode" id="cb29"><pre
+<h1 id="operaciones-en-st">Operaciones en ST</h1>
+<p>Se pueden realizar diferentes operaciones a las series de tiempo</p>
+<h2 id="operación-lag">Operación lag</h2>
+<p>Tenemos la siguiente ST</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>precios</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>132.45</span>, <span class='fl'>130.85</span>, <span class='fl'>130.00</span>, <span class='fl'>129.55</span>, <span class='fl'>130.85</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># los primeros 5 mediciones de enero</span></span>
+<span><span class='va'>fechas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/zoo/man/yearmon.html'>as.Date</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span></span>
+<span>  <span class='st'>"2010-01-04"</span>, <span class='st'>"2010-01-05"</span>, <span class='st'>"2010-01-06"</span>,</span>
+<span>  <span class='st'>"2010-01-07"</span>, <span class='st'>"2010-01-08"</span></span>
+<span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>stp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/xts/man/xts.html'>xts</a></span><span class='op'>(</span><span class='va'>precios</span>, <span class='va'>fechas</span><span class='op'>)</span> <span class='co'># nunca se cargo xts, ¿Qué pasó?</span></span>
+<span><span class='va'>stp</span></span></code></pre>
+</div>
+<pre><code>             [,1]
+2010-01-04 132.45
+2010-01-05 130.85
+2010-01-06 130.00
+2010-01-07 129.55
+2010-01-08 130.85</code></pre>
+</div>
+<p>Se pueden realizar traslaciones</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>stp</span><span class='op'>)</span> <span class='co'># stp(t-1)</span></span></code></pre>
+</div>
+<pre><code>             [,1]
+2010-01-04     NA
+2010-01-05 132.45
+2010-01-06 130.85
+2010-01-07 130.00
+2010-01-08 129.55</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>stp</span>,<span class='fl'>2</span><span class='op'>)</span> <span class='co'># stp(t-2)</span></span></code></pre>
+</div>
+<pre><code>             [,1]
+2010-01-04     NA
+2010-01-05     NA
+2010-01-06 132.45
+2010-01-07 130.85
+2010-01-08 130.00</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/lag.html'>lag</a></span><span class='op'>(</span><span class='va'>stp</span>,<span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span> <span class='co'># stp(t-(-1))=stp(t+1)</span></span></code></pre>
+</div>
+<pre><code>             [,1]
+2010-01-04 130.85
+2010-01-05 130.00
+2010-01-06 129.55
+2010-01-07 130.85
+2010-01-08     NA</code></pre>
+</div>
+<p><em>Nota: lag() genera datos adelantados, no atrasados</em></p>
+<h2 id="operación-diff">Operación diff</h2>
+<p>Tenemos la ST</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>stp</span></span></code></pre>
+</div>
+<pre><code>             [,1]
+2010-01-04 132.45
+2010-01-05 130.85
+2010-01-06 130.00
+2010-01-07 129.55
+2010-01-08 130.85</code></pre>
+</div>
+<p>La operación <em>diff</em> crea la serie <span
+class="math inline">\(Y_t\)</span> a partir de la serie <span
+class="math inline">\(y_t\)</span> <span
+class="math display">\[Y_{t}=y_t-y_{t-1}\]</span></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='va'>stp</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>            [,1]
+2010-01-04    NA
+2010-01-05 -1.60
+2010-01-06 -0.85
+2010-01-07 -0.45
+2010-01-08  1.30</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/base/diff.html'>diff</a></span><span class='op'>(</span><span class='va'>stp</span>, <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>            [,1]
+2010-01-04    NA
+2010-01-05    NA
+2010-01-06 -2.45
+2010-01-07 -1.30
+2010-01-08  0.85</code></pre>
+</div>
+<h2 id="aplicación-de-funciones">Aplicación de funciones</h2>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>lapple.close</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>log</a></span><span class='op'>(</span><span class='va'>apple</span><span class='op'>$</span><span class='va'>AAPL.Close</span><span class='op'>)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>lapple.close</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="PSeriesTiempo_files/figure-html5/unnamed-chunk-22-1.png" width="624" /></p>
+</div>
+<h2 id="operacion-por-fechas">Operacion por fechas</h2>
+<p>Tomamos un año de la serie <em>apple</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>ap1</span> <span class='op'>&lt;-</span> <span class='va'>apple</span><span class='op'>$</span><span class='va'>AAPL.Adjusted</span><span class='op'>[</span><span class='st'>"2016"</span><span class='op'>]</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ap1</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Adjusted
+2016-01-04      24.18504
+2016-01-05      23.57898
+2016-01-06      23.11755
+2016-01-07      22.14188
+2016-01-08      22.25896
+2016-01-11      22.61939</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='va'>ap1</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Adjusted
+2016-12-22      27.29050
+2016-12-23      27.34447
+2016-12-27      27.51813
+2016-12-28      27.40079
+2016-12-29      27.39376
+2016-12-30      27.18020</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># apply.daily(ap1, mean)</span></span>
+<span><span class='co'># apply.weekly(ap1, mean)</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/xts/man/apply.monthly.html'>apply.monthly</a></span><span class='op'>(</span><span class='va'>ap1</span>, <span class='va'>mean</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Adjusted
+2016-01-29      22.59619
+2016-02-29      22.08176
+2016-03-31      24.06637
+2016-04-29      24.63689
+2016-05-31      22.03606
+2016-06-30      22.43758
+2016-07-29      22.88674
+2016-08-31      25.12010
+2016-09-30      25.88265
+2016-10-31      27.01501
+2016-11-30      25.83786
+2016-12-30      26.83187</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/xts/man/apply.monthly.html'>apply.quarterly</a></span><span class='op'>(</span><span class='va'>ap1</span>, <span class='va'>mean</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Adjusted
+2016-03-31      22.95775
+2016-06-30      23.02748
+2016-09-30      24.67239
+2016-12-30      26.56158</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/pkg/xts/man/apply.monthly.html'>apply.yearly</a></span><span class='op'>(</span><span class='va'>ap1</span>, <span class='va'>mean</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>           AAPL.Adjusted
+2016-12-30      24.31188</code></pre>
+</div>
+<div class="act">
+<p><strong> Actividad 5</strong></p>
+</div>
+<div class="act">
+<p><strong> Teoría: Ecuaciones en diferencias </strong></p>
+</div>
+<div class="act">
+<p><strong> Actividad 6</strong></p>
+</div>
+<div class="sourceCode" id="cb33"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2964,6 +3138,15 @@ class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"><
 <div class="d-appendix">
 </div>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->

@@ -2076,16 +2076,11 @@ code span.wa { color: #da4453; } /* Warning */
   <!--/radix_placeholder_distill-->
   <script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
   <script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-  <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-  <script src="site_libs/datatables-binding-0.23/datatables.js"></script>
-  <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-  <link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-  <link href="site_libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-  <script src="site_libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
-  <link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-  <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
   <script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+  <link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
   <script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
   <script src="site_libs/popper-2.6.0/popper.min.js"></script>
@@ -2346,8 +2341,8 @@ Clases
 <div class="nav-dropdown-content">
 <hr/>
 <span class="nav-dropdown-header">Series de tiempo</span>
-<a href="PSeriesTiempo.html">Series timepo práctica</a>
-<a href="TSeriesTiempo.html">Series de tiempo teoría</a>
+<a href="PSeriesTiempo.html">Práctica: Series de tiempo</a>
+<a href="TSeriesTiempo.html">Teoría: Series de tiempo</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2365,6 +2360,8 @@ Actividades
 <a href="ActividadST_2.html">Actividad 2</a>
 <a href="ActividadST_3.html">Actividad 3</a>
 <a href="ActividadST_4.html">Actividad 4</a>
+<a href="ActividadST_5.html">Actividad 5</a>
+<a href="ActividadST_5.html">Actividad 6</a>
 </div>
 </div>
 <div class="nav-dropdown">
@@ -2472,15 +2469,18 @@ trabajo</p>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>bh</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/openxlsx/man/read.xlsx.html'>read.xlsx</a></span><span class='op'>(</span>xlsxFile <span class='op'>=</span> <span class='st'>"Datos/BH.xlsx"</span>,</span>
 <span>                          detectDates <span class='op'>=</span> <span class='cn'>T</span><span class='op'>)</span></span>
-<span><span class='fu'>DT</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/DT/man/datatable.html'>datatable</a></span><span class='op'>(</span><span class='va'>bh</span><span class='op'>)</span> </span></code></pre>
+<span><span class='va'>bh</span></span></code></pre>
 </div>
-<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-2"></span>
-<div id="htmlwidget-515660f5f7f8c9e9291d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-515660f5f7f8c9e9291d">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4"],["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],[2.86,2.61,4.51,7.63],[2.83,2.52,1.97,1.9],[11.5,10.1,8.6,8.7],[33.5,30,24.8,27.2],[116.7,119,125.9,143.2],[null,40.1,43.7,45.8],[32.9,33.7,34.7,32],[20.6,24.8,24.8,20.7],[null,107.4,115.5,110.5],[39,63,44,54]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Fecha<\/th>\n      <th>Leucocitos<\/th>\n      <th>Eritrocitos<\/th>\n      <th>Hemoglobina<\/th>\n      <th>Hematocrito<\/th>\n      <th>Vol_Cor_Med<\/th>\n      <th>Hemo_Corp_Med<\/th>\n      <th>CMHC<\/th>\n      <th>CV<\/th>\n      <th>SD<\/th>\n      <th>Plaquetas<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
-<p class="caption">
-Figure 1: Datos
-</p>
-</div>
+<pre><code>       Fecha Leucocitos Eritrocitos Hemoglobina Hematocrito
+1 2022-07-04       2.86        2.83        11.5        33.5
+2 2022-07-08       2.61        2.52        10.1        30.0
+3 2022-07-16       4.51        1.97         8.6        24.8
+4 2022-07-26       7.63        1.90         8.7        27.2
+  Vol_Cor_Med Hemo_Corp_Med CMHC   CV    SD Plaquetas
+1       116.7            NA 32.9 20.6    NA        39
+2       119.0          40.1 33.7 24.8 107.4        63
+3       125.9          43.7 34.7 24.8 115.5        44
+4       143.2          45.8 32.0 20.7 110.5        54</code></pre>
 </div>
 <p>Estos datos corresponden a 4 diferentes tomas de sangre (Biometría
 Hematica) de la misma persona. El paciente tiene una enfermedad que
@@ -2488,10 +2488,9 @@ suprime su sistema inmunológico.</p>
 <div id="pregunta">
 <p>
 <ol type="1">
-<li>¿Qué observas de acuerdo a las fechas de las muestras?</li>
+<li>¿Qué observas respecto a las fechas de las muestras?</li>
 <li>¿Hay datos faltantes? En caso de que existan datos faltantes,
-especula sobre el motivo (no hay respuestas correctas ni
-incorrectas)</li>
+especula sobre el motivo</li>
 </ol>
 </p>
 </div>
@@ -2577,8 +2576,8 @@ contra la enfermedad. Con esta información se generan las gráficas</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>hcm</span> <span class='op'>&lt;-</span> <span class='fu'>grafica</span><span class='op'>(</span><span class='va'>bh</span><span class='op'>$</span><span class='va'>Hemo_Corp_Med</span>, <span class='st'>"Hemoglobina Corp. Media"</span>, <span class='fl'>21</span>, <span class='fl'>31</span><span class='op'>)</span></span>
 <span><span class='va'>hcm</span></span></code></pre>
 </div>
-<div id="htmlwidget-84104ef156edc50fd32f" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-84104ef156edc50fd32f">{"x":{"visdat":{"85b36810c22b":["function () ","plotlyVisDat"]},"cur_data":"85b36810c22b","attrs":{"85b36810c22b":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"85b36810c22b.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[null,40.1,43.7,45.8],"name":"Hemoglobina Corp. Media","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Hemoglobina Corp. Media","yaxis":{"domain":[0,1],"automargin":true,"title":"Hemoglobina Corp. Media"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":21,"y1":31,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-08","2022-07-16","2022-07-26"],"y":[40.1,43.7,45.8],"name":"Hemoglobina Corp. Media","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-03cc1eb51d160506f9ca" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-03cc1eb51d160506f9ca">{"x":{"visdat":{"163a638a29298":["function () ","plotlyVisDat"]},"cur_data":"163a638a29298","attrs":{"163a638a29298":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"163a638a29298.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[null,40.1,43.7,45.8],"name":"Hemoglobina Corp. Media","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Hemoglobina Corp. Media","yaxis":{"domain":[0,1],"automargin":true,"title":"Hemoglobina Corp. Media"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":21,"y1":31,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-08","2022-07-16","2022-07-26"],"y":[40.1,43.7,45.8],"name":"Hemoglobina Corp. Media","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="conc.-media-de-hemoglobina-corp.">Conc. Media de Hemoglobina
 Corp.</h2>
@@ -2587,8 +2586,8 @@ Corp.</h2>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cmhc</span> <span class='op'>&lt;-</span> <span class='fu'>grafica</span><span class='op'>(</span><span class='va'>bh</span><span class='op'>$</span><span class='va'>CMHC</span>, <span class='st'>"Conc. Media de Hemoglobina Corp."</span>, <span class='fl'>32</span>, <span class='fl'>36</span><span class='op'>)</span></span>
 <span><span class='va'>cmhc</span></span></code></pre>
 </div>
-<div id="htmlwidget-0977b870774f6103b7e9" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0977b870774f6103b7e9">{"x":{"visdat":{"85b35166ccb0":["function () ","plotlyVisDat"]},"cur_data":"85b35166ccb0","attrs":{"85b35166ccb0":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"85b35166ccb0.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[32.9,33.7,34.7,32],"name":"Conc. Media de Hemoglobina Corp.","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Conc. Media de Hemoglobina Corp.","yaxis":{"domain":[0,1],"automargin":true,"title":"Conc. Media de Hemoglobina Corp."},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":32,"y1":36,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[32.9,33.7,34.7,32],"name":"Conc. Media de Hemoglobina Corp.","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-fb4fa9030aa3db7455b1" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fb4fa9030aa3db7455b1">{"x":{"visdat":{"163a638c58d4c":["function () ","plotlyVisDat"]},"cur_data":"163a638c58d4c","attrs":{"163a638c58d4c":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"163a638c58d4c.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[32.9,33.7,34.7,32],"name":"Conc. Media de Hemoglobina Corp.","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Conc. Media de Hemoglobina Corp.","yaxis":{"domain":[0,1],"automargin":true,"title":"Conc. Media de Hemoglobina Corp."},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":32,"y1":36,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[32.9,33.7,34.7,32],"name":"Conc. Media de Hemoglobina Corp.","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="ancho-de-distrib.-de-eritrocitos-cv">Ancho de Distrib. De
 Eritrocitos (CV)</h2>
@@ -2597,8 +2596,8 @@ Eritrocitos (CV)</h2>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>cv</span> <span class='op'>&lt;-</span> <span class='fu'>grafica</span><span class='op'>(</span><span class='va'>bh</span><span class='op'>$</span><span class='va'>CV</span>, <span class='st'>"Ancho de Distrib. De Eritrocitos (CV)"</span>, <span class='fl'>11.5</span>, <span class='fl'>17</span><span class='op'>)</span></span>
 <span><span class='va'>cv</span></span></code></pre>
 </div>
-<div id="htmlwidget-ab7e9e9ad9e5499b30e8" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ab7e9e9ad9e5499b30e8">{"x":{"visdat":{"85b311fba8a0":["function () ","plotlyVisDat"]},"cur_data":"85b311fba8a0","attrs":{"85b311fba8a0":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"85b311fba8a0.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[20.6,24.8,24.8,20.7],"name":"Ancho de Distrib. De Eritrocitos (CV)","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Ancho de Distrib. De Eritrocitos (CV)","yaxis":{"domain":[0,1],"automargin":true,"title":"Ancho de Distrib. De Eritrocitos (CV)"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":11.5,"y1":17,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[20.6,24.8,24.8,20.7],"name":"Ancho de Distrib. De Eritrocitos (CV)","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d47005adf9a15b5ffe99" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d47005adf9a15b5ffe99">{"x":{"visdat":{"163a618fcf2a2":["function () ","plotlyVisDat"]},"cur_data":"163a618fcf2a2","attrs":{"163a618fcf2a2":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"163a618fcf2a2.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[20.6,24.8,24.8,20.7],"name":"Ancho de Distrib. De Eritrocitos (CV)","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Ancho de Distrib. De Eritrocitos (CV)","yaxis":{"domain":[0,1],"automargin":true,"title":"Ancho de Distrib. De Eritrocitos (CV)"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":11.5,"y1":17,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[20.6,24.8,24.8,20.7],"name":"Ancho de Distrib. De Eritrocitos (CV)","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="ancho-de-distrib.-de-eritrocitos-sd">Ancho de Distrib. De
 Eritrocitos (SD)</h2>
@@ -2607,8 +2606,8 @@ Eritrocitos (SD)</h2>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>sd</span> <span class='op'>&lt;-</span> <span class='fu'>grafica</span><span class='op'>(</span><span class='va'>bh</span><span class='op'>$</span><span class='va'>SD</span>, <span class='st'>"Ancho de Distrib. De Eritrocitos (SD)"</span>, <span class='fl'>39</span>, <span class='fl'>57</span><span class='op'>)</span></span>
 <span><span class='va'>sd</span></span></code></pre>
 </div>
-<div id="htmlwidget-25afd81fc02ab2a6e108" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-25afd81fc02ab2a6e108">{"x":{"visdat":{"85b36a3b8cb9":["function () ","plotlyVisDat"]},"cur_data":"85b36a3b8cb9","attrs":{"85b36a3b8cb9":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"85b36a3b8cb9.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[null,107.4,115.5,110.5],"name":"Ancho de Distrib. De Eritrocitos (SD)","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Ancho de Distrib. De Eritrocitos (SD)","yaxis":{"domain":[0,1],"automargin":true,"title":"Ancho de Distrib. De Eritrocitos (SD)"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":39,"y1":57,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-08","2022-07-16","2022-07-26"],"y":[107.4,115.5,110.5],"name":"Ancho de Distrib. De Eritrocitos (SD)","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-22f9ae96331bef5d375f" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-22f9ae96331bef5d375f">{"x":{"visdat":{"163a64bce8f3d":["function () ","plotlyVisDat"]},"cur_data":"163a64bce8f3d","attrs":{"163a64bce8f3d":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"163a64bce8f3d.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[null,107.4,115.5,110.5],"name":"Ancho de Distrib. De Eritrocitos (SD)","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Ancho de Distrib. De Eritrocitos (SD)","yaxis":{"domain":[0,1],"automargin":true,"title":"Ancho de Distrib. De Eritrocitos (SD)"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":39,"y1":57,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-08","2022-07-16","2022-07-26"],"y":[107.4,115.5,110.5],"name":"Ancho de Distrib. De Eritrocitos (SD)","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <h2 id="plaquetas">Plaquetas</h2>
 <div class="layout-chunk" data-layout="l-body">
@@ -2616,8 +2615,8 @@ Eritrocitos (SD)</h2>
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>pla</span> <span class='op'>&lt;-</span> <span class='fu'>grafica</span><span class='op'>(</span><span class='va'>bh</span><span class='op'>$</span><span class='va'>Plaquetas</span>, <span class='st'>"Plaquetas"</span>, <span class='fl'>150</span>, <span class='fl'>500</span><span class='op'>)</span></span>
 <span><span class='va'>pla</span></span></code></pre>
 </div>
-<div id="htmlwidget-daed4a0e344cbba9177e" style="width:624px;height:384px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-daed4a0e344cbba9177e">{"x":{"visdat":{"85b34090a23a":["function () ","plotlyVisDat"]},"cur_data":"85b34090a23a","attrs":{"85b34090a23a":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"85b34090a23a.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[39,63,44,54],"name":"Plaquetas","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Plaquetas","yaxis":{"domain":[0,1],"automargin":true,"title":"Plaquetas"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":150,"y1":500,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[39,63,44,54],"name":"Plaquetas","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1d84590bf167b3c5d33b" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1d84590bf167b3c5d33b">{"x":{"visdat":{"163a640df5c94":["function () ","plotlyVisDat"]},"cur_data":"163a640df5c94","attrs":{"163a640df5c94":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"},"163a640df5c94.1":{"mode":"lines+markers","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[39,63,44,54],"name":"Plaquetas","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"showlegend":false,"title":"Plaquetas","yaxis":{"domain":[0,1],"automargin":true,"title":"Plaquetas"},"shapes":[{"type":"line","y0":0,"y1":1,"yref":"paper","x0":"2022-07-24","x1":"2022-07-24","line":{"color":"green","dash":"dot"}},{"type":"rect","fillcolor":"red","line":{"color":"red"},"opacity":0.2,"y0":150,"y1":500,"x0":"2022-07-04","x1":"2022-07-26"}],"xaxis":{"domain":[0,1],"automargin":true,"title":[]},"hovermode":"closest"},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"mode":"lines+markers","type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"mode":"lines+markers","type":"scatter","x":["2022-07-04","2022-07-08","2022-07-16","2022-07-26"],"y":[39,63,44,54],"name":"Plaquetas","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 <p>La franja horizontal indica los valores “normales” de la medición, es
 decir, una persona sin enfermedades tendría mediciones dentro de la
@@ -2625,11 +2624,12 @@ franja.</p>
 <div id="pregunta">
 <p>
 <ol start="5" type="1">
-<li><p>Elabora las gráfias de Leucocitos, Eritrocitos, Hemoglobina. Para
-ello investiga sobre los niveles mínimos y máximos, pues son parámetros
-de la función.</p></li>
+<li><p>Utiliza la función <em>grafica</em> para elaborar las gráfias de
+Leucocitos, Eritrocitos y Hemoglobina. Para ello investiga sobre los
+niveles mínimos y máximos, pues son parámetros de la función
+<em>grafica</em>.</p></li>
 <li><p>De acuerdo a la información gráfica. ¿El medicamento puede ser
-responsable de los cambio en las mediciones? Desarrolla con tu
+responsable de los cambios en las mediciones? Desarrolla con tu
 equipo</p></li>
 </ol>
 </p>
@@ -2640,10 +2640,10 @@ julio.</p>
 <div id="pregunta">
 <p>
 <ol start="7" type="1">
-<li><p>Modifica la función <em>grafica</em> para que muestra esta
+<li><p>Modifica la función <em>grafica</em> para que muestre esta
 situación como una línea vertical dentro de la gráfica de la
-sería</p></li>
-<li><p>Muestra las gráficas de las series, donde incluyan esta nueva
+serie</p></li>
+<li><p>Muestra las gráficas de las series, donde se incluya esta nueva
 información</p></li>
 </ol>
 </p>
@@ -2651,7 +2651,7 @@ información</p></li>
 <p>Ahora que tienes más información,</p>
 <div id="pregunta">
 <p>
-<ol start="7" type="1">
+<ol start="9" type="1">
 <li><p>¿La respuesta a la pregunta 6, la cambiarías o la dejaras igual?
 Si la cambias, desarrolla al respecto</p></li>
 <li><p>¿Qué puedes concluir (todo es válido) sobre el desarrollo de este
@@ -2682,8 +2682,8 @@ la fecha</li>
 <div id="pregunta">
 <p>
 <ol start="2" type="1">
-<li><p>Realiza gráficas de las diferentes series (por ejemplo, las qeu
-se hicieron para apple u otras qeu propangas)</p></li>
+<li><p>Realiza gráficas de las diferentes series (por ejemplo, las que
+se realizaron para apple u otras que propongas)</p></li>
 <li><p>A apartir de las gráficas ¿notas algún comportamiento peculiar?
 Explica</p></li>
 <li><p>Especula sobre los motivos del comportamiento del valor de las
@@ -2706,7 +2706,7 @@ y posteriormente el pdf, o directamente el pdf)</p></li>
 los integrantes del equipo cargan el mismo archivo). Verifica que la
 entrega sea visible</p></li>
 </ol>
-<div class="sourceCode" id="cb1"><pre
+<div class="sourceCode" id="cb2"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

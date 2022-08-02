@@ -52,6 +52,14 @@
  </div>
  
  
+ <div id='pregunta'>
+<p>
+
+1. Descarga los precios de las acciones de Uber, desde enero del 2020 a la fecha 
+</p>
+</div>
+ 
+ 
 <div id='pregunta'>
 <p>
 

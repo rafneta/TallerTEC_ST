@@ -26,3 +26,8 @@ execute:
 ##
 
 ![](./sisdis2/sisdis24.jpg){fig-align="center" width="90%"}
+
+
+##
+
+![](./sisdis2/sisdis25.jpg){fig-align="center" width="90%"}

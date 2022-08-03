@@ -1,0 +1,367 @@
+---
+title: "Visualización"
+description: |
+  Visualizacion de los datos.
+author:
+  - name: Rafael Martínez Martínez
+    url: https://github.com/rafneta
+    affiliation: CIDE-ME2019
+    affiliation_url: https://cide.edu/programas/me
+output: 
+  distill::distill_article:
+    code_folding: hide
+    toc: true
+    toc_depth: 3
+bibliography: bibliografia.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Visualización de la situación 
+
+<aside>
+```{r codefolder, echo=FALSE, results='asis'}
+codefolder::distill(init = "show")
+```
+</aside>
+
+
+Para esta parte se instaló el paquete *covidMex* con las instrucciones de la siguiente [página](https://github.com/pablorm296/covidMex), este paquete permite una adquisión de datos preprocesados.
+
+```{r, warning=FALSE,message=FALSE, eval=FALSE}
+install.packages('devtools')
+devtools::install_github("pablorm296/covidMex") 
+```
+
+
+Cargamos las librerias a utilizar para la visualización
+
+```{r, warning=FALSE,message=FALSE}
+library(covidMex)
+library(dplyr)
+library(ggplot2)
+library(highcharter)
+library(tidyverse)
+library(lubridate)
+library(openxlsx)
+library(DT)
+library(data.table)
+library(xts)
+```
+
+
+Para la primer visualización, ver Figura \@ref(fig:casospaises)  se combina parte del código ejemplo del paquete *covidMex* y algunas instrucciones del paquete *highcharter*, pueden consultarse las siguientes referencias para su implementación [@kagglehigh], [@jkunst], [@singh], [@jkunstm]. En particular se muestran los casos acumulados en seis países a partir de la confirmación del caso 100, contra el número de días trancurridos a apartir de dicha situación, esta es una gráfica usual reportada en la literatura.  
+
+
+
+```{r, "casospaises", fig.cap="Casos acumulados confirmados por países", out.extra="class=external", warning=FALSE,message=FALSE, layout="l-body-outset"}
+#mundiales<-covidWWSituation()
+#write.csv(mundiales, file = "Datos10deJunioMundiales.csv")
+mundiales<-read.csv("Datos10deJunioMundiales.csv")
+myMenuItems <- c("downloadPNG", "downloadJPEG", "downloadPDF", "downloadCSV" )
+mundiales%>%
+  # Seleccionar países
+  filter(pais_territorio %in% c("Mexico", "Spain", 
+                                "Italy", "Brazil", 
+                                "United_States_of_America",
+                                "China")) %>%
+  # Covertrr fechas en Date y cambiar guiones bajos en espacios
+  mutate(fecha_corte = as.Date(fecha_corte), 
+         pais_territorio = gsub("_", " ", pais_territorio,
+                                fixed = T)) %>%
+  # Ordenar y agrupar
+  arrange(pais_territorio, fecha_corte) %>%
+  group_by(pais_territorio) %>%
+  # Contar casos acumulados
+  mutate(casos_acumulados = cumsum(casos_nuevos)) %>%
+  # Eliminar observaciones vacías hasta encontrar el primer caso
+  # Mantener filas a partir de la primer fila donde casos_nuevos != 0
+  filter(row_number() >= min(row_number()[casos_acumulados > 100])) %>%
+  # Días desde el primer caso y suma acumulada de casos
+  mutate(dias_transcurridos = fecha_corte - fecha_corte[1L]) %>%
+  hchart('line',hcaes(x=dias_transcurridos,y=casos_acumulados,
+                      group=pais_territorio))%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(
+    text = "Casos acumulados en seis países desde que se confirmó 
+    el caso N° 100") %>%
+  hc_subtitle(text = "Da clic en el nombre de cada país") %>%
+  hc_credits(
+    enabled = TRUE, text = "Fuente: Datos del Centro Europeo 
+    para la Prevención y Control de Enfermedades",
+    style = list(fontSize = "12px"))%>%
+  hc_yAxis(title = list(text = "Número de casos confirmados"))%>%
+  hc_xAxis(title=list(text="Días transcurridos"))%>%
+    hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+
+Observamos que los casos confirmados acumulados en Estados Unidos son más de $2$ millones, mientras que en China son un poco más de $84\,000$, y en México $129\,184$, se tiene que considerar que a menos que se diga lo contrario, los datos mostrados corresponden al cierre del 10 de junio de 2020. 
+
+Para tener los datos a disposición, se utilizó código como el siguiente, donde se leyeron los datos el 10 de junio y estos se guardaron para tener acceso, posterior a esta fecha. 
+
+```{r, warning=FALSE,message=FALSE, eval=FALSE}
+datos_abiertos <- covidOfficialMx()
+confirmados <- covidConfirmedMx()
+names(confirmados) <- tolower(names(confirmados))
+write.csv(datos_abiertos, file = "Datos10deJunioDatos_abiertos.csv")
+write.csv(confirmados, file = "Datos10deJunioconfirmados.csv")
+```
+
+Ahora se muestran los casos acumulados para México por estado, ver Figura  \@ref(fig:casosestado) 
+
+```{r,"casosestado", fig.cap="Casos confirmados acumulados por estado",  out.extra="class=external", layout="l-screen-inset"}
+confirmados<-read_csv("Datos10deJunioconfirmados.csv")
+confirmados%>%
+  count(nom_ent)%>%
+  hchart('treemap',
+         hcaes(x='nom_ent', value='n',color = 'n'))%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(
+    text = "Número de casos confirmados acumulados por estado"
+  ) %>%
+  hc_subtitle(text = "Coloca el cursor sobre los cuadros") %>%
+    hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+
+Observamos que la Ciudad de México tiene el mayor número de casos confirmados acumulados con $40\,117$, seguido del Estado de México con $13\,879$ y por Baja California con $6\,585$. Cabe destacar que el Estado de México y la ciudad de Mexico ocupan la primer y segunda posición en número de habitantes del país, lo cual podría explicar la cantidad de casos confirmados acumulados. Por otro lado la densidad de población en la Ciudad e México es la primera y la del Estado de México la segunda de la nación. Se podría plantear al siguiente pregunta ¿la densidad de la entidad federativa explica el número de casos confirmados?, de manera intuitiva parece que no, pues en ese caso Baja California, y otros tantos estados, no figurarían en las primeras posiciones de casos confirmados ^[Aquí podría plantearse de manera formal un problema de regresión, para confirmar o desechar tal conjetura] 
+
+Probablemente la _movilidad_ que hay en estas ciudades o la _cercanía_ con otras entidades que presenten _grandes_ cantidades de casos confimados podría explicar estos resultados, por el momento es una hipótesis que en un trabajo futuro sería bueno responder.  
+
+
+
+Otras preguntas que se pueden hacer son: ¿la edad de los individuos influye en la suceptibilidad para contraer el enfermedad?, ¿un determinado sexo es más propenso a contrar la enfermedad que el otro?, si un determinado sexo es más propenso a contraer la enfermedad ¿esta propensión es independiente de la edad? 
+
+La Figura \@ref(fig:casosedad)  muestra los casos confirmados agrupados por edad en intervalos de 10 años y la Figura \@ref(fig:casosedadsexo) muestra los casos confirmados agrupados por edad y sexo en intervalos de 10 años.
+
+```{r,"casosedad", fig.cap="Casos acumulados confirmados por edad",  out.extra="class=external", layout="l-body-outset"}
+confirmados<-
+  mutate(confirmados,GrupoEdad = cut(edad, 
+                         breaks = c(seq(0, 90, by = 10), Inf),
+                         include.lowest = T))
+confirmados%>%
+  count(GrupoEdad)%>%
+  hchart('treemap',
+         hcaes(x='GrupoEdad', value='n',color = 'n'))%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(
+    text = "Número de casos confirmados acumulados agupados por edad"
+  ) %>%
+  hc_subtitle(text = "Las edades están agrupadas en intervalos
+              de 10 años (coloca el cursor sobre los cuadros)") %>%
+  hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+
+
+
+
+```{r,"casosedadsexo", fig.cap="Casos acumulados confirmados por edad y sexo",  out.extra="class=external", layout="l-body-outset"}
+
+confirmados%>%
+  count(GrupoEdad, sexo)%>%
+  hchart('column',
+         hcaes(x='GrupoEdad', y='n', group='sexo'))%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(
+    text = "Número de casos confirmados agrupados por edad y sexo"
+  ) %>%
+  hc_subtitle(text = "Las edades están agrupadas en intervalos 
+              de 10 años (da clic sobre F o M)") %>%
+  hc_credits(
+    enabled = TRUE, text = "Source: SSS",
+    style = list(fontSize = "12px"))%>%
+  hc_yAxis(title = list(text = "Número de casos confirmados"))%>%
+  hc_xAxis(title=list(text="Intervalos de 10 años"))%>%
+    hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+Estás últimas gráficas pueden ayudar a tener una intuición sobre las respuestas a las preguntas previamente planteadas. Para precisar las respuestas se pueden plantear modelos econométricos, en un futuro se espera responder a estas preguntas.
+
+Se pueden plantear más preguntas que pueden ser de intéres para ayudar a la prevención en población vulnerable: ¿los casos confirmados presentan alguna enfermedad respiratoria?, ¿los casos confirmados presentan diabetes?, ¿Los casos confirmados presentan obesidad?, ¿Los casos confirmados presentan hipertensión?, etc. Para poder responder estas preguntas es necesario tener datos al respecto, algunas preguntas podrían ser importantes, pero si no se cuenta con la información, no será posible intentar responderlas de forma correcta. 
+
+> Se pueden realizar bastantes visualizaciones, recomiendo revisar la página del [Dr. Sebastián Garrindo](http://segasi.com.mx/adn40/covid19/#el-mundo), la página del [gobierno de México](https://coronavirus.gob.mx/datos/) y la página [information is beautiful](https://informationisbeautiful.net/visualizations/covid-19-coronavirus-infographic-datapack/) 
+
+# Adquicisión y manipulación de datos
+
+Aquí se hace una pausa para comentar como pueden ser prepararados los datos. 
+
+Una fuente oficial de información son los [Datos Abiertos](https://www.gob.mx/salud/documentos/datos-abiertos-152127) proporcionados por la Dirección General de Epidemiología. Estos datos se actualizan a diario, en el caso estudiado se toman los del 10 de junio de 2020, se ofrecen en un archivo zip que contiene la base de datos en formato csv, y dos archivos xls sobre la descripción de las variables y los valores que estás toman.  El archivo descriptores da información de las 35 variables, entre las que se pueden encontrar RESULTADO, FECHA_ACTUALIZACION, TABAQUISMO, NEUMONIA, SEXO, EDAD, etc. La Figura \@ref(fig:tabladescriptores) muestra este archivo, se puede navegar sobre esta tabla y buscar información epecífica.
+
+
+```{r,"tabladescriptores", fig.cap="Tabla de descriptores",  out.extra="class=external", layout="l-body-outset"}
+Descriptores<-read.xlsx(
+  xlsxFile = "Datos10Junio/diccionario_datos_covid19/Descriptores_0419.xlsx")
+datatable(as.data.table(Descriptores),options = list(pageLength = 5))
+```
+Si se quieren saber los valores que las variables toman y el significado de cada valor, se tiene que consultar el catálogo, cada variable se encuentra en hojas distintas cuyo número tiene que encontrarse, en nuestro caso nos interesa saber los valores de la varibale RESULTADO, así la hoja de interés es la $7$, en la Figura \@ref(fig:tablacatalogo) se muestra esta información. 
+
+```{r,"tablacatalogo", fig.cap="Tabla de descriptores",  out.extra="class=external", layout="l-body-outset"}
+Catalogo<-read.xlsx(
+  xlsxFile = "Datos10Junio/diccionario_datos_covid19/Catalogos_0412.xlsx",
+  sheet=7)
+datatable(as.data.table(Catalogo))
+```
+
+Como se puede observar la preparación de los datos puede complicarse.
+
+# Casos confirmados como serie de tiempo
+
+Para esta parte se toman los datos del repositorio de [mariorz](https://github.com/mariorz/covid19-mx-time-series) en github ^[Para ello se cosultó la página https://rpubs.com/lokraj/github_csv], aunque los dados ya están bastante preprocesados, se hacen algunas adecuaciones sobre el formato de fecha.
+
+
+```{r,warning=FALSE,message=FALSE}
+#casos_mx_st <- read_csv(
+#url(
+#"https://raw.githubusercontent.com/mariorz/covid19-mx-time-series/
+#master/data/covid19_confirmed_mx.csv"))  
+#write.csv(casos_mx_st, file = "Datos10deJunioSeries.csv")
+casos_mx_st <- read_csv("Datos10deJunioSeries.csv")  %>%
+select(-X1)
+casos_m<-casos_mx_st   %>%
+pivot_longer(-Estado, names_to = "fecha_corte", 
+               values_to = "casos") 
+casos_m$fecha <- format(as.Date(casos_m$fecha_corte,
+                                format = "%d-%m-%Y"), "%Y-%m-%d")
+```
+
+
+En la Figura \@ref(fig:seriesmexico) se muestra la evolución en el tiempo de los casos confirmados *acumulados*^[nos referimos a los *casos confirmados acumulados* como *casos confirmados*] en México para cada entidad federativa. 
+
+```{r,"seriesmexico", fig.cap="Casos confirmados acumulados para cada estado por día ",  out.extra="class=external", layout="l-screen-inset"}
+
+casos_m %>% 
+  hchart('line',hcaes(x=as.Date(fecha), y=casos, group=Estado))%>%
+   hc_add_theme(hc_theme_ffx())%>%
+  hc_title(text = "Casos confirmados para cada estado por día")%>%
+           #margin = 20, align = "left",
+           #style = list(color = "#90ed7d", useHTML = TRUE)) %>% 
+  hc_subtitle(text = "Da click sobre el nombre de cada estado 
+              para ocultar")%>%
+             # align = "left",
+            #  style = list(color = "#2b908f", fontWeight = "bold")) %>% 
+  hc_yAxis(title = list(text = "Número de casos confirmados"))%>%
+  hc_xAxis(title = list(text = "Fecha (colocar el apuntador sobre
+                        las gráficas)"))%>%
+  hc_legend(align = "right", verticalAlign = "top",
+            layout = "vertical", x = 0, y = 100) %>%
+  hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+
+
+La Ciudad de México, Estado de México y Baja California han sido las ciudades que durante cada día se han colocado en los primeros 3 lugares nacionales, en particular se había mostrado en la Figura \@ref(fig:casosestado) para el corte al día del 10 de junio. 
+
+Para tener una mejor visualización se tratará a los datos para escribirlos en un formato de fecha tipo *xts*, para ello se crea una matriz donde cada columna corresponde a un estado, cada fila a una fecha, y cada celda a los casos confirmados reportados, posteriormente esta matriz será la información para nuestro variable tipo *xts*.
+
+```{r,warning=FALSE,message=FALSE}
+casosor_m<-casos_m %>% 
+  arrange(fecha)
+fechas<-unique(casosor_m$fecha)
+estados<-unique(casosor_m$Estado)
+idx<-as.Date(fechas)
+M<-matrix(0,nrow=length(fechas),ncol=length(estados))
+colnames(M)<-estados
+rownames(M)<-fechas
+for(i in fechas){
+  for (j in estados) {
+    tempo<-casosor_m%>%
+      filter(fecha==i & Estado==j)%>%select(casos)
+    M[i,j]<-tempo$casos[[1]]
+    }
+}
+ex_matrix <- xts(M,order.by = idx)
+```
+
+Se utiliza una herramienta que nos permite una visualización para diferentes intervalos de tiempo, la Figura \@ref(fig:seriesmex3) muestra el resultado para los 3 estados con mayor número de casos confirmados
+
+```{r,"seriesmex3", fig.cap="Casos confirmados para CDMX, Estado de México, Baja California por día ",  out.extra="class=external", layout="l-body-outset"}
+estados_m<-c("Ciudad de México","México","Baja California")
+hc<-highchart(type="stock")
+for (j in estados_m){
+hc<-hc%>% hc_add_series(name=j,ex_matrix[,j], id=j)
+}
+hc<-hc%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(text = "Casos confirmados para los tres estados
+           con más reportes")%>%
+      #margin = 20, align = "left",
+      #style = list(color = "#90ed7d", useHTML = TRUE)) %>% 
+  hc_subtitle(text = "Utilice la herramienta de zoom en la
+              parte inferior")%>%
+    hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))%>%
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FCFFC5",
+             shared = TRUE, borderWidth = 5) %>% 
+  hc_yAxis(title = list(text = "Número de casos confirmados"))
+hc
+```
+
+Se tiene interés en los casos confirmados nacionales, que precisamente serán los que se estudiarán más alla de la visualización. La Figura \@ref(fig:casostotales), muestra la evolución de los casos nacionales. 
+
+```{r,"casostotales", fig.cap="Casos confirmados para México ",  out.extra="class=external", layout="l-body-outset"}
+casostotales<-casos_m %>% 
+  group_by(fecha)%>%
+  summarise(casost=sum(casos))
+casostotales_xts<-xts(casostotales$casost,
+                 order.by = as.Date(casostotales$fecha))
+highchart(type="stock")%>%
+  hc_add_series(name="México",casostotales_xts[,1])%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(text = "Casos confirmados para México")%>%
+           #margin = 20, align = "left",
+           #style = list(color = "#90ed7d", useHTML = TRUE)) %>% 
+  hc_subtitle(text = "Utilice la herramienta de zoom en la parte
+              inferior")%>%
+  #hc_xAxis(title=list(text="dias"),categories = idx)%>%
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FCFFC5",
+             shared = TRUE, borderWidth = 5) %>% 
+  hc_yAxis(title = list(text = "Número de casos confirmados"))%>%
+    hc_exporting(enabled = TRUE,
+               filename = "datos",
+               buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+
+
+Para verificar si los datos de la base de  [mariorz](https://github.com/mariorz/covid19-mx-time-series) concuerdan con los datos de la Dirección General de Epidemiología, de la última se calculó el acumulado nacional de casos confirmado al 10 de junio de 2020, lo cual es consistente con el dato $129\,184$ de la base utilizada
+
+```{r, message=FALSE, warning=FALSE}
+oficiales<- read_csv("Datos10junio/200610COVID19MEXICO.csv")
+oficiales%>%
+  select(RESULTADO)%>%
+  filter(RESULTADO==1)%>%
+  sum()
+```
+
+Los casos confimados acumulados por estado al 10 de junio pueden observarse en el siguiente mapa
+
+```{r,"mapacasostotales", fig.cap="Casos confirmados para México al 10 junio de 2020",  out.extra="class=external", layout="l-page"}
+mapdata <- get_data_from_map(download_map_data("countries/mx/mx-all"))
+M1<-M
+colnames(M1)[9]<-"Distrito federal"
+res<-M1[nrow(M1),]
+datos_tol <- mapdata %>% 
+  select(code = `woe-name`) %>%
+  arrange(code)%>%
+  mutate(value=c(res,0))
+mapdata<-mapdata%>%arrange(`woe-name`)
+hcmap("countries/mx/mx-all", data = datos_tol, value = "value",
+      joinBy = c("woe-name", "code"), name = "Casos Confirmados")%>%
+   hc_colorAxis(dataClasses = color_classes(c(seq(0, 6000, by = 1000), 50000)))%>%
+  hc_legend(layout = "vertical", align = "right",
+            floating = TRUE, valueDecimals = 0)
+```
+
+
+En la sección de series de tiempo se analizan los casos confirmados nacionales. 
+
+

@@ -1,0 +1,614 @@
+---
+title: "Series de Tiempo"
+description: |
+  Se presentan los conceptos básicos de series de tiempo y se realiza una estimación de modelos ARIMA
+author:
+  - name: Rafael Martínez Martínez
+    url: https://github.com/rafneta
+    affiliation: CIDE-ME2019
+    affiliation_url: https://cide.edu/programas/me
+output: 
+  distill::distill_article:
+    code_folding: hide
+    toc: true
+    toc_depth: 3
+bibliography: bibliografia.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Se cargan las librerias a utilizar 
+
+<aside>
+```{r codefolder, echo=FALSE, results='asis'}
+codefolder::distill(init = "show")
+```
+</aside>
+
+```{r, warning=FALSE,message=FALSE}
+library(covidMex)
+library(urca)
+library(tseries)
+library(dplyr)
+library(ggplot2)
+library(highcharter)
+library(tidyverse)
+library(lubridate)
+library(openxlsx)
+library(DT)
+library(data.table)
+library(xts)
+library(forecast)
+library(astsa)
+myMenuItems <- c("downloadPNG", "downloadJPEG", "downloadPDF", "downloadCSV" )
+casos_mx_st <- read_csv("Datos10deJunioSeries.csv")  %>%
+select(-X1)
+casos_m<-casos_mx_st   %>%
+pivot_longer(-Estado, names_to = "fecha_corte", 
+               values_to = "casos") 
+casos_m$fecha <- format(as.Date(casos_m$fecha_corte,
+                                format = "%d-%m-%Y"), "%Y-%m-%d")
+casostotales<-casos_m %>% 
+  group_by(fecha)%>%
+  summarise(casost=sum(casos))
+casostotales_xts<-xts(casostotales$casost,
+                 order.by = as.Date(casostotales$fecha))
+
+```
+
+
+# Introducción a series de tiempo
+
+Los conceptos necesarios para series de tiempo pueden desarrollarse bajo diferentes motivaciones, depende de la literatura que se consulte, para los fines de este trabajo se combinan algunas definiciones formales y unas un poco _relajadas_, esto último con la intención de hacer que el documento sea más amigable.
+
+A continuación se definirán algunos conceptos.
+
+***
+```{definition, name="Proceso Estocástico Discreto (PED)", label='ped'}
+Es una colección de variables aleatorias 
+$$\left\{ X_t:t\in T\right\}$$
+donde $T$ es un conjunto numerable,  $X_t\in S$, $S$ es llamado el espacio de estados.  
+```
+***
+
+Un PED $\{X_t\}$^[para no saturar la notación se estará utilizando $\{X_t\}$ para referirse aun proceso estocástico discreto] puede considerarse como una función de dos variables $$X:T\times \Omega\longrightarrow S$$
+
+Para cada $\omega\in\Omega$ fijo, la función $t\rightarrow X_t(\Omega)$ es llamada una realización del proceso [@rincon]. 
+
+***
+```{definition, name="Serie de tiempo", label='set'}
+Es una realización de un Proceso Estocástico Discreto 
+
+$$\left\{ X_t:t\in T\right\}$$
+
+donde $T$ es un conjunto ordenado cronológicamente cuyos elementos son equidistantes
+```
+***
+
+Se quiere estudiar el número de casos confirmados de CoVID-19 en México, esta variable se denotará como $C_t$ donde $t$ hace referencia a la fecha de observación de la variable, se tienen las siguientes observaciones
+
+* Los datos presentan un orden temporal
+* Dado que no concemos los resultado de estas variables, hay una falta de información, número de pruebas insuficiente, no hay distanciamiento social efectivo, etc. 
+* Tenemos un proceso estocástico indexado por el tiempo
+* Cuando observamos estos datos tenemos una realización, $S=\mathbb{Z}_+$
+
+con las observaciones anteriores se tiene un PED $\{C_t\}$  ^[la actualización de los datos podria verse como una realización distinta y podría trabajarse sobre eso]. Cabe aclarar que en términos prácticos tenemos una realización finita por la cantidad de datos disponible. La Figura \@ref(fig:casostotaless) superior muestra la gráfica de la serie. Se podría estar interesado en estudiar el cambio en los casos reportados $\Delta C_t=C_t-C_{t-1}$, ver Figura   \@ref(fig:casostotaless) inferior, a algún otro comportamento como $\log(C_t)$ o
+$\Delta \log(C_t)\approx \frac{C_t-C_{t-1}}{C_{t-1}}$. 
+
+```{r,"casostotaless", fig.cap="Casos confirmados para México ",  out.extra="class=external", layout="l-body-outset"}
+highchart(type = "stock") %>%
+  hc_yAxis_multiples(
+    create_yaxis(2, height = c(2, 2))) %>%
+  hc_add_series(name="Total",casostotales_xts[,1],yAxis=0)%>%
+  hc_add_series(name="Diferencias",
+                diff(casostotales_xts[,1],2), yAxis=1)%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(text = "Casos confirmados para México")%>%
+           #margin = 20, align = "left",
+           #style = list(color = "#90ed7d", useHTML = TRUE)) %>% 
+  hc_subtitle(text = "Utilice la herramienta de zoom en la parte
+              inferior")%>%
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FCFFC5",
+             shared = TRUE, borderWidth = 5) %>% 
+  #hc_yAxis(title = list(text = "Número de casos confirmados"))%>%
+    hc_exporting(enabled = TRUE,
+      filename = "datos",
+      buttons = list(contextButton = list(menuItems = myMenuItems)))
+```
+
+Una primera observación es que se trabajará con los datos a partir de la detección del primer caso, no tiene sentido trabajar con observaciones nulas, pues la observación de la variable es cero desde $-\infty$ hasta el día anterior del primer caso, el primer caso confirmado en México fue el 28 de febrero, la Figura \@ref(fig:casospar) muestra esta ventana de datos para las variables, $C_t$, $\Delta C_t$, $\log(C_t)$, $\Delta \log(C_t)$. 
+
+```{r,"casospar", fig.cap="Casos confirmados para México ",  out.extra="class=external", layout="l-body-outset"}
+casospar<-casos_m %>% 
+  group_by(fecha)%>%
+  summarise(casost=sum(casos))%>%
+  filter(casost!=0)
+casospar_xts<-xts(casospar$casost,
+                 order.by = as.Date(casospar$fecha))
+highchart(type = "stock")%>%
+   hc_yAxis_multiples(
+    create_yaxis(4, height = c(2,2,2,2))) %>%
+  hc_add_series(name="Parcial",casospar_xts[,1], yAxis=0)%>%
+  hc_add_series(name="Diferencias P",
+                diff(casospar_xts[,1]), yAxis=1)%>%
+  hc_add_series(name="Logaritmo",
+                log10(casospar_xts[,1]), yAxis=2)%>%
+  hc_add_series(name="Diferencias L",
+                diff(log10(casospar_xts[,1])), yAxis=3)%>%
+  hc_add_theme(hc_theme_ffx())%>%
+  hc_title(text = "Casos confirmados para México
+           desde el primer caso")%>%
+           #margin = 20, align = "left",
+      #style = list(color = "#90ed7d", useHTML = TRUE)) %>% 
+  hc_subtitle(text = "Utilice la herramienta de zoom en la
+              parte inferior")%>%
+  hc_tooltip(crosshairs = TRUE, backgroundColor = "#FCFFC5",
+             shared = TRUE, borderWidth = 5) %>% 
+#hc_yAxis(title = list(text = "Número de casos confirmados"))%>%
+    hc_exporting(enabled = TRUE,
+      filename = "datos",
+      buttons = list(contextButton = list(menuItems = myMenuItems)))
+
+```
+
+# Serie de tiempo estacionaria 
+
+
+Un PED $\{X_t\}$ es **estrictamente estacionario** si y sólo si para cualesquiera $t_1 < t_2 <  \dots < t_n$ $n\geq1$, la distribución de probabilidad conjunta de $[X_{t_1},\dots,X_{t_n}]$  coincide con la de $[X_{t_1+h},\dots,X_{t_n+h}]$ para $h\in\mathbb{Z}-\{0\}$
+
+***
+Un PED $\{X_t\}$ es **estacionario en media** o **débilmente estacionario de primer orden** si y solo si $\mathbb{E}(X_t)<\infty$ es constante
+
+***
+Un PED $\{X_t\}$ es **estacionario en autocovarianza** o **débilmente estacionario de segundo orden** si y solo si:
+
+1. $\mathbb{E}(X_t)<\infty$ y $\mathbb{V}ar(X_t)<\infty$ son constantes y finitas, es decir, no hay dependencia de $t$
+2. $\mathbb{C}ov(X_t,X_{t-k})$ a lo sumo de pende de $k$ pero no depende de $t$
+
+***
+para trabajar con series de tiempo se pide normalmente que se suponga que la serie  es **debilmente estacionaria de segundo orden**. Por el momento no se realiza esta prueba a los datos de CoVID, en secciones posteriores regresamos a esta pregunta. Por el momento se supondrá $\{C_t\}$ es estacionaria.
+
+
+# Autocorrelación y autocorrelación parcial
+
+¿Existe una relación entre $C_t$ y $C_{t-1},C_{t-2},\dots,C_{t-k},$?, la *función de autorrelación* representa la duración y la intensidad de la memoria de un proceso, podría decirse que es una medida de qué tanto afectan los valores pasados a los actuales. 
+
+***
+La **autocovarianza de orden $k$**, de un PED $\{X_t\}$ *estacionario*  se define como 
+
+$$\gamma_k=\mathbb{C}ov(X_t,X_{t+k})$$ 
+
+***
+
+La **autocorrelación simple de orden k**, de un PED $\{X_t\}$ *estacionario* se define como
+
+$$\rho_k=\frac{\gamma_k}{\gamma_0};\;\; k=0,1\dots$$ 
+
+***
+
+La función $k\rightarrow\rho_k$ es llamada la _función de autocorrelación (ACF)_, el dominio de la función se deduce a partir del supuesto de *estacionariedad*, esta función nos da la relación entre entre $X_t$ y $X_{t-k}$.  
+
+En la práctica se tienen que utilizar estimadores, el valor numérico para el estimador $\hat\rho_k$ es  
+
+$$r_{k} = \frac{\sum\limits_{t=k+1}^T (x_{t}-\bar{x})(x_{t-k}-\bar{x})}
+ {\sum\limits_{t=1}^T (x_{t}-\bar{x})^2}$$
+
+donde $x_t$ es el valor observado de $X_t$, $T$ denota el número de datos. Cada valor se considera individualmente significativo al $5%$ cuando $r_k>1.96/\sqrt{T}$. Si se quiere hacer una prueba conjunta de significancia de las $K$ primeras autocorrelaciones usualmente se calcula el **estadístico de Ljuang-Box** que aproximadamente sigue una distribución $~\chi^2(K)$
+
+$$Q_{LB}=T(T-2)\sum_{k=1}^{K}\frac{r_k^2}{T-k}$$
+
+la hipótesis nula es $\rho_1=\ldots\rho_K=0$.
+
+Se aplica lo anterior a $\{C_t\}$, la Figura \@ref(fig:acf) muestra el correlograma (la gráfica de $r_k$ vs $k$) para $k\in\{1,2,\ldots,20 \}$, de la definición $r_0=1$, las lineas azules punteadas indican el intervalo de confianza al $95\%$. 
+
+
+```{r,"acf", fig.cap="Función de autocorrelación",  out.extra="class=external", layout="l-body-outset"}
+capar<-casospar$casost[1:84]
+acf(capar,lag.max=20, ylab="Autocorrelación r_k",
+    main="Función de autocorrelación", xlab="retraso k")
+```
+
+Observamos una dependencia entre $C_t$ y sus valores anteriores, esta dependencia va dismunuyendo conforme $k$ aumenta, una herramienta visual para corroborar estas situaciones es graficar $C_t$ vs $C_{t-k}$ para diferentes valores de $k$, la Figura \@ref(fig:scatteracf) muestra dichas gráficas.
+
+```{r,"scatteracf", fig.cap="Grafias de C_t vs C_{t-k}",out.extra="class=external", layout="l-body-outset"}
+gglagplot(capar) +
+  ggtitle("Grafias de C_t vs C_{t-k}")+
+  labs(y = "C_t",x="C_{t-k}")
+```
+
+Existe una medida del grado de asociación lineal entre dos componentes de  $\{X_t\}$ que descarta que dicha asociación suceda por los componentes intermedios entre ellos, precisando:
+
+***
+La **autocorrelación parcial de orden $k$** de un PED $\{X_t\}$ *estacionario* se define como el parámetro $\phi_{kk}$ de la regresión 
+
+\begin{equation}
+\tilde{X}_t=\phi_{k1}\tilde{X}_{t-1}+\phi_{k2}\tilde{X}_{t-2}+\dots+\phi_{kk}\tilde{X}_{t-k}+ U_t
+(\#eq:pac)
+\end{equation}
+
+con $\tilde{X}_{t-i}=X_{t-i}-\mu_X$, $i = 0,\dots,k$, $U_t$ independiente de $Y_{t-i}$ para todo $i\geq 1$, la función $k\rightarrow\phi_{kk}$ suele llamarse _función de autocorrelación parcial (PACF)_ del proceso. 
+
+***
+Existen por lo menos dos formas de estimar esta cantidad, solo se menciona una de ellas que es realizar la regresión que indica la ecuación \@ref(eq:pac), cada estimación puede considerarse individualmente significativa al $5\%$ cuando $\phi_{kk}>1.96/\sqrt{T}$.
+
+Se aplica este concepto a $\{C_t\}$, la Figura \@ref(fig:pacf) muestra la gráfica de $\phi_{kk}$ vs $k$ para $k\in\{1,2,\ldots,20 \}$, las lineas azules punteadas indican el intervalo de confianza al $95\%$.
+
+```{r,"pacf", fig.cap="Función de autocorrelación parcial",  out.extra="class=external", layout="l-body-outset"}
+pacf(capar,lag.max=20, ylab="Autocorrelación parcial r_k",
+    main="Función de autocorrelación parcial", xlab="retraso k")
+```
+
+
+La ACF se puede calcular para series no estacionarias, cuando la serie no es estacionaria la ACF decrece _muy lento_. Hasta el momento se ha supuesto que $\{C_t\}$ es estacionaria, ¿qué tanto se puede sostener esta hipótesis al observar su correlograma?, todo depende de la interpretación de _muy lento_, se sigue sosteniendo la hipótesis de estacionariedad.   
+
+# Modelos ARMA($p$,$q$)
+
+Un proceso estocástico *estacionario* $\{X_t\}$ sigue un **modelo autorregresivo-media móvil** de orden $(p,q)$ o **ARMA($p,q$)**, si y sólo si
+
+$$X_t=\mu+\sum_{i=1}^p\phi_iX_{t-i}-\sum_{j=1}^q\theta_jA_{t-j}+A_t$$
+para $t\in\mathbb{Z}$, donde $\{A_t\}\sim NIID(0,\sigma_A^2)$, $\mu$, $\phi_i$ y $\theta_j$ son parametros.
+
+***
+para la **condición de estacionariedad** se tiene que las soluciones de la siguiente ecuación están fuera del círculo unitario
+
+$$1-\sum_{i=1}^p\phi_ix^i=0$$
+se dice que el **modelo es invertible** si las soluciones de la siguente ecuación están fuera del círculo unitario
+
+$$1-\sum_{j=1}^q\theta_jx^j=0$$
+
+Cuando los parámetros $\theta_j$ son nulos se dice que el proceso  sigue un modelo **AR($p$)=ARMA($p,0$)**, si los parámetros $\phi_i$ son nulos se dice que el proceso sigue un modelo **MA($q$)=ARMA($0,q$)**
+
+Los procesos _estacionarios_ **ARMA($p,q$)** se caracterizan por el comportamiento conjunto de su ACF y PACF, en la Figura \@ref(fig:tablaacf) se muestra el comportamiento, la tabla se se tomó del siguiente [enlace](https://www.ucm.es/data/cont/docs/518-2013-11-11-JAM-IAST-Libro.pdf)
+
+```{r, "tablaacf", echo=FALSE,fig.cap="Tabla de ACF y PACF", out.extra="class=external", layout="l-body-outset"}
+knitr::include_graphics("imagenes/tablaacf.png")
+```
+
+Si se revisan las gráficas de ACF y PACF para $\{C_t\}$ entonces probablemente la variable $C_t$ se pueda escribir como un modelo autorregresivo de orden $p$, **AR(p)**, es decir 
+
+$$C_t=\beta_0+\beta_1 C_{t-1}+\beta_{t-2}C_{t-2}+\dots+\beta_{t-p}C_{t-p}+U_t$$
+suponiendo $\mathbb{E}(U_t|C_{t-1},C_{t-2},\dots)=0$. Con base en los resultados obtenidos de autocorrelación se realizan las regresiones para 1, 2 y 3 retardos.
+
+```{r}
+capar_AR1<-lm(capar~lag(capar))
+capar_AR2<-lm(capar~lag(capar)+lag(capar,2))
+capar_AR3<-lm(capar~lag(capar)+lag(capar,2)+lag(capar,3))
+summary(capar_AR1)
+summary(capar_AR2)
+summary(capar_AR3)
+```
+
+Observamos que los 3 modelos tienen $R^2$ y $R^2$-ajustada
+bastante alta, tenemos que los coeficientes en los dos primeros modelos por separado y conjuntamete son estadísticamente significativos, en el tercero dos de los coeficientes no son significativos, pero esto no interfiere en la predicción  que pueda hacerse [@forecasting1]. Entonces se aplica un criterio para elegir uno de estos modelos, se utiliza el criterio de información de Bayes ^[cabe mencionar qeu existen otros criterios, como el criterio de información de Akaike] (BIC) [@stock], el cual se define como: 
+
+$$BIC(p)=\ln\left(\frac{SR(p)}{T}\right)+\frac{p+1}{T}\ln(T)$$
+aquí $SR(p)$ es la suma de los cuadrados de los residuos del modelo **AR($p$)** estimado, se elige el modelo que presente menor BIC 
+
+```{r}
+a<-log(sum(capar_AR1$residuals^2)/length(capar))+(2)*
+  log(length(capar))/length(capar)
+b<-log(sum(capar_AR2$residuals^2)/length(capar))+(3)*
+  log(length(capar))/length(capar)
+c<-log(sum(capar_AR3$residuals^2)/length(capar))+(4)*
+  log(length(capar))/length(capar)
+c(a,b,c)
+```
+
+Se elige **AR($2$)**, así el modelo estimado es
+
+$$\hat{C}_t=68.35218+1.565 C_{t-1}-0.541C_{t-2}$$
+
+La Figura \@ref(fig:estimadosar) muestra los estimados con el modelo AR(2) y la Figura \@ref(fig:estimadosarlog) muestra la misma información pero en escala logarítmica.
+
+```{r,"estimadosar", fig.cap="Casos observados y casos estimados AR",out.extra="class=external", layout="l-body-outset"}
+autoplot(ts(capar), series="Casos observados") +
+  autolayer(ts(fitted(capar_AR2)),series="Casos ajustados AR(2)") +
+  xlab("días") + ylab("") +
+  ggtitle("Casos observados y casos estimados AR(2)")
+```
+
+
+```{r,"estimadosarlog", fig.cap="Casos observados y casos estimado AR logaritmo",out.extra="class=external", layout="l-body-outset"}
+autoplot(ts(log10(capar)), series="Casos observados") +
+  autolayer(ts(log10(fitted(capar_AR2))),series="Casos ajustados AR(2)") +
+  xlab("días") + ylab("") +
+  ggtitle("Casos observados y casos estimados AR(2)")
+```
+
+Si se realiza una prueba de ruido blanco a los residuales:
+
+```{r}
+Box.test(residuals(capar_AR2), type="Ljung-Box")
+```
+
+No se rechaza que los residuos se distribuyan como ruido blanco. Hasta este momento todo parece indicar que se encontró un modelo que puede ser usado para predecir el número de casos confirmados, el problema que se presenta es que se ha supuesto que la serie es **estacionaria**, se aplicará un test para ver si esto es correcto. 
+
+
+# Serie de tiempo no estacionaria
+
+Si la serie presenta una **raíz unitaria** (y con esto es **no estacionaria**), es decir, $z=1$ es una solución de la ecuación
+
+$$1-\beta_1z-\beta_2z^2-\dots+\beta_pz^p=0$$
+entonces la serie presenta una tendencia estocástica, lo que implica que los coeficientes y los estadísticos $t$ de las regresiones previamente realizados no tienen _buenas características_ (los coeficientes son sesgados y el estadístico no se distribuye de forma normal). Para revisar si es el caso, se realiza el contraste de **Dickey-Fuller aumentado** [@stock], para ello se estima el siguiente modelo ^[segun [@stock] hay un subindice de más pero segun esta  [prueba](https://www.youtube.com/watch?v=4TBZnrUDrog) que parece correcta hay un subindice de menos]
+
+\begin{equation}
+\Delta C_t=\beta_0+\delta C_{t-1} + \gamma_1\Delta C_{t-1}+\gamma_2 C _{t-2}+\dots+\gamma_p \Delta C_{t-p+1}+u_t
+(\#eq:adf)
+\end{equation}
+
+donde $$H_0:\delta=0\;\;\text{vs}\;\;H_1:\delta<0 $$
+
+bajo la hipótesis nula, $C_t$ tiene tendencia estocástica, bajo la hipótesis alternativa, $C_t$ es **estacionaria**. Para calcular esta regresión se tiene que proponer un orden $p$ ^[normalmente se elige de tal forma que los residuales de la regresión sean ruido blanco], la instrucción `urca::ur.df` nos proporciona un criterio de selección y nos permite configurar la regresión como en la ecuación \@ref(eq:adf) 
+
+```{r}
+a<-ur.df(capar, selectlags = "BIC", type="drift")
+summary(a)
+```
+los resultados indican que no se puede rechazar la hipótesis nula, pues el estadístico $t$ para el coeficiente `z.lag.1` (que juega el papel de $\delta$) es positivo, la línea tau2 indica los valores críticos y los porcentajes de significancia. Se repite el cálculo, pero sin utilizar las herramientas preconstruidas y se obtiene el mismo resultado. En este caso el estadístico de interés es el asociado a la variable `lag(capar)[-1]` (que juega el papel de $\delta$). 
+
+```{r}
+capar_adf<-lm(diff(capar)~lag(capar)[-1]+diff(lag(capar)))
+summary(capar_adf)
+```
+
+Si en la prueba anterior se modifica la hipótesis alternativa: $C_t$ es estacionaria en torno a una tendencia temporal lineal determinística, entonces la regresión de Dickey-Fuller se escribe como
+
+\begin{equation}
+\Delta C_t=\beta_0+\alpha t+\delta C_{t-1} + \gamma_1\Delta C_{t-1}+\gamma_2 C _{t-2}+\dots+\gamma_p \Delta C_{t-p+1}+u_t
+(\#eq:adft)
+\end{equation}
+
+Se calcula la regresión de la ecuación  \@ref(eq:adft), para comprobar que los resultados sean correctos, se utiliza la instrucción `tseries::adf.test` que tiene por defecto la estimación temporal. 
+
+```{r}
+capar_adft<-lm(diff(capar)~lag(capar)[-1]+diff(lag(capar))+c(1:(length(capar)-1)))
+summary(capar_adft)
+adf.test(capar, k=1)
+```
+
+Dado el valor estadístico ($5.84$), no se puede rechazar en favor de una $C_t$ estacionaria con tendencia temporal lineal determinística. 
+
+Así, la hipótesis sobre la estacionariedad de $\{C_t\}$ debe de abandonarse, lo cual implica que los resultados obtenidos bajo la suposición de estacionariedad deben descartarse. 
+
+# Transformaciones de series no estacionarias
+
+Algunos series no estacionarias se pueden transformar para convertirlas en series estacionarias. Normalmente se tienen dos transformaciones:
+
+1. Transformación de Box-Cox para estabilizar la dispersión, es decir, obtener estacionariedad en la varianza
+
+$$w_t=\begin{cases}
+log(x_t)&\lambda=0\\
+&\\
+\frac{x_t^\lambda-1}{\lambda}&\lambda\neq 0
+\end{cases}$$
+
+2. Aplicar diferencias es los datos para estabilizar el nivel; es decir, obtener estacionariedad en media
+
+Se recomienda trabajar con las diferencias de $C_t$ [@stock]-[@wool]-[@asa], es decir, con $\Delta C_t=C_t-C_{t-1}$ o con las segundas diferencias $\Delta^2 C_t=C_t-2C_{t-1}+C_{t-2}$, de tal forma que al aplicar la preba de Dickey-Fuller a la serie resultante se rechaze la hipétesis nula en favor de una serie estacionaria. 
+
+Existen varias formas de abordar este problema, se ha elegido utilizar la instrucción `forecast::ndiffs` que calcula la cantidad de diferencias necesarias, una vez que se tiene este número se aplica la prueba mencionada para verificar dicha situación. 
+
+```{r}
+ndiffs(capar, test = "adf")
+a<-ur.df(diff(diff(capar)), selectlags = "BIC", type="drift")
+summary(a)
+```
+
+En este caso, se aplicó la prueba sin el factor de tendencia, pues las primeras diferencias eliminan la tendencia lineal determinista, ver [@stock]-[@wool]. Se comprueba que $\Delta^2 C_t=C_t-2C_{t-1}+C_{t-2}$ es una serie estacionaria. La Figura \@ref(fig:acfdd2)  muestra el correlograma y la Figura \@ref(fig:pacfdd2) la autocorrelación parcial.
+
+
+```{r,"acfdd2", fig.cap="Función de autocorrelación",  out.extra="class=external", layout="l-body-outset"}
+capardd1<-diff(capar)
+capardd2<-diff(capar,differences = 2)
+acf(capardd2,lag.max=20, ylab="Autocorrelación r_k",
+    main="Función de autocorrelación", xlab="retraso k")
+```
+
+```{r,"pacfdd2", fig.cap="Función de autocorrelación parcial",  out.extra="class=external", layout="l-body-outset"}
+capardd1<-diff(capar)
+capardd2<-diff(capar,differences = 2)
+pacf(capardd2,lag.max=20, ylab="Autocorrelación parcial r_k",
+    main="Función de autocorrelación", xlab="retraso k")
+```
+
+
+Puesto que $\Delta^2 C_t$ es estacionaria, al observar las gráficas de ACF, PACF, y de acuerdo a la Figura \@ref(fig:tablaacf) se obtiene que la estructura propuesta es un modelo **ARMA($0,1$)**. Es decir, 
+
+$$\Delta^2 C_t=-\theta_1A_{t-1}+A_t$$
+en términos del proceso $\{C_t\}$
+
+\begin{equation}
+C_t=2C_{t-1}-C_{t-2}-\theta_1A_{t-1}+A_t
+(\#eq:arimam)
+\end{equation}
+
+Más adelante se llega a esta estructura con las herramientas preconstruidas en R. 
+
+# Modelos ARIMA($p,d,q$)
+
+Se definen algunos conceptos para escribir la definición del modelo
+
+El *operador de retardo* se define como
+
+$$B^dX_t=X_{t-d};\;\;d\in\mathbb{N}$$
+
+***
+El *operador de diferencia* se define como
+
+$$\Delta^dX_t=(1-B)^dX_t;\;\;d\in\mathbb{N}$$
+
+***
+Un proceso estocástico $\{X_t\}$ es **integrado de orden $d$**,  $d\in\mathbb{N}$, si y sólo si el proceso  $\{\Delta^d X_t\}$  sigue un modelo **ARMA($p,q$)** estacionario e invertible. 
+
+***
+Un proceso estocástico $\{X_t\}$ es integrado de orden $d$ si y sólo si $\{X_t\}$ sigue un **modelo autorregresivo-integrado-media móvil** de orden $(p,d,q)$, o **ARIMA($p,d,q$)** del tipo
+
+$$\phi(B)\Delta^dX_t=\mu+\theta(B)A_t$$
+
+donde $\{A_t\}\sim NIID(0,\sigma_A^2)$, $\mu$, $\phi_i$ y $\theta_j$ son parámetros y 
+
+$$1-\sum_{i=1}^p\phi_ix^i=\phi(x)$$
+
+
+$$1-\sum_{j=1}^q\theta_jx^j=\theta(x)$$
+
+
+***
+Siguiendo las definiciones se puede decir que un proceso $\{X_t\}$ que sigue un modelo **ARIMA($p,d,q$)** equivale a que el proceso estacionario $\{\Delta^d X_t\}$ siga un modelo **ARMA($p,q$)**
+
+
+# Estimación del modelo de un serie de tiempo 
+
+Se estima el modelo **ARIMA($p,d,q$)** para $\{C_t\}$  se utilizan las herramientas prediseñadas en R, en específico `forecast::auto.arima`, que tiene las siguientes características
+
+* Se estima el modelo con la estructura $\phi(B)(\Delta^dX_t-\mu_1)=(1+\sum_{j=1}^q\theta_jB^j)A_t$
+* Para elegir al mejor modelo se prefiere utilizar el criterio de información de Akaike corregido
+* Se utiliza el método MLE (Maximum likelihood estimation) para encontrar los parámetros
+
+
+Teniendo esto en cuenta, se obtiene el modelo **ARIMA($0,2,1$)**, que coincide con lo obtenido en la ecuación \@ref(eq:arimam)
+
+```{r}
+fit1<-auto.arima(capar, trace=TRUE)
+```
+
+Con este modelo se tiene que los parámetros son 
+
+```{r}
+fit1
+```
+
+El modelo se puede escribir como 
+
+$$
+C_t=2C_{t-1}-C_{t-2}-0.3403A_{t-1}+A_t
+$$
+
+donde $A_t$ es un ruido blanco con varianza $37844$, el signo del parámetro se conserva por la propuesta de R del modelo antes comentada. 
+
+Falta verificar las codiciones de ruido blanco sobre los residuales de la estimación,
+
+```{r}
+checkresiduals(fit1)
+```
+
+Se rechaza la hipótesis nula, como puede comprobarse en la gráfica anterior, los residuales no presentan varianza constante. 
+
+Así, se tiene que regresar a los datos para estabilizar la varianza, para esto se utiliza la tranformación de Cox- Box
+
+$$w_t=\begin{cases}
+log(c_t)&\lambda=0\\
+&\\
+\frac{c_t^\lambda-1}{\lambda}&\lambda\neq 0
+\end{cases}$$
+
+Se encuentra el valor de $\lambda=0.2602152$, la Figura \@ref(fig:cox) muestra los datos transformados
+
+```{r,"cox", fig.cap="Datos transformados por Cox Box",  out.extra="class=external", layout="l-body-outset"}
+lam<-BoxCox.lambda(capar)
+lam
+plot(BoxCox(capar,lambda=lam), main="Datos transformados",
+     xlab="día", ylab="Transformacion")
+```
+
+Se estima nuevamente el modelo, pero transformando los datos, esto se logra con el argumento `lambda`, se observa nuevamente una estructura **ARIMA($0,2,1$)**
+
+```{r}
+fit<-auto.arima(capar, lambda=lam,trace=TRUE)
+fit
+```
+
+Los residuales de la estimación se comportan como ruido blanco, la prueba estadística y gráficos lo confirman. 
+
+```{r}
+checkresiduals(fit)
+```
+
+Así el modelo ajustado es 
+
+\begin{align}
+W_t=2W_{t-1}-W_{t-2}-0.5860A_{t-1}+A_t \notag \\
+C_t=(\lambda W_t+1)^{1/\lambda}
+(\#eq:modecox)
+\end{align}
+
+donde $A_t$ es un ruido blanco con varianza $0.05546$ y $\lambda=0.2602152$.
+
+# Predicción de  una serie de tiempo 
+
+Para las predicciones se toma el modelo \@ref(eq:modecox) y se evalua en $t+h|T$, es decir, se estimará $\hat C_{t+h|T}$ sujeto a que se conoce hasta el dato $T$-ésimo, para cada valor entero de $h\geq1$ se obtendrá una predicción, la estimación debe ser en orden, pues si no se tiene el dato $C_t$ para un determinado tiempo este debe ser sustituido por su estimado previamente obtenido. Lo usual es remplazar $A_t$ pata $t\geq T+1$ con $0$. El modelo de predicción queda como
+
+\begin{align}
+\hat W_{t+h|T}=2W_{t+h-1|T}-W_{t+h-2|T}-0.5860A_{t+h-1|T}+A_{t+h|T} \notag \\
+\hat C_{t+h|T}=(\lambda W_{t+h|T}+1)^{1/\lambda}
+(\#eq:modecoxs)
+\end{align}
+
+Cada predicción tiene asociada un intervalo de confianza [@forecasting1], en particular el intervalo de confianza para la primer estimación $\hat W_{t+1|T}$ es $\hat W_{t+1|T}\pm 1.96\hat\sigma_A$. La Figura \@ref(fig:tablapre) muestra la predicción y dos intervalos con nivel de confianza diferente.   
+
+```{r,"tablapre", fig.cap="Tabla de prediccion",  out.extra="class=external", layout="l-body-outset"}
+estimacion<-forecast(fit,20)
+datatable(as.data.table(estimacion))
+```
+
+Desde el comienzo del análisis se trabajó con aproximadamente el $80\%$ de los datos disponibles, dejando un $20\%$ para probar la predicción, en particular el modelo estimado predice que al 10 de junio de 2020 habría un total de $137624$ y la medición disponible a ese día fue de $129184$.   
+
+
+```{r}
+autoplot(estimacion,series="Predicción")+
+  autolayer(ts(casospar$casost),series="Casos observados") +
+  xlab("días") + ylab("") +
+  ggtitle("Casos observados y predicción")
+```
+
+Ahora se ilustrará porque es importante que se satisfagan las condiciones de ruido blanco en los residuales de la estimación. La siguiente figura muestra la predicción de un modelo **ARIMA($0,2,1$)** pero donde no se ha realizado la transformación de Box.
+
+```{r}
+estimacion0<-forecast(fit1,20)
+autoplot(estimacion0,series="Predicción sin Box")+
+  autolayer(ts(casospar$casost),series="Casos observados") +
+  xlab("días") + ylab("") +
+  ggtitle("Casos observdos y predicción sin Box")
+```
+
+Tenemos que el observado incluso esta más allá del intervalo de confianza. Se realizará la prueba de Diebold-Mariano cuya hipótesis nula establece que los dos métodos a probar tienen el mismo nivel de exactitud ( _accuracy_ ^[la proximidad de las observaciones a los valores observados] ) y la alternativa es que estos niveles son distintos.
+
+```{r}
+dm.test(estimacion$residuals,estimacion0$residuals)
+```
+
+Los dos niveles son distintos, se puede hacer una modificación de la prueba de tal forma que la hipóteiss alternativa indique si la exactitud de un método es menor a otro 
+
+```{r}
+dm.test(estimacion$residuals,estimacion0$residuals, alternative="less")
+```
+
+Lo anterior indica que el método donde no se realizó la transformación de Box tiene menos exactitud (el segundo argumento de la función dm.test). 
+
+
+Existen otras medidas que se pueden realizar para decidir sobre las predicciones. Algunas son las siguientes:
+
+
+\begin{align*}
+  \text{Mean error: ME} & = \text{mean}(e_{t}),\\
+  \text{Root mean squared error: RMSE} & = \sqrt{\text{mean}(e_{t}^2)}\\
+  \text{Mean absolute error: MAE} & = \text{mean}(|e_{t}|),\\
+  \text{Mean absolute percentage error: MAPE}& = \text{mean}(|p_{t}|).
+\end{align*}
+
+donde $e_{T+h} = x_{T+h} - \hat{x}_{T+h|T}$, $p_{t} = 100 e_{t}/x_{t}$. Se busca que cada uno sea lo menor posible. En nuestro caso, todas ellas fallan a favor del método donde se realizó la transformación de Box. 
+
+```{r}
+accuracy(estimacion$mean,casospar$casost[85:104])
+accuracy(estimacion0$mean,casospar$casost[85:104])
+```
+
+
+# Conclusiones
+
+El ajuste **ARIMA($p,d,q$)** realizado a los casos confirmados de CoVID-2019 para México tiene una mejor confianza a corto plazo, podría utilizarse para complementar otros modelos pero me parece que no los sustituye. 
+
+
+
